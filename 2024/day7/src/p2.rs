@@ -46,6 +46,9 @@ pub mod optim {
         if idx >= nums.len() {
             return result == target;
         }
+        if result > target {
+            return false;
+        }
 
         let curr = nums[idx];
         is_possible(target, nums, idx + 1, result * curr)
