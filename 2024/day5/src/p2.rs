@@ -90,6 +90,92 @@ pub mod naive {
     }
 }
 
+pub mod optim {
+    use std::cmp::Ordering;
+    use std::collections::HashMap;
+
+    #[derive(Debug, PartialEq, Eq, Clone, Default)]
+    pub struct Node {
+        parents: Vec<u32>,
+        children: Vec<u32>,
+    }
+
+    pub fn parse_input(input: &str) -> (HashMap<u32, Node>, Vec<Vec<u32>>) {
+        let mut lines = input.lines();
+
+        let mut map: HashMap<u32, Node> = HashMap::new();
+        for line in lines.by_ref() {
+            if line.is_empty() {
+                break;
+            }
+            let (left, right) = line
+                .split_once('|')
+                .map(|(l, r)| {
+                    (
+                        l.trim().parse::<u32>().unwrap(),
+                        r.trim().parse::<u32>().unwrap(),
+                    )
+                })
+                .unwrap();
+            map.entry(left).or_default().children.push(right);
+            map.entry(right).or_default().parents.push(right);
+        }
+
+        let mut updates = vec![];
+        for line in lines {
+            if line.is_empty() {
+                break;
+            }
+            updates.push(
+                line.split(',')
+                    .map(|x| x.trim().parse::<u32>().unwrap())
+                    .collect::<Vec<_>>(),
+            );
+        }
+
+        (map, updates)
+    }
+
+    pub fn get_order(map: &HashMap<u32, Node>, a: u32, b: u32) -> Ordering {
+        map.get(&a)
+            .map(|x| {
+                if x.children.contains(&b) {
+                    Ordering::Less
+                } else if x.parents.contains(&b) {
+                    Ordering::Greater
+                } else {
+                    Ordering::Equal
+                }
+            })
+            .unwrap_or(Ordering::Equal)
+    }
+
+    pub fn part2(input: &str) -> u32 {
+        let (map, mut updates) = parse_input(input);
+
+        let mut incorrect_updates = vec![];
+        for (i, update) in updates.iter().enumerate() {
+            for window in update.windows(2) {
+                if map
+                    .get(&window[1])
+                    .map(|v| v.children.contains(&window[0]))
+                    .unwrap_or(false)
+                {
+                    incorrect_updates.push(i);
+                    break;
+                }
+            }
+        }
+
+        let mut sum = 0;
+        for idx in incorrect_updates {
+            updates[idx].sort_by(|a, b| get_order(&map, *a, *b));
+            sum += updates[idx][updates[idx].len() >> 1];
+        }
+        sum
+    }
+}
+
 #[cfg(test)]
 mod test {
     use super::*;
@@ -97,6 +183,12 @@ mod test {
 
     #[test]
     fn sample() {
-        assert_eq!(naive::part2(SAMPLE), 123);
+        assert_eq!(optim::part2(SAMPLE), 123);
+    }
+
+    #[test]
+    fn optim_naive() {
+        let input = include_str!("input.txt");
+        assert_eq!(optim::part2(input), naive::part2(input));
     }
 }
