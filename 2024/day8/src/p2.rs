@@ -29,11 +29,7 @@ pub mod naive {
                 if ch == '.' {
                     grid.push(Cell::new(Content::Empty));
                 } else {
-                    if let std::collections::hash_map::Entry::Vacant(e) = node_groups.entry(ch) {
-                        e.insert(vec![(c, r)]);
-                    } else {
-                        node_groups.get_mut(&ch).unwrap().push((c, r));
-                    }
+                    node_groups.entry(ch).or_default().push((c, r));
                     grid.push(Cell::new(Content::Antenna));
                 }
             }
