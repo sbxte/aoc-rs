@@ -118,7 +118,7 @@ pub mod optim {
                 })
                 .unwrap();
             map.entry(left).or_default().children.push(right);
-            map.entry(right).or_default().parents.push(right);
+            map.entry(right).or_default().parents.push(left);
         }
 
         let mut updates = vec![];
