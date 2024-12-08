@@ -13,7 +13,7 @@ pub mod naive {
     #[derive(Debug, PartialEq, Eq, Clone)]
     pub enum Content {
         Empty,
-        Node,
+        Antenna,
     }
 
     pub fn part2(input: &str) -> u32 {
@@ -34,7 +34,7 @@ pub mod naive {
                     } else {
                         node_groups.get_mut(&ch).unwrap().push((c, r));
                     }
-                    grid.push(Cell::new(Content::Node));
+                    grid.push(Cell::new(Content::Antenna));
                 }
             }
         }
@@ -60,7 +60,7 @@ pub mod naive {
 
         let mut sum = 0;
         for e in grid {
-            if e.antinode || e.content == Content::Node {
+            if e.antinode || e.content == Content::Antenna {
                 sum += 1;
             }
         }
@@ -84,7 +84,7 @@ pub mod naive {
         fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
             if self.antinode {
                 write!(f, "#")
-            } else if let Content::Node = self.content {
+            } else if let Content::Antenna = self.content {
                 write!(f, "N")
             } else {
                 write!(f, ".")
@@ -97,7 +97,7 @@ pub mod naive {
         fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
             match self {
                 Self::Empty => write!(f, "."),
-                Self::Node => write!(f, "N"),
+                Self::Antenna => write!(f, "N"),
             }
         }
     }
