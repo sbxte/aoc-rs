@@ -16,3 +16,7 @@ Cargo.lock
 
 # Flamegraph perf 
 perf.data*
+
+
+# AOC inputs
+input.txt
