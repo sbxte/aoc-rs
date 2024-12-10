@@ -60,6 +60,75 @@ pub mod naive {
     }
 }
 
+pub mod optim {
+    pub fn part1(input: &str) -> u64 {
+        let bytes = input.trim().as_bytes();
+        let mut sum = 0;
+
+        // Block segment pointers
+        let mut i = 0;
+        let mut j = bytes.len() - 1;
+
+        // Block pointers
+        let mut p = 0;
+        let mut to = 0;
+        let mut mv = bytes[j] - b'0';
+        while i < j {
+            if i % 2 == 0 {
+                let size = (bytes[i] - b'0') as usize;
+                let file_id = i >> 1;
+                // Math magic
+                // b, b + 1, b + 2, ... , b + (size - 1)
+                // b + (size - 1) = a
+                // size - 1 = a - b
+                // p = b
+                // (size - 1) + p = a
+                // 1 / 2 * ( a * (a + 1) - (b-1) * b) = 1/2 * ( a^2 + a - b^2 + b)
+                // 1/2 * ( (a-b)(a+b) + a+b)
+                // 1/2 * (a+b)(a-b+1)
+                // 1/2 * ((size-1) + p + p)(size - 1 + 1)
+                // 1/2 * (size)((size-1) + 2p)
+                let diff = (file_id * size * (size + 2 * p - 1)) >> 1;
+                sum += diff;
+                p += size;
+                i += 1;
+                to = bytes[i] - b'0';
+                continue;
+            }
+
+            if mv <= to {
+                to -= mv;
+                let size = mv as usize;
+                let file_id = (j + 1) >> 1;
+                let diff = (file_id * size * (size + 2 * p - 1)) >> 1;
+                sum += diff;
+                p += mv as usize;
+                j -= 2;
+                mv = bytes[j] - b'0';
+                if to == 0 {
+                    i += 1;
+                }
+            } else {
+                mv -= to;
+                let size = to as usize;
+                let file_id = (j + 1) >> 1;
+                let diff = (file_id * size * (size + 2 * p - 1)) >> 1;
+                sum += diff;
+                p += to as usize;
+                i += 1;
+            }
+        }
+
+        if i == j {
+            let size = mv as usize;
+            let file_id = (j + 1) >> 1;
+            let diff = (file_id * size * (size + 2 * p - 1)) >> 1;
+            sum += diff;
+        }
+        sum as u64
+    }
+}
+
 #[cfg(test)]
 mod test {
     use super::*;
@@ -67,6 +136,12 @@ mod test {
 
     #[test]
     fn sample() {
-        assert_eq!(naive::part1(SAMPLE), 1928);
+        assert_eq!(optim::part1(SAMPLE), 1928);
+    }
+
+    #[test]
+    fn optim_naive() {
+        let input = include_str!("input.txt");
+        assert_eq!(naive::part1(input), optim::part1(input));
     }
 }
