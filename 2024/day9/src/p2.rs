@@ -1,5 +1,3 @@
-// NOT WORKING
-
 pub mod naive {
     pub fn parse_input(input: &str) -> Vec<Option<u64>> {
         let bytes = input.trim().as_bytes();
@@ -26,18 +24,24 @@ pub mod naive {
     }
 
     pub fn defrag(mut blocks: Vec<Option<u64>>) -> Vec<u64> {
-        let mut i = 1;
-        let mut i2 = i;
+        let mut i = 0;
+        let mut i2 = i + 1;
         let mut j = blocks.len() - 1;
         let mut j2 = j;
 
+        #[cfg(feature = "debug")]
+        display_blocks(&blocks);
+
         while j2 > 0 {
-            // display_blocks(&blocks);
-            if i2 > j || i > j2 {
-                // dbg!(i, i2, j, j2);
+            if i2 > j + 1 || i > j2 + 1 {
+                #[cfg(feature = "debug")]
+                {
+                    display_blocks(&blocks);
+                    dbg!(i, i2, j, j2);
+                }
                 j = j2;
                 i = 0;
-                i2 = 0;
+                i2 = 1;
             }
 
             let jb = blocks[j];
@@ -54,16 +58,28 @@ pub mod naive {
                 continue;
             }
 
+            #[cfg(feature = "debug")]
+            {
+                dbg!(i, i2, j, j2);
+                display_blocks(&blocks);
+            }
+
             let ib = blocks[i];
             if ib.is_some() {
                 i += 1;
-                i2 = i;
+                i2 = i + 1;
                 continue;
             }
             let i2b = blocks[i2];
             if i2b.is_none() {
                 i2 += 1;
                 continue;
+            }
+
+            #[cfg(feature = "debug")]
+            {
+                dbg!(i, i2, j, j2);
+                display_blocks(&blocks);
             }
 
             let mv = j - j2;
@@ -75,12 +91,20 @@ pub mod naive {
                     let y = blocks.as_mut_ptr().add(j2 + 1);
                     std::ptr::swap_nonoverlapping(x, y, mv);
                 }
-                i += mv;
+                i = 0;
+                i2 = i + 1;
                 j = j2;
             } else {
                 i = i2;
             }
+            #[cfg(feature = "debug")]
+            {
+                dbg!(i, i2, j, j2);
+                display_blocks(&blocks);
+            }
         }
+        #[cfg(feature = "debug")]
+        display_blocks(&blocks);
 
         blocks.iter_mut().map(|e| e.unwrap_or(0)).collect()
     }
@@ -88,6 +112,9 @@ pub mod naive {
     pub fn checksum(blocks: Vec<u64>) -> u64 {
         let mut sum = 0;
         for (i, b) in blocks.iter().enumerate() {
+            #[cfg(feature = "debug")]
+            dbg!(i as u64 * b);
+
             sum += i as u64 * b;
         }
         sum
@@ -102,8 +129,8 @@ pub mod naive {
     pub fn display_blocks(blocks: &[Option<u64>]) {
         for b in blocks {
             match b.as_ref() {
-                Some(x) => print!("{}", *x),
-                None => print!("."),
+                Some(x) => print!("{},", *x),
+                None => print!(".,"),
             }
         }
         println!();
