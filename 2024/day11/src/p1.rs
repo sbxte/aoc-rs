@@ -14,12 +14,11 @@ pub mod naive {
                     *e = 1;
                     return;
                 }
-                let ef = *e as f64;
-                let d = ef.log10().floor();
-                if d % 2.0 == 1.0 {
-                    let mul = 10f64.powi((d as i32 + 1) >> 1);
-                    buffer.push((ef / mul) as u64);
-                    *e = (ef % mul) as u64;
+                let d = e.ilog10() + 1;
+                if d % 2 == 0 {
+                    let mul = 10u64.pow(d >> 1);
+                    buffer.push(*e / mul);
+                    *e %= mul;
                     return;
                 }
                 *e *= 2024;

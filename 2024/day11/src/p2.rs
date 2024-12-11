@@ -20,12 +20,11 @@ pub mod naive {
                     return;
                 }
 
-                let ef = *k as f64;
-                let d = ef.log10().floor();
-                if d % 2.0 == 1.0 {
-                    let mul = 10f64.powi((d as i32 + 1) >> 1);
-                    *m2.entry((ef / mul) as u64).or_default() += *v;
-                    *m2.entry((ef % mul) as u64).or_default() += *v;
+                let d = k.ilog10() + 1;
+                if d % 2 == 0 {
+                    let mul = 10u64.pow(d >> 1);
+                    *m2.entry(*k / mul).or_default() += *v;
+                    *m2.entry(*k % mul).or_default() += *v;
                     return;
                 }
                 *m2.entry(*k * 2024).or_default() += *v;
