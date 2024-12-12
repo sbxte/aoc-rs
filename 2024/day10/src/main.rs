@@ -12,6 +12,6 @@ pub const SAMPLE: &str = "89010123
 
 fn main() {
     let input = include_str!("input.txt");
-    println!("Part 1: {}", p1::naive::part1(input));
-    println!("Part 2: {}", p2::naive::part2(input));
+    println!("Part 1: {}", p1::optim::part1(input));
+    println!("Part 2: {}", p2::optim::part2(input));
 }
