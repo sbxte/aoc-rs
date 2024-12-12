@@ -22,8 +22,9 @@ pub mod naive {
         regions.push((0, 0));
         let c1 = cols + 1;
 
-        #[cfg(feature = "vis1")]
-        print!("{}[2J", 27 as char);
+        if cfg!(feature = "vis1") {
+            print!("{}[2J", 27 as char);
+        }
 
         let mut open = vec![];
         let mut sum = 0;
@@ -44,8 +45,7 @@ pub mod naive {
                     continue;
                 }
 
-                #[cfg(feature = "vis1")]
-                {
+                if cfg!(feature = "vis1") {
                     // use std::thread::sleep;
                     // use std::time::Duration;
                     // sleep(Duration::from_millis(100));
