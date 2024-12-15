@@ -1,0 +1,11 @@
+[package]
+name = "aoc2024d14"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+aocutils = { path = "../../utils/" }
+
+[features]
+p1sample = []
+p2writefile = []

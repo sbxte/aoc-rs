@@ -1,0 +1,6 @@
+# For the love of God, do not push output.txt
+# It was 1GB+ in size...
+output.txt
+
+# Also, no inputs and answers shall be pushed 
+# in accordance to AOC rules! :)
