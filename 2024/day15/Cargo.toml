@@ -1,0 +1,11 @@
+[package]
+name = "aoc2024d15"
+version = "0.1.0"
+edition = "2024"
+
+[features]
+vis = []
+vis1 = ["vis"]
+
+[dependencies]
+aocutils = { path = "../../utils/" }
