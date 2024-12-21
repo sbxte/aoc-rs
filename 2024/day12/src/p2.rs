@@ -174,7 +174,6 @@ pub mod naive {
         // I really do need to make an AOC utility library...
     }
 
-    #[cfg(feature = "vis")]
     pub fn disp_acc_map(v: &[bool], input: &str, cols: usize, rows: usize) {
         use colored::Colorize;
 

@@ -105,7 +105,6 @@ pub mod naive {
         sum
     }
 
-    #[cfg(feature = "vis")]
     pub fn disp_acc_map(v: &[bool], input: &str, cols: usize, rows: usize) {
         use colored::Colorize;
 
