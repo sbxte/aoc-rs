@@ -1,5 +1,7 @@
 pub mod naive {
-    use aocutils::cartes::dim2::{Direction, Grid2, Vec2};
+    use aocutils::cartes::dim2::dir::Direction;
+    use aocutils::cartes::dim2::grid::Grid2;
+    use aocutils::cartes::dim2::vec::Vec2;
     use aocutils::optim::prelude::*;
 
     fn get_robot_pos(input: &str) -> Vec2<isize> {

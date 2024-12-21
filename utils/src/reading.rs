@@ -1,5 +1,5 @@
 pub mod grid {
-    use crate::cartes::dim2::Grid2;
+    use crate::cartes::dim2::grid::Grid2;
 
     pub fn byte_with<F, T>(_input: &[u8], _f: F) -> Grid2<T>
     where

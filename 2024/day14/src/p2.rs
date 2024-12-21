@@ -3,7 +3,7 @@ pub mod naive {
     use std::io::Write;
 
     type Int = i32;
-    type Vec2 = aocutils::cartes::dim2::Vec2<Int>;
+    type Vec2 = aocutils::cartes::dim2::vec::Vec2<Int>;
 
     fn parse_vector(input: &str) -> Vec2 {
         let (x, y) = input.split_once('=').unwrap().1.split_once(',').unwrap();
