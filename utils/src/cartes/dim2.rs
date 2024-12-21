@@ -2,6 +2,100 @@ use std::ops::{Add, AddAssign, Div, Mul, Neg, Rem, Sub, SubAssign};
 
 use crate::num::{One, RemEuclid, Zero};
 
+#[derive(Debug, PartialEq, Eq, Clone, Default)]
+pub struct Grid2<T> {
+    data: Vec<T>,
+    pub cols: usize,
+    pub rows: usize,
+}
+
+impl<T> Grid2<T> {
+    pub fn idx_to_vec2(idx: T, cols: T) -> Vec2<T>
+    where
+        T: Rem<Output = T> + Div<Output = T> + Copy,
+    {
+        Vec2(idx % cols, idx / cols)
+    }
+
+    pub fn vec2_to_idx(v: Vec2<T>, cols: T) -> T
+    where
+        T: Copy + Add<Output = T> + Mul<Output = T>,
+    {
+        v.1 * cols + v.0
+    }
+
+    pub fn from_str_1<F>(s: &str, p: F) -> Self
+    where
+        F: Copy + Fn(u8) -> T,
+    {
+        if s.is_empty() {
+            return Self {
+                data: vec![],
+                cols: 0,
+                rows: 0,
+            };
+        }
+
+        let mut data = s.bytes().map(p).collect::<Vec<_>>();
+        data.push(p(b'\n'));
+        Self {
+            data,
+            cols: s
+                .lines()
+                .next()
+                .expect("input string must have at least one line")
+                .len()
+                + 1,
+            rows: s.lines().count(),
+        }
+    }
+
+    /// # Safety
+    /// `idx` must be within bounds of the internal grid vector
+    pub unsafe fn get_unchecked(&self, idx: usize) -> &T {
+        unsafe { self.data.get_unchecked(idx) }
+    }
+
+    pub fn get_v(&self, v: Vec2<usize>) -> &T {
+        &self.data[v.1 * self.cols + v.0]
+    }
+
+    /// # Safety
+    /// `idx` must be within bounds of the internal grid vector
+    pub unsafe fn swap_idx_unchecked(&mut self, src: usize, dst: usize) {
+        unsafe {
+            let s = self.data.as_mut_ptr().add(src);
+            let d = self.data.as_mut_ptr().add(dst);
+            std::ptr::swap(s, d);
+        }
+    }
+
+    pub fn swap_idx(&mut self, src: usize, dst: usize) {
+        self.data.swap(src, dst);
+    }
+
+    pub fn as_slice(&self) -> &[T] {
+        &self.data
+    }
+
+    pub fn into_iter(self) {}
+}
+
+impl<T> Grid2<T>
+where
+    T: std::fmt::Display,
+{
+    pub fn print_display(&self) {
+        println!();
+        for r in 0..self.rows {
+            for c in 0..self.cols {
+                print!("{}", self.data[r * self.cols + c]);
+            }
+            println!();
+        }
+    }
+}
+
 #[derive(Debug, PartialEq, Eq, Clone, Copy)]
 pub enum Direction {
     Up,
@@ -50,10 +144,10 @@ impl Direction {
     {
         use self::Direction::*;
         match self {
-            Up => Vec2(N::zero(), N::one()),
-            Down => Vec2(N::zero(), -N::one()),
+            Up => Vec2(N::zero(), -N::one()),
+            Down => Vec2(N::zero(), N::one()),
             Right => Vec2(N::one(), N::zero()),
-            Left => Vec2(N::one(), N::zero()),
+            Left => Vec2(-N::one(), N::zero()),
         }
     }
 }
@@ -70,6 +164,52 @@ where
             corner1.0 + ((self.0 - corner1.0).rem_euclid(corner2.0 - corner1.0)),
             corner1.1 + ((self.1 - corner1.1).rem_euclid(corner2.1 - corner1.1)),
         )
+    }
+}
+
+impl<N> Vec2<N> {
+    pub fn map<F, T>(self, f: F) -> Vec2<T>
+    where
+        F: Fn(N) -> T,
+    {
+        Vec2(f(self.0), f(self.1))
+    }
+}
+
+impl<N> Vec2<N>
+where
+    N: Ord + Copy,
+{
+    pub fn get_min_max_corners(corner1: Self, corner2: Self) -> (Self, Self) {
+        (
+            Self(corner1.0.min(corner2.0), corner1.1.min(corner2.1)),
+            Self(corner1.0.max(corner2.0), corner1.1.max(corner2.1)),
+        )
+    }
+    pub fn bounds_clamp(self, corner1: Self, corner2: Self) -> Self {
+        let (min, max) = Self::get_min_max_corners(corner1, corner2);
+        Self(self.0.clamp(min.0, max.0), self.1.clamp(min.1, max.1))
+    }
+
+    pub fn is_oob_inclusive(self, corner1: Self, corner2: Self) -> bool {
+        let (min, max) = Self::get_min_max_corners(corner1, corner2);
+        !(min.0..=max.0).contains(&self.0) || !(min.1..=max.1).contains(&self.1)
+    }
+}
+
+impl<A> Vec2<A> {
+    pub fn from_v<B>(v: Vec2<B>) -> Self
+    where
+        A: From<B>,
+    {
+        Self(From::from(v.0), From::from(v.1))
+    }
+
+    pub fn into_v<B>(self) -> Vec2<B>
+    where
+        A: Into<B>,
+    {
+        Vec2(self.0.into(), self.1.into())
     }
 }
 

@@ -6,3 +6,9 @@ pub mod linalg;
 
 /// Number traits
 pub mod num;
+
+/// Input parsing and reading functionality
+pub mod reading;
+
+/// Optimization utilities
+pub mod optim;
