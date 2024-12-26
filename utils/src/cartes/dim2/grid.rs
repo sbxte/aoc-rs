@@ -51,7 +51,7 @@ impl<T> Grid2<T> {
         }
     }
 
-    /// Parses string input using a filter map function
+    /// Parses string input ignoring whitespaces while using a filter map function
     ///
     /// If `p` returns `None`, the char is filtered out
     /// otherwise for `let Some(x) = p`, x is used
@@ -68,7 +68,11 @@ impl<T> Grid2<T> {
         }
 
         Self {
-            data: s.bytes().filter_map(p).collect(),
+            data: s
+                .bytes()
+                .filter(|c| !(*c as char).is_whitespace())
+                .filter_map(p)
+                .collect(),
             cols: s
                 .lines()
                 .next()
