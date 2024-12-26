@@ -134,6 +134,8 @@ impl_remeuclid!(rem_euclid, i8 i16 i32 i64 i128 u8 u16 u32 u64 u128);
 
 pub trait SignedType {
     type SignType;
+
+    fn to_signtype(self) -> Self::SignType;
 }
 
 macro_rules! impl_signtype {
@@ -141,9 +143,15 @@ macro_rules! impl_signtype {
         $(
         impl SignedType for $a {
             type SignType = $b;
+            fn to_signtype(self) -> Self::SignType {
+                self as Self::SignType
+            }
         }
         impl SignedType for $b {
             type SignType = $a;
+            fn to_signtype(self) -> Self::SignType {
+                self as Self::SignType
+            }
         }
         )+
     }
