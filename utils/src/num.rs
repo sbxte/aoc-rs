@@ -131,3 +131,58 @@ macro_rules! impl_remeuclid {
 }
 
 impl_remeuclid!(rem_euclid, i8 i16 i32 i64 i128 u8 u16 u32 u64 u128);
+
+pub trait SignedType {
+    type SignType;
+}
+
+macro_rules! impl_signtype {
+    ($($a:tt $b:tt),+) => {
+        $(
+        impl SignedType for $a {
+            type SignType = $b;
+        }
+        impl SignedType for $b {
+            type SignType = $a;
+        }
+        )+
+    }
+}
+
+impl_signtype!(i8 u8, i16 u16, i32 u32, i64 u64, isize usize);
+
+pub trait Abs {
+    fn abs(self) -> Self;
+}
+
+macro_rules! impl_abs {
+    ($method:ident, $($t:tt)+) => {
+        $(
+        impl Abs for $t {
+            fn abs(self) -> Self {
+                self.$method()
+            }
+        }
+        )+
+    }
+}
+
+impl_abs!(abs, i8 i16 i32 i64 isize);
+
+pub trait AbsDiff: SignedType {
+    fn abs_diff(self, other: Self) -> Self::SignType;
+}
+
+macro_rules! impl_abs_diff {
+    ($method:ident; $($t:tt $out:tt),+) => {
+        $(
+        impl AbsDiff for $t {
+            fn abs_diff(self, other: Self) -> Self::SignType {
+                self.$method(other)
+            }
+        }
+        )+
+    }
+}
+
+impl_abs_diff!(abs_diff; i8 u8, i16 u16, i32 u32, i64 u64, isize usize);

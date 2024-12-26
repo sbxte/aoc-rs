@@ -1,6 +1,6 @@
 use std::ops::{Add, AddAssign, Div, Mul, Rem, Sub, SubAssign};
 
-use crate::num::RemEuclid;
+use crate::num::{Abs, AbsDiff, RemEuclid, SignedType};
 
 #[derive(Debug, PartialEq, Eq, Clone, Copy, Default)]
 pub struct Vec2<N>(pub N, pub N);
@@ -60,6 +60,16 @@ impl<A> Vec2<A> {
         A: Into<B>,
     {
         Vec2(self.0.into(), self.1.into())
+    }
+}
+
+impl<N, S> Vec2<N>
+where
+    S: Add<Output = S>,
+    N: Copy + Sub<Output = N> + AbsDiff<SignType = S>,
+{
+    pub fn manhattan_dist(self, other: Self) -> S {
+        self.0.abs_diff(other.0) + self.1.abs_diff(other.1)
     }
 }
 
