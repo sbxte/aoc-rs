@@ -1,6 +1,6 @@
 use std::ops::{Add, AddAssign, Div, Mul, Rem, Sub, SubAssign};
 
-use crate::num::{Abs, AbsDiff, RemEuclid, SignedType};
+use crate::num::{AbsDiff, RemEuclid};
 
 #[derive(Debug, PartialEq, Eq, Clone, Copy, Default)]
 pub struct Vec2<N>(pub N, pub N);
