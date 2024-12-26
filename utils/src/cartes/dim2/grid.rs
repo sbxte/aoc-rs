@@ -77,8 +77,7 @@ impl<T> Grid2<T> {
                 .lines()
                 .next()
                 .expect("Input string must have at least one line")
-                .len()
-                + 1,
+                .len(),
             rows: s.lines().count(),
         }
     }
