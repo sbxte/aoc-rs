@@ -24,6 +24,7 @@ impl<T> Grid2<T> {
         v.1 * cols + v.0
     }
 
+    /// Parses string input including newlines as a grid cell
     pub fn from_str_1<F>(s: &str, p: F) -> Self
     where
         F: Copy + Fn(u8) -> T,
@@ -44,6 +45,34 @@ impl<T> Grid2<T> {
                 .lines()
                 .next()
                 .expect("input string must have at least one line")
+                .len()
+                + 1,
+            rows: s.lines().count(),
+        }
+    }
+
+    /// Parses string input using a filter map function
+    ///
+    /// If `p` returns `None`, the char is filtered out
+    /// otherwise for `let Some(x) = p`, x is used
+    pub fn from_str_2<F>(s: &str, p: F) -> Self
+    where
+        F: Copy + Fn(u8) -> Option<T>,
+    {
+        if s.is_empty() {
+            return Self {
+                data: vec![],
+                cols: 0,
+                rows: 0,
+            };
+        }
+
+        Self {
+            data: s.bytes().filter_map(p).collect(),
+            cols: s
+                .lines()
+                .next()
+                .expect("Input string must have at least one line")
                 .len()
                 + 1,
             rows: s.lines().count(),
