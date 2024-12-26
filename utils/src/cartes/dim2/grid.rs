@@ -127,3 +127,15 @@ where
         }
     }
 }
+
+impl<T> AsRef<[T]> for Grid2<T> {
+    fn as_ref(&self) -> &[T] {
+        &self.data
+    }
+}
+
+impl<T> AsMut<[T]> for Grid2<T> {
+    fn as_mut(&mut self) -> &mut [T] {
+        &mut self.data
+    }
+}
