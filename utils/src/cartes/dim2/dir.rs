@@ -57,4 +57,25 @@ impl Direction {
             Left => Vec2(-N::one(), N::zero()),
         }
     }
+
+    pub fn from_vec2<N>(v: &Vec2<N>) -> Option<Self>
+    where
+        N: PartialOrd + Zero,
+    {
+        use self::Direction::*;
+        if v.0 == N::zero() {
+            if v.1 > N::zero() {
+                return Some(Down);
+            } else if v.1 < N::zero() {
+                return Some(Up);
+            }
+        } else if v.1 == N::zero() {
+            if v.0 > N::zero() {
+                return Some(Right);
+            } else if v.0 < N::zero() {
+                return Some(Left);
+            }
+        }
+        None
+    }
 }
