@@ -36,12 +36,16 @@ pub mod naive {
 
     impl std::fmt::Display for Cell {
         fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-            write!(f, "{}", match self {
-                Self::Empty => '.',
-                Self::Wall => '#',
-                Self::Robot => '@',
-                Self::Box => 'O',
-            })
+            write!(
+                f,
+                "{}",
+                match self {
+                    Self::Empty => '.',
+                    Self::Wall => '#',
+                    Self::Robot => '@',
+                    Self::Box => 'O',
+                }
+            )
         }
     }
 
@@ -78,7 +82,7 @@ pub mod naive {
     fn try_move_robot(grid: &mut Grid2<Cell>, robot: &mut Vec2<isize>, dir: Direction) {
         let step = dir.step();
         let mut can_move = false;
-        let mut check = *robot; // copy 
+        let mut check = *robot; // copy
 
         while !check.is_oob_inclusive(
             Vec2::from((0, 0)),
@@ -97,7 +101,7 @@ pub mod naive {
             return;
         }
 
-        let mut mv = check; // copy 
+        let mut mv = check; // copy
         let rstep = dir.rot180().step();
         while mv != *robot {
             let next = mv + rstep;
@@ -135,10 +139,13 @@ pub mod naive {
     pub fn part1(input: &str) -> i32 {
         let (mut grid, mut robot, movements) = parse_input(input);
         for m in movements {
-            try_move_robot(&mut grid, &mut robot, m);
-            if cfg!(debug_assertions) {
+            if cfg!(any(feature = "vis1")) {
                 grid.print_display();
             }
+            try_move_robot(&mut grid, &mut robot, m);
+        }
+        if cfg!(any(feature = "vis1")) {
+            grid.print_display();
         }
         calc_sum_gps(&grid)
     }

@@ -4,8 +4,9 @@ version = "0.1.0"
 edition = "2024"
 
 [features]
-vis = []
-vis1 = ["vis"]
+vis = ["vis1", "vis2"]
+vis1 = []
+vis2 = []
 
 [dependencies]
 aocutils = { path = "../../utils/" }
