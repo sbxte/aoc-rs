@@ -171,6 +171,11 @@ impl From<Vec2<isize>> for Vec2<usize> {
         Self(value.0 as usize, value.1 as usize)
     }
 }
+impl From<Vec2<usize>> for Vec2<isize> {
+    fn from(value: Vec2<usize>) -> Self {
+        Self(value.0 as isize, value.1 as isize)
+    }
+}
 
 #[cfg(test)]
 mod vec_test {

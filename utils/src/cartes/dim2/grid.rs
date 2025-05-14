@@ -115,6 +115,13 @@ impl<T> Grid2<T> {
     pub fn as_slice(&self) -> &[T] {
         &self.data
     }
+
+    pub fn iter(&self) -> Grid2Iterator<T> {
+        Grid2Iterator {
+            grid: self,
+            selector: Grid2Pos::zero(),
+        }
+    }
 }
 
 impl<T> Grid2<T>
@@ -128,13 +135,6 @@ where
                 print!("{}", self.data[r * self.cols + c]);
             }
             println!();
-        }
-    }
-
-    pub fn iter(&self) -> Grid2Iterator<T> {
-        Grid2Iterator {
-            grid: self,
-            selector: Vec2::zero(),
         }
     }
 }
