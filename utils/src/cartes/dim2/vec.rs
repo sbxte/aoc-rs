@@ -166,6 +166,11 @@ where
         unsafe { Self(*value.get_unchecked(0), *value.get_unchecked(1)) }
     }
 }
+impl From<Vec2<isize>> for Vec2<usize> {
+    fn from(value: Vec2<isize>) -> Self {
+        Self(value.0 as usize, value.1 as usize)
+    }
+}
 
 #[cfg(test)]
 mod vec_test {
