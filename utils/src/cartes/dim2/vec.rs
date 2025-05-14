@@ -1,6 +1,6 @@
 use std::ops::{Add, AddAssign, Div, Mul, Rem, Sub, SubAssign};
 
-use crate::num::{AbsDiff, RemEuclid};
+use crate::num::{AbsDiff, RemEuclid, Zero};
 
 #[derive(Debug, PartialEq, Eq, Clone, Copy, Default)]
 pub struct Vec2<N>(pub N, pub N);
@@ -17,7 +17,14 @@ where
     }
 }
 
-impl<N> Vec2<N> {
+impl<N> Vec2<N>
+where
+    N: Zero,
+{
+    pub fn zero() -> Self {
+        Self(N::zero(), N::zero())
+    }
+
     pub fn map<F, T>(self, f: F) -> Vec2<T>
     where
         F: Fn(N) -> T,

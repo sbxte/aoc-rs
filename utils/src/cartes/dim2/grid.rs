@@ -2,9 +2,11 @@ use std::ops::{Add, Div, Mul, Rem};
 
 use crate::cartes::dim2::vec::Vec2;
 
+pub type Grid2Pos = Vec2<usize>;
+
 #[derive(Debug, PartialEq, Eq, Clone, Default)]
 pub struct Grid2<T> {
-    data: Vec<T>,
+    pub(crate) data: Vec<T>,
     pub cols: usize,
     pub rows: usize,
 }
@@ -88,8 +90,12 @@ impl<T> Grid2<T> {
         unsafe { self.data.get_unchecked(idx) }
     }
 
-    pub fn get_v(&self, v: Vec2<usize>) -> &T {
-        &self.data[v.1 * self.cols + v.0]
+    pub fn get_v(&self, v: Grid2Pos) -> &T {
+        &self.data[Grid2::vec2_to_idx(v, self.cols)]
+    }
+
+    pub fn get_v_mut(&mut self, v: Grid2Pos) -> &mut T {
+        &mut self.data[Grid2::vec2_to_idx(v, self.cols)]
     }
 
     /// # Safety
@@ -109,8 +115,6 @@ impl<T> Grid2<T> {
     pub fn as_slice(&self) -> &[T] {
         &self.data
     }
-
-    pub fn into_iter(self) {}
 }
 
 impl<T> Grid2<T>
@@ -126,6 +130,13 @@ where
             println!();
         }
     }
+
+    pub fn iter(&self) -> Grid2Iterator<T> {
+        Grid2Iterator {
+            grid: self,
+            selector: Vec2::zero(),
+        }
+    }
 }
 
 impl<T> AsRef<[T]> for Grid2<T> {
@@ -137,5 +148,123 @@ impl<T> AsRef<[T]> for Grid2<T> {
 impl<T> AsMut<[T]> for Grid2<T> {
     fn as_mut(&mut self) -> &mut [T] {
         &mut self.data
+    }
+}
+
+pub struct Grid2Iterator<'g, T> {
+    grid: &'g Grid2<T>,
+    selector: Grid2Pos,
+}
+
+impl<'g, T> Iterator for Grid2Iterator<'g, T> {
+    type Item = (Grid2Pos, &'g T);
+
+    fn next(&mut self) -> Option<Self::Item> {
+        if self.selector.1 + 1 >= self.grid.rows && self.selector.0 >= self.grid.cols {
+            return None;
+        }
+        if self.selector.0 >= self.grid.cols {
+            self.selector.0 = 0;
+            self.selector.1 += 1;
+        }
+        let ret = Some((self.selector, self.grid.get_v(self.selector)));
+        self.selector.0 += 1;
+        ret
+    }
+
+    fn size_hint(&self) -> (usize, Option<usize>) {
+        let upper_bound =
+            self.grid.rows * self.grid.cols - Grid2::vec2_to_idx(self.selector, self.grid.cols);
+        (upper_bound, Some(upper_bound))
+    }
+}
+
+impl<'g, T> ExactSizeIterator for Grid2Iterator<'g, T> {}
+impl<'g, T> ::core::iter::FusedIterator for Grid2Iterator<'g, T> {}
+
+/// This is cursed
+pub struct Grid2MutIterator<'g, T> {
+    grid: &'g mut Grid2<T>,
+    selector: Grid2Pos,
+}
+
+impl<'g, T> Iterator for Grid2MutIterator<'g, T> {
+    type Item = (Grid2Pos, &'g mut T);
+
+    fn next(&mut self) -> Option<Self::Item> {
+        if self.selector.1 + 1 >= self.grid.rows && self.selector.0 >= self.grid.cols {
+            return None;
+        }
+        if self.selector.0 >= self.grid.cols {
+            self.selector.0 = 0;
+            self.selector.1 += 1;
+        }
+        let idx = Grid2::vec2_to_idx(self.selector, self.grid.cols);
+        let v = if idx < self.grid.data.len() {
+            unsafe { &mut *self.grid.data.as_mut_ptr().add(idx) }
+        } else {
+            return None;
+        };
+        let ret = Some((self.selector, v));
+        self.selector.0 += 1;
+        ret
+    }
+
+    fn size_hint(&self) -> (usize, Option<usize>) {
+        let upper_bound =
+            self.grid.rows * self.grid.cols - Grid2::vec2_to_idx(self.selector, self.grid.cols);
+        (upper_bound, Some(upper_bound))
+    }
+}
+
+impl<'g, T> ExactSizeIterator for Grid2MutIterator<'g, T> {}
+impl<'g, T> ::core::iter::FusedIterator for Grid2MutIterator<'g, T> {}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn iter() {
+        let grid = Grid2 {
+            data: vec![1, 2, 3, 4],
+            rows: 2,
+            cols: 2,
+        };
+
+        let mut iter = grid.iter();
+        assert_eq!(iter.next(), Some((Vec2::from((0, 0)), &1)));
+        assert_eq!(iter.next(), Some((Vec2::from((1, 0)), &2)));
+        assert_eq!(iter.next(), Some((Vec2::from((0, 1)), &3)));
+        assert_eq!(iter.next(), Some((Vec2::from((1, 1)), &4)));
+        assert_eq!(iter.next(), None);
+        assert_eq!(iter.next(), None);
+        assert_eq!(iter.next(), None);
+        assert_eq!(iter.next(), None);
+    }
+
+    #[test]
+    fn iter_size_hint() {
+        let grid = Grid2 {
+            data: vec![1, 2, 3, 4],
+            rows: 2,
+            cols: 2,
+        };
+        let mut iter = grid.iter();
+        assert_eq!(iter.size_hint(), (4, Some(4)));
+        iter.next();
+        assert_eq!(iter.size_hint(), (3, Some(3)));
+        iter.next();
+        assert_eq!(iter.size_hint(), (2, Some(2)));
+        iter.next();
+        assert_eq!(iter.size_hint(), (1, Some(1)));
+        iter.next();
+        assert_eq!(iter.size_hint(), (0, Some(0)));
+        iter.next();
+        assert_eq!(iter.size_hint(), (0, Some(0)));
+        iter.next();
+        assert_eq!(iter.size_hint(), (0, Some(0)));
+        iter.next();
+        assert_eq!(iter.size_hint(), (0, Some(0)));
     }
 }
