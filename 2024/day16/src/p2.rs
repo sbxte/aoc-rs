@@ -1,11 +1,11 @@
 use std::collections::BinaryHeap;
 
 use aocutils::cartes::dim2::dir::Direction;
-use aocutils::cartes::dim2::grid::Grid2;
+use aocutils::cartes::dim2::grid::{Grid2, Pos};
 use aocutils::cartes::dim2::vec::Vec2;
 use aocutils::noreach;
 
-fn parse_input(input: &str) -> (Grid2<Cell>, Vec2<usize>, Vec2<usize>) {
+fn parse_input(input: &str) -> (Grid2<Cell>, Pos, Pos) {
     let mut grid = Grid2::from_str_2(input, Cell::from_byte);
     let mut start = Vec2::default();
     let mut end = Vec2::default();
@@ -15,11 +15,11 @@ fn parse_input(input: &str) -> (Grid2<Cell>, Vec2<usize>, Vec2<usize>) {
         .enumerate()
         .for_each(|(i, c)| match c.content {
             Content::Start => {
-                start = Grid2::idx_to_vec2(i, cols);
+                start = Pos::from_idx(i, cols);
                 c.content = Content::Empty;
             }
             Content::End => {
-                end = Grid2::idx_to_vec2(i, cols);
+                end = Pos::from_idx(i, cols);
                 c.content = Content::Empty;
             }
             _ => {}
@@ -138,7 +138,7 @@ impl ::std::fmt::Display for Cell {
 
 #[derive(PartialEq, Eq)]
 struct CellRef {
-    pos: Vec2<usize>,
+    pos: Pos,
     score: u32,
     dir: Direction,
 }
@@ -179,19 +179,19 @@ impl ::std::ops::Deref for CellRefRev {
 fn add(
     grid: &mut Grid2<Cell>,
     open: &mut BinaryHeap<CellRef>,
-    pos: Vec2<usize>,
+    pos: Pos,
     score: u32,
     dir: Direction,
 ) {
-    if Content::Wall == grid.get_v(pos).content {
+    if Content::Wall == grid[pos].content {
         return;
     }
-    if PathState::Free == grid.get_v(pos).state {
+    if PathState::Free == grid[pos].state {
         let mut ds = DirScore::new();
         *ds.get_mut(dir) = score;
-        grid.get_v_mut(pos).state = PathState::Visited(ds);
+        grid[pos].state = PathState::Visited(ds);
         open.push(CellRef { pos, score, dir });
-    } else if let PathState::Visited(ds) = &mut grid.get_v_mut(pos).state {
+    } else if let PathState::Visited(ds) = &mut grid[pos].state {
         if ds.get(dir) <= score {
             return;
         }
@@ -203,14 +203,14 @@ fn add(
 fn back_add(
     grid: &mut Grid2<Cell>,
     open: &mut BinaryHeap<CellRefRev>,
-    pos: Vec2<usize>,
+    pos: Pos,
     score: u32,
     dir: Direction,
 ) {
-    if Content::Wall == grid.get_v(pos).content {
+    if Content::Wall == grid[pos].content {
         return;
     }
-    if let PathState::Visited(ds) = &grid.get_v(pos).state
+    if let PathState::Visited(ds) = &grid[pos].state
         && ds.get(dir) == score
     {
         open.push(CellRefRev {
@@ -219,7 +219,7 @@ fn back_add(
     }
 }
 
-fn search(grid: &mut Grid2<Cell>, start: Vec2<usize>, end: Vec2<usize>) -> u32 {
+fn search(grid: &mut Grid2<Cell>, start: Pos, end: Pos) -> u32 {
     let mut open = BinaryHeap::new();
     // Problem states Reindeer starts facing EAST
     // EAST = RIGHT
@@ -236,21 +236,21 @@ fn search(grid: &mut Grid2<Cell>, start: Vec2<usize>, end: Vec2<usize>) -> u32 {
         add(
             grid,
             &mut open,
-            (Vec2::<isize>::from(opened.pos) + opened.dir.step()).into(),
+            opened.pos + opened.dir.step(),
             opened.score + 1,
             opened.dir,
         );
         add(
             grid,
             &mut open,
-            (Vec2::<isize>::from(opened.pos) + opened.dir.rot90().step()).into(),
+            opened.pos + opened.dir.rot90().step(),
             opened.score + 1001,
             opened.dir.rot90(),
         );
         add(
             grid,
             &mut open,
-            (Vec2::<isize>::from(opened.pos) + opened.dir.rot270().step()).into(),
+            opened.pos + opened.dir.rot270().step(),
             opened.score + 1001,
             opened.dir.rot270(),
         );
@@ -260,7 +260,7 @@ fn search(grid: &mut Grid2<Cell>, start: Vec2<usize>, end: Vec2<usize>) -> u32 {
     back_add(grid, &mut open, end, score, dir);
 
     while let Some(opened) = open.pop() {
-        grid.get_v_mut(opened.pos).state = PathState::Backtracked;
+        grid[opened.pos].state = PathState::Backtracked;
         if opened.pos == start {
             break;
         }
@@ -268,21 +268,21 @@ fn search(grid: &mut Grid2<Cell>, start: Vec2<usize>, end: Vec2<usize>) -> u32 {
         back_add(
             grid,
             &mut open,
-            (Vec2::<isize>::from(opened.pos) - opened.dir.step()).into(),
+            opened.pos - opened.dir.step(),
             opened.score.saturating_sub(1),
             opened.dir,
         );
         back_add(
             grid,
             &mut open,
-            (Vec2::<isize>::from(opened.pos) - opened.dir.step()).into(),
+            opened.pos - opened.dir.step(),
             opened.score.saturating_sub(1001),
             opened.dir.rot90(),
         );
         back_add(
             grid,
             &mut open,
-            (Vec2::<isize>::from(opened.pos) - opened.dir.step()).into(),
+            opened.pos - opened.dir.step(),
             opened.score.saturating_sub(1001),
             opened.dir.rot270(),
         );
@@ -290,21 +290,21 @@ fn search(grid: &mut Grid2<Cell>, start: Vec2<usize>, end: Vec2<usize>) -> u32 {
         back_add(
             grid,
             &mut open,
-            (Vec2::<isize>::from(opened.pos) - opened.dir.rot90().step()).into(),
+            opened.pos - opened.dir.rot90().step(),
             opened.score.saturating_sub(1),
             opened.dir,
         );
         back_add(
             grid,
             &mut open,
-            (Vec2::<isize>::from(opened.pos) - opened.dir.rot90().step()).into(),
+            opened.pos - opened.dir.rot90().step(),
             opened.score.saturating_sub(1001),
             opened.dir.rot90(),
         );
         back_add(
             grid,
             &mut open,
-            (Vec2::<isize>::from(opened.pos) - opened.dir.rot90().step()).into(),
+            opened.pos - opened.dir.rot90().step(),
             opened.score.saturating_sub(1001),
             opened.dir.rot270(),
         );
@@ -312,21 +312,21 @@ fn search(grid: &mut Grid2<Cell>, start: Vec2<usize>, end: Vec2<usize>) -> u32 {
         back_add(
             grid,
             &mut open,
-            (Vec2::<isize>::from(opened.pos) - opened.dir.rot270().step()).into(),
+            opened.pos - opened.dir.rot270().step(),
             opened.score.saturating_sub(1),
             opened.dir,
         );
         back_add(
             grid,
             &mut open,
-            (Vec2::<isize>::from(opened.pos) - opened.dir.rot270().step()).into(),
+            opened.pos - opened.dir.rot270().step(),
             opened.score.saturating_sub(1001),
             opened.dir.rot90(),
         );
         back_add(
             grid,
             &mut open,
-            (Vec2::<isize>::from(opened.pos) - opened.dir.rot270().step()).into(),
+            opened.pos - opened.dir.rot270().step(),
             opened.score.saturating_sub(1001),
             opened.dir.rot270(),
         );

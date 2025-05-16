@@ -1,4 +1,4 @@
-use std::ops::{Add, AddAssign, Div, Mul, Rem, Sub, SubAssign};
+use std::ops::{Add, AddAssign, Div, Mul, Neg, Rem, Sub, SubAssign};
 
 use crate::num::{AbsDiff, RemEuclid, Zero};
 
@@ -80,6 +80,15 @@ where
     }
 }
 
+impl<N> Neg for Vec2<N>
+where
+    N: Neg<Output = N>,
+{
+    type Output = Self;
+    fn neg(self) -> Self::Output {
+        Self(-self.0, -self.1)
+    }
+}
 impl<N> Add for Vec2<N>
 where
     N: Add<Output = N>,

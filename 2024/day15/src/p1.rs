@@ -1,6 +1,6 @@
 pub mod naive {
     use aocutils::cartes::dim2::dir::Direction;
-    use aocutils::cartes::dim2::grid::Grid2;
+    use aocutils::cartes::dim2::grid::{Grid2, Pos};
     use aocutils::cartes::dim2::vec::Vec2;
     use aocutils::optim::prelude::*;
 
@@ -8,7 +8,7 @@ pub mod naive {
         let cols = input.lines().next().unwrap().len();
         let c1 = cols + 1; // Include new line as a column
         let idx = input.find('@').unwrap();
-        Grid2::idx_to_vec2(idx as isize, c1 as isize)
+        Pos::from_idx(idx, c1)
     }
 
     #[derive(Debug, PartialEq, Eq, Clone, Copy, Default)]
@@ -88,10 +88,10 @@ pub mod naive {
             Vec2::from((0, 0)),
             Vec2::from((grid.cols as isize - 1, grid.rows as isize)),
         ) {
-            if let Cell::Empty = grid.get_v(check.map(|x| x as usize)) {
+            if let Cell::Empty = grid[check] {
                 can_move = true;
                 break;
-            } else if let Cell::Wall = grid.get_v(check.map(|x| x as usize)) {
+            } else if let Cell::Wall = grid[check] {
                 break;
             }
             check += step;
@@ -107,15 +107,12 @@ pub mod naive {
             let next = mv + rstep;
 
             if cfg!(debug_assertions) {
-                grid.swap_idx(
-                    Grid2::vec2_to_idx(next.map(|x| x as usize), grid.cols),
-                    Grid2::vec2_to_idx(mv.map(|x| x as usize), grid.cols),
-                );
+                grid.swap_idx(Pos::to_idx(next, grid.cols), Pos::to_idx(mv, grid.cols));
             } else {
                 unsafe {
                     grid.swap_idx_unchecked(
-                        Grid2::vec2_to_idx(next.map(|x| x as usize), grid.cols),
-                        Grid2::vec2_to_idx(mv.map(|x| x as usize), grid.cols),
+                        Pos::to_idx(next, grid.cols),
+                        Pos::to_idx(mv, grid.cols),
                     );
                 }
             }
@@ -128,7 +125,7 @@ pub mod naive {
     fn calc_sum_gps(grid: &Grid2<Cell>) -> i32 {
         grid.as_slice().iter().enumerate().fold(0, |acc, (i, x)| {
             if let &Cell::Box = x {
-                let v = Grid2::idx_to_vec2(i, grid.cols);
+                let v = Pos::from_idx(i, grid.cols);
                 acc + 100 * v.1 + v.0
             } else {
                 acc

@@ -1,35 +1,113 @@
-use std::ops::{Add, Div, Mul, Rem};
+use std::ops::{Index, IndexMut};
 
-use crate::cartes::dim2::vec::Vec2;
+use crate::cartes::{dim2::vec::Vec2, grid::Grid};
 
-pub type Grid2Pos = Vec2<usize>;
+/// Position types should be [Negateable][::std::ops::Neg]
+pub type Pos = Vec2<isize>;
+
+impl Pos {
+    pub fn from_idx(idx: usize, cols: usize) -> Self {
+        Vec2((idx % cols) as isize, (idx / cols) as isize)
+    }
+
+    pub fn to_idx(self, cols: usize) -> usize {
+        (self.1 * cols as isize + self.0) as usize
+    }
+}
 
 #[derive(Debug, PartialEq, Eq, Clone, Default)]
-pub struct Grid2<T> {
-    pub(crate) data: Vec<T>,
+/// 2-dimensional grid with bounds `(0,0)..(cols,rows)`
+pub struct Grid2<C> {
+    pub(crate) data: Vec<C>,
     pub cols: usize,
     pub rows: usize,
 }
 
-impl<T> Grid2<T> {
-    pub fn idx_to_vec2(idx: T, cols: T) -> Vec2<T>
-    where
-        T: Rem<Output = T> + Div<Output = T> + Copy,
-    {
-        Vec2(idx % cols, idx / cols)
+impl<C> Grid for Grid2<C>
+where
+    C: Eq,
+{
+    type Pos = Pos;
+    type Cell = C;
+
+    fn contains_pos(&self, pos: Pos) -> bool {
+        (0..self.cols as isize).contains(&pos.0) && (0..self.rows as isize).contains(&pos.1)
     }
 
-    pub fn vec2_to_idx(v: Vec2<T>, cols: T) -> T
-    where
-        T: Copy + Add<Output = T> + Mul<Output = T>,
-    {
-        v.1 * cols + v.0
+    fn get_cell_unchecked(&self, pos: Self::Pos) -> &Self::Cell {
+        &self.data[pos.to_idx(self.cols)]
     }
 
+    fn get_cell_mut_unchecked(&mut self, pos: Self::Pos) -> &mut Self::Cell {
+        &mut self.data[pos.to_idx(self.cols)]
+    }
+
+    fn get_neighbours(&self, pos: Self::Pos) -> impl Iterator<Item = &Self::Cell> {
+        [
+            self.get_cell(pos + From::from((1, 0))),
+            self.get_cell(pos + From::from((-1, 0))),
+            self.get_cell(pos + From::from((0, 1))),
+            self.get_cell(pos + From::from((0, -1))),
+        ]
+        .into_iter()
+        .flatten()
+    }
+
+    fn get_neighbours_pos(&self, pos: Self::Pos) -> impl Iterator<Item = Self::Pos> {
+        [
+            pos + From::from((1, 0)),
+            pos + From::from((-1, 0)),
+            pos + From::from((0, 1)),
+            pos + From::from((0, -1)),
+        ]
+        .into_iter()
+    }
+
+    fn map<F, T>(self, f: F) -> impl Grid<Pos = Self::Pos, Cell = T>
+    where
+        F: Fn(Self::Cell) -> T,
+        T: Eq,
+    {
+        let mut data: Vec<T> = Vec::with_capacity(self.data.len());
+        for d in self.data {
+            data.push(f(d));
+        }
+        Grid2 {
+            data,
+            cols: self.cols,
+            rows: self.rows,
+        }
+    }
+}
+impl<C> Index<Pos> for Grid2<C>
+where
+    C: Eq,
+    Self: Grid,
+{
+    type Output = C;
+    fn index(&self, index: Pos) -> &Self::Output {
+        &self.data[index.to_idx(self.cols)]
+    }
+}
+impl<C> IndexMut<Pos> for Grid2<C>
+where
+    C: Eq,
+    Self: Grid,
+{
+    fn index_mut(&mut self, index: Pos) -> &mut Self::Output {
+        &mut self.data[index.to_idx(self.cols)]
+    }
+}
+
+impl<C> Grid2<C>
+where
+    C: Eq,
+    Self: Grid,
+{
     /// Parses string input including newlines as a grid cell
     pub fn from_str_1<F>(s: &str, p: F) -> Self
     where
-        F: Copy + Fn(u8) -> T,
+        F: Copy + Fn(u8) -> C,
     {
         if s.is_empty() {
             return Self {
@@ -59,7 +137,7 @@ impl<T> Grid2<T> {
     /// otherwise for `let Some(x) = p`, x is used
     pub fn from_str_2<F>(s: &str, p: F) -> Self
     where
-        F: Copy + Fn(u8) -> Option<T>,
+        F: Copy + Fn(u8) -> Option<C>,
     {
         if s.is_empty() {
             return Self {
@@ -86,16 +164,8 @@ impl<T> Grid2<T> {
 
     /// # Safety
     /// `idx` must be within bounds of the internal grid vector
-    pub unsafe fn get_unchecked(&self, idx: usize) -> &T {
+    pub unsafe fn get_unchecked(&self, idx: usize) -> &C {
         unsafe { self.data.get_unchecked(idx) }
-    }
-
-    pub fn get_v(&self, v: Grid2Pos) -> &T {
-        &self.data[Grid2::vec2_to_idx(v, self.cols)]
-    }
-
-    pub fn get_v_mut(&mut self, v: Grid2Pos) -> &mut T {
-        &mut self.data[Grid2::vec2_to_idx(v, self.cols)]
     }
 
     /// # Safety
@@ -112,14 +182,14 @@ impl<T> Grid2<T> {
         self.data.swap(src, dst);
     }
 
-    pub fn as_slice(&self) -> &[T] {
+    pub fn as_slice(&self) -> &[C] {
         &self.data
     }
 
-    pub fn iter(&self) -> Grid2Iterator<T> {
+    pub fn iter(&self) -> Grid2Iterator<C> {
         Grid2Iterator {
             grid: self,
-            selector: Grid2Pos::zero(),
+            selector: Pos::zero(),
         }
     }
 }
@@ -153,53 +223,63 @@ impl<T> AsMut<[T]> for Grid2<T> {
 
 pub struct Grid2Iterator<'g, T> {
     grid: &'g Grid2<T>,
-    selector: Grid2Pos,
+    selector: Pos,
 }
 
-impl<'g, T> Iterator for Grid2Iterator<'g, T> {
-    type Item = (Grid2Pos, &'g T);
+impl<'g, T> Iterator for Grid2Iterator<'g, T>
+where
+    T: Eq,
+{
+    type Item = (Pos, &'g T);
 
     fn next(&mut self) -> Option<Self::Item> {
-        if self.selector.1 + 1 >= self.grid.rows && self.selector.0 >= self.grid.cols {
+        if self.selector.1 + 1 >= self.grid.rows as isize
+            && self.selector.0 >= self.grid.cols as isize
+        {
             return None;
         }
-        if self.selector.0 >= self.grid.cols {
+        if self.selector.0 >= self.grid.cols as isize {
             self.selector.0 = 0;
             self.selector.1 += 1;
         }
-        let ret = Some((self.selector, self.grid.get_v(self.selector)));
+        let ret = Some((self.selector, &self.grid[self.selector]));
         self.selector.0 += 1;
         ret
     }
 
     fn size_hint(&self) -> (usize, Option<usize>) {
         let upper_bound =
-            self.grid.rows * self.grid.cols - Grid2::vec2_to_idx(self.selector, self.grid.cols);
+            self.grid.rows * self.grid.cols - Pos::to_idx(self.selector, self.grid.cols);
         (upper_bound, Some(upper_bound))
     }
 }
 
-impl<'g, T> ExactSizeIterator for Grid2Iterator<'g, T> {}
-impl<'g, T> ::core::iter::FusedIterator for Grid2Iterator<'g, T> {}
+impl<'g, T> ExactSizeIterator for Grid2Iterator<'g, T> where T: Eq {}
+impl<'g, T> ::core::iter::FusedIterator for Grid2Iterator<'g, T> where T: Eq {}
 
 /// This is cursed
 pub struct Grid2MutIterator<'g, T> {
     grid: &'g mut Grid2<T>,
-    selector: Grid2Pos,
+    selector: Pos,
 }
 
-impl<'g, T> Iterator for Grid2MutIterator<'g, T> {
-    type Item = (Grid2Pos, &'g mut T);
+impl<'g, T> Iterator for Grid2MutIterator<'g, T>
+where
+    T: Eq,
+{
+    type Item = (Pos, &'g mut T);
 
     fn next(&mut self) -> Option<Self::Item> {
-        if self.selector.1 + 1 >= self.grid.rows && self.selector.0 >= self.grid.cols {
+        if self.selector.1 + 1 >= self.grid.rows as isize
+            && self.selector.0 >= self.grid.cols as isize
+        {
             return None;
         }
-        if self.selector.0 >= self.grid.cols {
+        if self.selector.0 >= self.grid.cols as isize {
             self.selector.0 = 0;
             self.selector.1 += 1;
         }
-        let idx = Grid2::vec2_to_idx(self.selector, self.grid.cols);
+        let idx = Pos::to_idx(self.selector, self.grid.cols);
         let v = if idx < self.grid.data.len() {
             unsafe { &mut *self.grid.data.as_mut_ptr().add(idx) }
         } else {
@@ -212,13 +292,13 @@ impl<'g, T> Iterator for Grid2MutIterator<'g, T> {
 
     fn size_hint(&self) -> (usize, Option<usize>) {
         let upper_bound =
-            self.grid.rows * self.grid.cols - Grid2::vec2_to_idx(self.selector, self.grid.cols);
+            self.grid.rows * self.grid.cols - Pos::to_idx(self.selector, self.grid.cols);
         (upper_bound, Some(upper_bound))
     }
 }
 
-impl<'g, T> ExactSizeIterator for Grid2MutIterator<'g, T> {}
-impl<'g, T> ::core::iter::FusedIterator for Grid2MutIterator<'g, T> {}
+impl<'g, T> ExactSizeIterator for Grid2MutIterator<'g, T> where T: Eq {}
+impl<'g, T> ::core::iter::FusedIterator for Grid2MutIterator<'g, T> where T: Eq {}
 
 #[cfg(test)]
 mod tests {

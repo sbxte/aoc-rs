@@ -1,11 +1,11 @@
 use std::collections::BinaryHeap;
 
 use aocutils::cartes::dim2::dir::Direction;
-use aocutils::cartes::dim2::grid::Grid2;
+use aocutils::cartes::dim2::grid::{Grid2, Pos};
 use aocutils::cartes::dim2::vec::Vec2;
 use aocutils::noreach;
 
-fn parse_input(input: &str) -> (Grid2<Cell>, Vec2<usize>, Vec2<usize>) {
+fn parse_input(input: &str) -> (Grid2<Cell>, Pos, Pos) {
     let mut grid = Grid2::from_str_2(input, Cell::from_byte);
     let mut start = Vec2::default();
     let mut end = Vec2::default();
@@ -15,11 +15,11 @@ fn parse_input(input: &str) -> (Grid2<Cell>, Vec2<usize>, Vec2<usize>) {
         .enumerate()
         .for_each(|(i, c)| match c.content {
             Content::Start => {
-                start = Grid2::idx_to_vec2(i, cols);
+                start = Pos::from_idx(i, cols);
                 c.content = Content::Empty;
             }
             Content::End => {
-                end = Grid2::idx_to_vec2(i, cols);
+                end = Pos::from_idx(i, cols);
                 c.content = Content::Empty;
             }
             _ => {}
@@ -73,7 +73,7 @@ impl Cell {
 
 #[derive(PartialEq, Eq)]
 struct CellRef {
-    pos: Vec2<usize>,
+    pos: Pos,
     score: u32,
     dir: Direction,
 }
@@ -89,16 +89,16 @@ impl Ord for CellRef {
     }
 }
 
-fn dijkstra(grid: &mut Grid2<Cell>, start: Vec2<usize>, end: Vec2<usize>) -> u32 {
+fn dijkstra(grid: &mut Grid2<Cell>, start: Pos, end: Pos) -> u32 {
     fn add(
         grid: &mut Grid2<Cell>,
         open: &mut BinaryHeap<CellRef>,
-        pos: Vec2<usize>,
+        pos: Pos,
         score: u32,
         dir: Direction,
     ) {
-        if Content::Empty == grid.get_v(pos).content && PathState::Free == grid.get_v(pos).state {
-            grid.get_v_mut(pos).state = PathState::Visited;
+        if Content::Empty == grid[pos].content && PathState::Free == grid[pos].state {
+            grid[pos].state = PathState::Visited;
             open.push(CellRef { pos, score, dir });
         }
     }
@@ -116,21 +116,21 @@ fn dijkstra(grid: &mut Grid2<Cell>, start: Vec2<usize>, end: Vec2<usize>) -> u32
         add(
             grid,
             &mut open,
-            (Vec2::<isize>::from(opened.pos) + opened.dir.step()).into(),
+            opened.pos + opened.dir.step(),
             opened.score + 1,
             opened.dir,
         );
         add(
             grid,
             &mut open,
-            (Vec2::<isize>::from(opened.pos) + opened.dir.rot90().step()).into(),
+            opened.pos + opened.dir.rot90().step(),
             opened.score + 1001,
             opened.dir.rot90(),
         );
         add(
             grid,
             &mut open,
-            (Vec2::<isize>::from(opened.pos) + opened.dir.rot270().step()).into(),
+            opened.pos + opened.dir.rot270().step(),
             opened.score + 1001,
             opened.dir.rot270(),
         );
