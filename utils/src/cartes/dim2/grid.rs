@@ -162,6 +162,17 @@ where
         }
     }
 
+    pub fn new_fill_with<F>(f: F, cols: usize, rows: usize) -> Self
+    where
+        F: Fn() -> C,
+    {
+        let mut data = Vec::with_capacity(cols * rows);
+        for _ in 0..cols * rows {
+            data.push(f());
+        }
+        Self { data, cols, rows }
+    }
+
     /// # Safety
     /// `idx` must be within bounds of the internal grid vector
     pub unsafe fn get_unchecked(&self, idx: usize) -> &C {
