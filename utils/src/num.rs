@@ -194,3 +194,40 @@ macro_rules! impl_abs_diff {
 }
 
 impl_abs_diff!(abs_diff; i8 u8, i16 u16, i32 u32, i64 u64, isize usize);
+
+pub trait Sqrt {
+    fn sqrt(self) -> Self;
+}
+
+macro_rules! impl_sqrt {
+    ($method:ident; $($t:tt)+) => {
+        $(
+        impl Sqrt for $t {
+            fn sqrt(self) -> Self {
+                self.$method()
+            }
+        }
+        )+
+    }
+}
+
+impl_sqrt!(isqrt; i8 u8 i16 u16 i32 u32 i64 u64 i128 u128 isize usize);
+impl_sqrt!(sqrt; f32 f64);
+
+pub trait Pow<E> {
+    fn pow(self, exp: E) -> Self;
+}
+
+macro_rules! impl_pow {
+    ($method:ident; $($t:tt $e:tt),+) => {
+        $(
+        impl Pow<$e> for $t {
+            fn pow(self, exp: $e) -> Self {
+                self.$method(exp)
+            }
+        }
+        )+
+    }
+}
+
+impl_pow!(pow; i8 u32, i16 u32, i32 u32, i64 u32, i128 u32, u8 u32, u16 u32, u32 u32, u64 u32, u128 u32);
