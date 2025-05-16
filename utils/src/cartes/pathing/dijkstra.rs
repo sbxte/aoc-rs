@@ -3,7 +3,7 @@ use std::collections::BinaryHeap;
 
 use crate::cartes::grid::Grid;
 
-use super::{CellRef, Pathable};
+use super::{CellRef, Path, Pathable};
 
 #[derive(Debug, PartialEq, Eq)]
 enum PathState<Cost, Pos> {
@@ -22,15 +22,15 @@ impl<C, P> Pathable for PathState<C, P> {
 /// result.
 ///
 /// Returns [None] when no found is found or if [pos] is out-of-bounds,
-/// otherwise returns an [Iterator] containing the cell positions from [start] to [end]
+/// otherwise returns an [Path] containing an [Iterator] with cell positions from [start] to [end]
 ///
 /// Uses a [BinaryHeap] to sort for lowest cost open cells to check
 /// first.
-pub fn path_oneshot<G>(
+pub fn dijkstra_oneshot<G>(
     grid: &G,
     start: G::Pos,
     end: G::Pos,
-) -> Option<impl Iterator<Item = G::Pos> + use<G>>
+) -> Option<Path<impl Iterator<Item = G::Pos> + use<G>, G::Pos>>
 where
     G: Grid + Clone,
     G::Cell: Pathable,
@@ -90,7 +90,10 @@ where
     path.push(start);
     path.reverse();
 
-    Some(path.into_iter())
+    Some(Path {
+        steps,
+        iter: path.into_iter(),
+    })
 }
 
 #[cfg(test)]
