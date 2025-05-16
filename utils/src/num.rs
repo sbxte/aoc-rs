@@ -157,7 +157,7 @@ macro_rules! impl_signtype {
     }
 }
 
-impl_signtype!(i8 u8, i16 u16, i32 u32, i64 u64, isize usize);
+impl_signtype!(i8 u8, i16 u16, i32 u32, i64 u64, i128 u128, isize usize);
 
 pub trait Abs {
     fn abs(self) -> Self;
@@ -175,14 +175,14 @@ macro_rules! impl_abs {
     }
 }
 
-impl_abs!(abs, i8 i16 i32 i64 isize);
+impl_abs!(abs, i8 i16 i32 i64 i128 isize);
 
 pub trait AbsDiff: SignedType {
     fn abs_diff(self, other: Self) -> Self::SignType;
 }
 
 macro_rules! impl_abs_diff {
-    ($method:ident; $($t:tt $out:tt),+) => {
+    ($method:ident; $($t:tt)+) => {
         $(
         impl AbsDiff for $t {
             fn abs_diff(self, other: Self) -> Self::SignType {
@@ -193,7 +193,7 @@ macro_rules! impl_abs_diff {
     }
 }
 
-impl_abs_diff!(abs_diff; i8 u8, i16 u16, i32 u32, i64 u64, isize usize);
+impl_abs_diff!(abs_diff; i8 i16 i32 i64 i128 isize);
 
 pub trait Sqrt {
     fn sqrt(self) -> Self;
