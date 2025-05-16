@@ -52,12 +52,12 @@ where
     let mut open = BinaryHeap::new();
     open.push(Reverse(CellRef::from_pos(start)));
 
-    let mut steps = 0;
+    let mut steps = 0usize;
     let mut path_found = false;
     while let Some(opened) = open.pop() {
         *grid.get_cell_mut(opened.0.pos).unwrap() = PathState::Closed(opened.0.cost, opened.0.from);
         if opened.0.pos == end {
-            steps = opened.0.cost;
+            steps = opened.0.cost as usize + 1;
             path_found = true;
             break;
         }
@@ -79,7 +79,7 @@ where
     }
 
     // Retrace steps from the end
-    let mut path = Vec::with_capacity(steps as usize);
+    let mut path = Vec::with_capacity(steps);
     let mut cell = end;
     while cell != start {
         path.push(cell);
