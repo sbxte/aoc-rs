@@ -55,6 +55,9 @@ where
     let mut steps = 0usize;
     let mut path_found = false;
     while let Some(opened) = open.pop() {
+        if !grid.get_cell(opened.0.pos).unwrap().can_pass() {
+            continue;
+        }
         *grid.get_cell_mut(opened.0.pos).unwrap() = PathState::Closed(opened.0.cost, opened.0.from);
         if opened.0.pos == end {
             steps = opened.0.cost as usize + 1;
