@@ -14,7 +14,7 @@ enum PathState<Cost, Pos> {
 
 impl<C, P> Pathable for PathState<C, P> {
     fn can_pass(&self) -> bool {
-        !matches!(self, Self::Impassable)
+        matches!(self, Self::Free)
     }
 }
 
@@ -51,10 +51,7 @@ where
     let mut steps = 0;
     let mut path_found = false;
     while let Some(opened) = open.pop() {
-        if let PathState::Free = grid.get_cell(opened.0.pos).unwrap() {
-            *grid.get_cell_mut(opened.0.pos).unwrap() =
-                PathState::Closed(opened.0.cost, opened.0.from);
-        }
+        *grid.get_cell_mut(opened.0.pos).unwrap() = PathState::Closed(opened.0.cost, opened.0.from);
         if opened.0.pos == end {
             steps = opened.0.cost;
             path_found = true;
