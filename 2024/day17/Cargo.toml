@@ -1,0 +1,9 @@
+[package]
+name = "aoc2024d17"
+version = "0.1.0"
+edition = "2024"
+
+[features]
+vis2 = []
+
+[dependencies]
