@@ -26,7 +26,11 @@ impl<C, P> Pathable for PathState<C, P> {
 ///
 /// Uses a [BinaryHeap] to sort for lowest cost open cells to check
 /// first.
-pub fn path_oneshot<G>(grid: &G, start: G::Pos, end: G::Pos) -> Option<impl Iterator<Item = G::Pos>>
+pub fn path_oneshot<G>(
+    grid: &G,
+    start: G::Pos,
+    end: G::Pos,
+) -> Option<impl Iterator<Item = G::Pos> + use<G>>
 where
     G: Grid + Clone,
     G::Cell: Pathable,
