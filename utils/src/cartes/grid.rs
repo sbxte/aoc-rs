@@ -1,9 +1,9 @@
-use std::ops::{Add, Neg, Sub};
+use super::pos::Pos;
 
 /// Represents cartesian-coordinate structures that utilizes integer coordinates
 pub trait Grid: Eq {
     /// [Pos] should be cheap to [Copy] as it will be used for referencing very often
-    type Pos: Eq + Copy + Add + Sub + Neg;
+    type Pos: Pos;
 
     /// A Grid should contain Cells
     type Cell: Eq;

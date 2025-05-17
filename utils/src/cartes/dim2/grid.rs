@@ -1,7 +1,6 @@
 use std::ops::{Index, IndexMut};
 
 use crate::cartes::{dim2::vec::Vec2, grid::Grid};
-
 /// Position types should be [Negateable][::std::ops::Neg]
 pub type Pos = Vec2<isize>;
 
@@ -12,6 +11,20 @@ impl Pos {
 
     pub fn to_idx(self, cols: usize) -> usize {
         (self.1 * cols as isize + self.0) as usize
+    }
+}
+impl crate::cartes::pos::Pos for Pos {
+    type N = isize;
+    fn taxicab_dst(self, other: Self) -> Self::N {
+        let x = other.0 - self.0;
+        let y = other.1 - self.1;
+        x + y
+    }
+
+    fn euclid_dst_sq(self, other: Self) -> Self::N {
+        let x = other.0 - self.0;
+        let y = other.1 - self.1;
+        x * x + y * y
     }
 }
 
