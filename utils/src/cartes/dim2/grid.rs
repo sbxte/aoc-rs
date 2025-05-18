@@ -216,6 +216,13 @@ where
             selector: Pos::zero(),
         }
     }
+
+    pub fn iter_mut(&mut self) -> Grid2MutIterator<C> {
+        Grid2MutIterator {
+            grid: self,
+            selector: Pos::zero(),
+        }
+    }
 }
 
 impl<T> Grid2<T>
