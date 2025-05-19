@@ -151,8 +151,131 @@ where
     })
 }
 
+#[derive(Debug, PartialEq, Eq, Clone)]
+pub struct PathData<Pos, Cost> {
+    pub from: Pos,
+    pub cost: Cost,
+}
+
+pub trait DijkstraInPlace<Pos, Cost>: Pathable {
+    fn get_path(&self) -> Option<&PathData<Pos, Cost>>;
+
+    /// Implementation
+    ///
+    /// Once this method is called on a [Cell][Grid::Cell]
+    /// the cell must return [`false`] on [can_pass][Pathable::can_pass]
+    /// as to let the pathing algorithm know not to backtrack into this cell
+    fn pathed(&mut self, from: Pos, cost: Cost);
+}
+
+pub fn dijkstra_in_place<G>(
+    grid: &mut G,
+    start: G::Pos,
+    end: G::Pos,
+) -> Option<Path<impl Iterator<Item = G::Pos> + use<G>, G::Pos>>
+where
+    G: Grid + Clone,
+    G::Cell: DijkstraInPlace<G::Pos, <G::Pos as Pos>::N>,
+    <G::Pos as Pos>::N: Zero + One + Copy + Ord + ToUsize + Add<Output = <G::Pos as Pos>::N>,
+{
+    if !grid.contains_pos(start) || !grid.contains_pos(end) {
+        return None;
+    }
+
+    // BinaryHeap is a max-heap.
+    // In order to make it a min-heap the value must be wrapped in a Reverse
+    let mut open = BinaryHeap::new();
+    open.push(Reverse(CellRef::<G>::from_pos(start)));
+
+    let mut steps = 0usize;
+    while let Some(opened) = open.pop() {
+        if !grid.get_cell(opened.0.pos).unwrap().can_pass() {
+            continue;
+        }
+
+        grid.get_cell_mut(opened.0.pos)
+            .unwrap()
+            .pathed(opened.0.from, opened.0.cost);
+
+        if opened.0.pos == end {
+            steps = opened.0.cost.to_usize() + 1;
+            break;
+        }
+        for pos in grid.get_neighbours_pos(opened.0.pos) {
+            if let Some(c) = grid.get_cell(pos)
+                && c.can_pass()
+            {
+                open.push(Reverse(CellRef {
+                    pos,
+                    cost: opened.0.cost + One::one(),
+                    from: opened.0.pos,
+                }))
+            }
+        }
+    }
+
+    if steps == 0 {
+        return None;
+    }
+
+    // Retrace steps from the end
+    let mut path = Vec::with_capacity(steps);
+    let mut cell = end;
+    while cell != start {
+        path.push(cell);
+        if let Some(d) = grid.get_cell(cell).unwrap().get_path() {
+            cell = d.from;
+        }
+    }
+    path.push(start);
+    path.reverse();
+
+    Some(Path {
+        steps,
+        iter: path.into_iter(),
+    })
+}
+
 #[cfg(test)]
 mod tests {
+    use crate::cartes::dim2::grid::Grid2;
+
+    use super::*;
+
     #[test]
-    fn oneshot_2d() {}
+    fn inplace() {
+        #[derive(Debug, PartialEq, Eq, Clone)]
+        enum Cell<P, C> {
+            Wall,
+            Air,
+            Path(PathData<P, C>),
+        }
+        impl<P, C> Pathable for Cell<P, C> {
+            fn can_pass(&self) -> bool {
+                matches!(self, Self::Air)
+            }
+        }
+        impl<P, C> DijkstraInPlace<P, C> for Cell<P, C> {
+            fn get_path(&self) -> Option<&PathData<P, C>> {
+                if let Self::Path(d) = self {
+                    Some(d)
+                } else {
+                    None
+                }
+            }
+
+            fn pathed(&mut self, from: P, cost: C) {
+                *self = Self::Path(PathData { from, cost })
+            }
+        }
+
+        let mut grid = Grid2::from_str_2(
+            "00
+10
+00",
+            |x| Some(if x == b'0' { Cell::Air } else { Cell::Wall }),
+        );
+
+        dijkstra_in_place(&mut grid, From::from((0, 0)), From::from((0, 2)));
+    }
 }
