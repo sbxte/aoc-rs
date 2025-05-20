@@ -45,6 +45,10 @@ impl Direction {
         }
     }
 
+    pub fn iter_all() -> impl Iterator<Item = Self> {
+        [Self::Up, Self::Down, Self::Right, Self::Left].into_iter()
+    }
+
     pub fn step<N>(self) -> Vec2<N>
     where
         N: Neg<Output = N> + One + Zero,
