@@ -16,9 +16,9 @@ impl Pos {
 impl crate::cartes::pos::Pos for Pos {
     type N = isize;
     fn taxicab_dst(self, other: Self) -> Self::N {
-        let x = other.0 - self.0;
-        let y = other.1 - self.1;
-        x + y
+        let x = other.0.abs_diff(self.0);
+        let y = other.1.abs_diff(self.1);
+        (x + y) as isize
     }
 
     fn euclid_dst_sq(self, other: Self) -> Self::N {
