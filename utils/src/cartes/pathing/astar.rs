@@ -18,6 +18,7 @@ enum PathState<Cost, Pos> {
 }
 
 impl<C, P> Pathable for PathState<C, P> {
+    #[inline]
     fn can_pass(&self) -> bool {
         matches!(self, Self::Free)
     }
@@ -39,6 +40,7 @@ where
     G: Grid,
     <G::Pos as Pos>::N: Zero,
 {
+    #[inline]
     /// Constructs from a [pos], initialized with zero cost
     fn from_pos(pos: G::Pos, h_cost: <G::Pos as Pos>::N) -> Self {
         Self {
@@ -55,6 +57,7 @@ where
     G::Pos: Eq + Pos,
     <G::Pos as Pos>::N: Eq + Copy + Ord + Add<Output = <G::Pos as Pos>::N>,
 {
+    #[inline]
     fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
         Some(self.cmp(other))
     }
@@ -65,8 +68,11 @@ where
     G::Pos: Eq + Pos,
     <G::Pos as Pos>::N: Eq + Copy + Ord + Add<Output = <G::Pos as Pos>::N>,
 {
+    #[inline]
     fn cmp(&self, other: &Self) -> std::cmp::Ordering {
-        (self.g_cost + self.h_cost).cmp(&(other.g_cost + other.h_cost))
+        (self.g_cost + self.h_cost)
+            .cmp(&(other.g_cost + other.h_cost))
+            .then(self.h_cost.cmp(&other.h_cost))
     }
 }
 
