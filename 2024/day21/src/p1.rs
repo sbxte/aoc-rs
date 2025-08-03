@@ -43,8 +43,6 @@ pub fn get_press_dpad() -> Pos {
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 struct CellRef {
     pos: Pos,
-    dir: Option<Direction>,
-    steps: usize,
     g_cost: usize,
     h_cost: usize,
 }
@@ -62,10 +60,8 @@ impl Ord for CellRef {
 #[inline]
 fn add(
     bheap: &mut BinaryHeap<Reverse<CellRef>>,
-    dir: Direction,
     pos: Pos,
     target: Pos,
-    steps: usize,
     cost: usize,
     bounds: (
         ::std::ops::RangeInclusive<isize>,
@@ -77,80 +73,47 @@ fn add(
     }
     bheap.push(Reverse(CellRef {
         pos,
-        dir: Some(dir),
-        steps,
         g_cost: cost,
         h_cost: pos.taxicab_dst(target) as usize,
     }))
 }
 pub fn bfs_npad(start: Pos, end: Pos) -> usize {
-    let dpad_depth = 4;
-    let mut dpad_bufs = [
-        BinaryHeap::new(),
-        BinaryHeap::new(),
-        BinaryHeap::new(),
-        BinaryHeap::new(),
-    ];
-    let mut dpad_positions = [
-        get_press_dpad(),
-        get_press_dpad(),
-        get_press_dpad(),
-        get_press_dpad(),
-    ];
+    let dpad_depth = 3;
+    let mut dpad_bufs = [BinaryHeap::new(), BinaryHeap::new(), BinaryHeap::new()];
+    let mut dpad_positions = [get_press_dpad(), get_press_dpad(), get_press_dpad()];
+
+    // let dpad_depth = 1;
+    // let mut dpad_bufs = [BinaryHeap::new()];
+    // let mut dpad_positions = [get_press_dpad()];
 
     let mut open = BinaryHeap::new();
     open.push(Reverse(CellRef {
         pos: start,
-        dir: None,
-        steps: 0,
         g_cost: 0,
         h_cost: 0,
     }));
-    let mut steps = 0;
+
     while let Some(opened) = open.pop() {
-        if opened.0.pos == end {
-            return steps + 1;
+        let opened = opened.0;
+
+        if opened.pos == end {
+            return opened.g_cost
+                + bfs_dpad(
+                    dpad_depth - 1,
+                    get_press_dpad(),
+                    &mut dpad_positions,
+                    &mut dpad_bufs,
+                );
         }
 
-        for d in Direction::iter_all().filter(|d| {
-            if let Some(dir) = opened.0.dir {
-                *d != dir.rot180()
-            } else {
-                true
-            }
-        }) {
-            let p = opened.0.pos + d.step();
-            if p.taxicab_dst(end) > opened.0.pos.taxicab_dst(end) {
+        for d in Direction::iter_all() {
+            let p = opened.pos + d.step();
+            if p.taxicab_dst(end) > opened.pos.taxicab_dst(end) {
                 continue;
             }
             let dir = parse_dir_dpad(d);
-            let press = get_press_dpad();
-            // Move to direction key
-            // do press action
-            // move to press key
-            // do press action
-            let cost = bfs_dpad(
-                dpad_depth - 1,
-                dir,
-                &mut dpad_positions,
-                &mut dpad_bufs,
-                &mut steps,
-            ) + bfs_dpad(
-                dpad_depth - 1,
-                press,
-                &mut dpad_positions,
-                &mut dpad_bufs,
-                &mut steps,
-            );
-            add(
-                &mut open,
-                d,
-                p,
-                end,
-                opened.0.steps + 1,
-                opened.0.g_cost + cost,
-                ((0..=2), (0..=3)),
-            );
+            let cost = bfs_dpad(dpad_depth - 1, dir, &mut dpad_positions, &mut dpad_bufs);
+            add(&mut open, p, end, opened.g_cost + cost, ((0..=2), (0..=3)));
         }
     }
 
@@ -163,52 +126,36 @@ fn bfs_dpad(
     target: Pos,
     positions: &mut [Pos],
     bheaps: &mut [BinaryHeap<Reverse<CellRef>>],
-    steps: &mut usize,
 ) -> usize {
     let start = positions[depth];
     bheaps[depth].clear();
     bheaps[depth].push(Reverse(CellRef {
         pos: start,
-        dir: None,
-        steps: 0,
         g_cost: 0,
         h_cost: 0,
     }));
 
+    if depth == 0 {
+        return 1;
+    }
+
     while let Some(opened) = bheaps[depth].pop() {
         if opened.0.pos == target {
             positions[depth] = opened.0.pos;
-            if depth == 0 {
-                *steps += opened.0.steps + 1;
-            }
-            // Add a press action
-            return opened.0.g_cost + 1;
+            // NOTE: Might ignore other costs
+            return opened.0.g_cost + bfs_dpad(depth - 1, get_press_dpad(), positions, bheaps);
         }
-        for d in Direction::iter_all().filter(|d| {
-            if let Some(dir) = opened.0.dir {
-                *d != dir.rot180()
-            } else {
-                true
-            }
-        }) {
+        for d in Direction::iter_all() {
             let p = opened.0.pos + d.step();
             if p.taxicab_dst(target) > opened.0.pos.taxicab_dst(target) {
                 continue;
             }
             let dir = parse_dir_dpad(d);
-            let press = get_press_dpad();
-            let cost = if depth > 0 {
-                bfs_dpad(depth - 1, dir, positions, bheaps, steps)
-                    + bfs_dpad(depth - 1, press, positions, bheaps, steps)
-            } else {
-                1
-            };
+            let cost = bfs_dpad(depth - 1, dir, positions, bheaps);
             add(
                 &mut bheaps[depth],
-                d,
                 p,
                 target,
-                opened.0.steps + 1,
                 opened.0.g_cost + cost,
                 ((0..=2), (0..=1)),
             );
@@ -219,17 +166,15 @@ fn bfs_dpad(
 
 pub fn part1(input: &str) -> usize {
     let mut complexity = 0;
-    for line in input.lines() {
-        if line.is_empty() {
-            continue;
-        }
+    for line in input.trim().lines() {
         let mut cost = 0;
         let mut pos = parse_npad('A');
-        for c in line.chars() {
+        for c in line.trim().chars() {
             let to = parse_npad(c);
-            cost += bfs_npad(pos, to);
+            cost += dbg!(bfs_npad(pos, to));
             pos = to;
         }
+        dbg!(cost);
         complexity += line[..3].parse::<usize>().as_ref().unwrap() * cost;
     }
     complexity
@@ -248,5 +193,11 @@ mod tests {
 379A";
 
         assert_eq!(part1(sample), 126384);
+    }
+
+    #[test]
+    fn dbg() {
+        let sample = "029A";
+        assert_eq!(part1(sample), 0);
     }
 }
