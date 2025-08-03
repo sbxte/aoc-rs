@@ -35,6 +35,11 @@ pub struct Grid2<C> {
     pub cols: usize,
     pub rows: usize,
 }
+impl<C> Grid2<C> {
+    pub fn from_raw(data: Vec<C>, cols: usize, rows: usize) -> Self {
+        Self { data, cols, rows }
+    }
+}
 
 impl<C> Grid for Grid2<C>
 where
