@@ -1,0 +1,8 @@
+[package]
+name = "aoc2022d9"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+atoi = "2.0.0"
+rustc-hash = "2.1.1"
