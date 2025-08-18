@@ -3,6 +3,7 @@ use std::collections::BinaryHeap;
 
 use aocutils::cartes::dim2::dir::Direction;
 use aocutils::cartes::dim2::grid::Pos;
+use aocutils::cartes::dim2::vec::Vec2;
 use aocutils::cartes::pos::Pos as _;
 
 pub fn parse_npad(c: char) -> Pos {
@@ -20,6 +21,14 @@ pub fn parse_npad(c: char) -> Pos {
         '9' => (2, 0),
         x => unreachable!("Invalid numpad value! {}", x),
     })
+}
+
+pub const fn npad_empty() -> Pos {
+    Vec2(0, 3)
+}
+
+pub const fn dpad_empty() -> Pos {
+    Vec2(0, 0)
 }
 
 #[derive(Debug)]
@@ -45,6 +54,7 @@ struct CellRef {
     pos: Pos,
     g_cost: usize,
     h_cost: usize,
+    positions: [Pos; 3],
 }
 impl PartialOrd for CellRef {
     fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
@@ -57,6 +67,8 @@ impl Ord for CellRef {
     }
 }
 
+const POSITIONS: usize = 3;
+
 #[inline]
 fn add(
     bheap: &mut BinaryHeap<Reverse<CellRef>>,
@@ -67,6 +79,7 @@ fn add(
         ::std::ops::RangeInclusive<isize>,
         ::std::ops::RangeInclusive<isize>,
     ),
+    positions: [Pos; POSITIONS],
 ) {
     if !bounds.0.contains(&pos.0) || !bounds.1.contains(&pos.1) {
         return;
@@ -75,45 +88,49 @@ fn add(
         pos,
         g_cost: cost,
         h_cost: pos.taxicab_dst(target) as usize,
+        positions,
     }))
 }
-pub fn bfs_npad(start: Pos, end: Pos) -> usize {
-    let dpad_depth = 3;
+pub fn bfs_npad(target: Pos, positions: [Pos; POSITIONS]) -> (usize, [Pos; POSITIONS]) {
+    let dpad_depth = POSITIONS;
     let mut dpad_bufs = [BinaryHeap::new(), BinaryHeap::new(), BinaryHeap::new()];
-    let mut dpad_positions = [get_press_dpad(), get_press_dpad(), get_press_dpad()];
 
     // let dpad_depth = 1;
     // let mut dpad_bufs = [BinaryHeap::new()];
-    // let mut dpad_positions = [get_press_dpad()];
 
     let mut open = BinaryHeap::new();
     open.push(Reverse(CellRef {
-        pos: start,
+        pos: positions[POSITIONS - 1],
         g_cost: 0,
         h_cost: 0,
+        positions: positions,
     }));
 
     while let Some(opened) = open.pop() {
         let opened = opened.0;
 
-        if opened.pos == end {
-            return opened.g_cost
-                + bfs_dpad(
-                    dpad_depth - 1,
-                    get_press_dpad(),
-                    &mut dpad_positions,
-                    &mut dpad_bufs,
-                );
+        if opened.pos == target {
+            let (c, mut ps) = bfs_dpad(dpad_depth - 1, get_press_dpad(), positions, &mut dpad_bufs);
+            ps[POSITIONS - 1] = opened.pos;
+            return (opened.g_cost + c, ps);
         }
 
         for d in Direction::iter_all() {
             let p = opened.pos + d.step();
-            if p.taxicab_dst(end) > opened.pos.taxicab_dst(end) {
+            if p.taxicab_dst(target) > opened.pos.taxicab_dst(target) || p == npad_empty() {
                 continue;
             }
             let dir = parse_dir_dpad(d);
-            let cost = bfs_dpad(dpad_depth - 1, dir, &mut dpad_positions, &mut dpad_bufs);
-            add(&mut open, p, end, opened.g_cost + cost, ((0..=2), (0..=3)));
+            let (cost, mut positions) = bfs_dpad(dpad_depth - 1, dir, positions, &mut dpad_bufs);
+            positions[POSITIONS - 1] = opened.pos;
+            add(
+                &mut open,
+                p,
+                target,
+                opened.g_cost + cost,
+                ((0..=2), (0..=3)),
+                positions.into(),
+            );
         }
     }
 
@@ -124,40 +141,44 @@ pub fn bfs_npad(start: Pos, end: Pos) -> usize {
 fn bfs_dpad(
     depth: usize,
     target: Pos,
-    positions: &mut [Pos],
+    mut positions: [Pos; POSITIONS],
     bheaps: &mut [BinaryHeap<Reverse<CellRef>>],
-) -> usize {
-    let start = positions[depth];
+) -> (usize, [Pos; POSITIONS]) {
+    if depth == 0 {
+        return (1, positions);
+    }
+
+    let start = positions[depth - 1];
     bheaps[depth].clear();
     bheaps[depth].push(Reverse(CellRef {
         pos: start,
         g_cost: 0,
         h_cost: 0,
+        positions: positions,
     }));
-
-    if depth == 0 {
-        return 1;
-    }
 
     while let Some(opened) = bheaps[depth].pop() {
         if opened.0.pos == target {
             positions[depth] = opened.0.pos;
             // NOTE: Might ignore other costs
-            return opened.0.g_cost + bfs_dpad(depth - 1, get_press_dpad(), positions, bheaps);
+            let (c, ps) = bfs_dpad(depth - 1, get_press_dpad(), positions, bheaps);
+            return (opened.0.g_cost + c, ps);
         }
         for d in Direction::iter_all() {
             let p = opened.0.pos + d.step();
-            if p.taxicab_dst(target) > opened.0.pos.taxicab_dst(target) {
+            if p.taxicab_dst(target) > opened.0.pos.taxicab_dst(target) || p == dpad_empty() {
                 continue;
             }
             let dir = parse_dir_dpad(d);
-            let cost = bfs_dpad(depth - 1, dir, positions, bheaps);
+            let (cost, mut positions) = bfs_dpad(depth - 1, dir, positions, bheaps);
+            positions[depth - 1] = p;
             add(
                 &mut bheaps[depth],
                 p,
                 target,
                 opened.0.g_cost + cost,
                 ((0..=2), (0..=1)),
+                positions,
             );
         }
     }
@@ -168,14 +189,19 @@ pub fn part1(input: &str) -> usize {
     let mut complexity = 0;
     for line in input.trim().lines() {
         let mut cost = 0;
-        let mut pos = parse_npad('A');
+        let press_npad = parse_npad('A');
+        let press_dpad = get_press_dpad();
+        let mut positions = [press_dpad, press_dpad, press_npad];
+
         for c in line.trim().chars() {
             let to = parse_npad(c);
-            cost += dbg!(bfs_npad(pos, to));
-            pos = to;
+            let c;
+            (c, positions) = bfs_npad(to, positions);
+            cost += c;
         }
-        dbg!(cost);
-        complexity += line[..3].parse::<usize>().as_ref().unwrap() * cost;
+        let numeric = *line[..3].parse::<usize>().as_ref().unwrap();
+        dbg!(cost, numeric);
+        complexity += cost * numeric;
     }
     complexity
 }

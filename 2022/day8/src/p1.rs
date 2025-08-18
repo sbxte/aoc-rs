@@ -1,5 +1,4 @@
 use std::fmt::Write as _;
-use std::io::Write as _;
 
 // const TABLE_SIZE: usize = 5;
 const TABLE_SIZE: usize = 99;
@@ -14,10 +13,7 @@ fn parse_number(c: char) -> u64 {
     c.to_digit(10).unwrap() as u64
 }
 
-fn main() {
-    let input = include_str!("../foo.txt");
-    // let input = include_str!("../test.txt");
-
+pub fn part1(input: &str) -> String {
     // Top left to bottom right
     let mut scores: Vec<u64> = vec![1; COLS * ROWS];
 
@@ -29,9 +25,9 @@ fn main() {
             let parsed = parse_number(character);
             let mut vstack = vstack_arr.get_mut(col).unwrap();
 
-            scores[row*ROWS+col] *=
-                handle_number(parsed, &mut hstack, scores[row * ROWS + col]) *
-                handle_number(parsed, &mut vstack, scores[row * ROWS + col]);
+            scores[row * ROWS + col] *=
+                handle_number(parsed, &mut hstack, scores[row * ROWS + col])
+                    * handle_number(parsed, &mut vstack, scores[row * ROWS + col]);
         }
         hstack.clear();
     }
@@ -49,13 +45,12 @@ fn main() {
             let parsed = parse_number(character);
             let mut vstack = vstack_arr.get_mut(col).unwrap();
 
-            scores[row*ROWS+col] *=
-                handle_number(parsed, &mut hstack, scores[row*ROWS+col]) *
-                handle_number(parsed, &mut vstack, scores[row*ROWS+col]);
+            scores[row * ROWS + col] *=
+                handle_number(parsed, &mut hstack, scores[row * ROWS + col])
+                    * handle_number(parsed, &mut vstack, scores[row * ROWS + col]);
         }
         hstack.clear();
     }
-
 
     // Debug print
     let mut string = String::new();
@@ -67,25 +62,14 @@ fn main() {
         write!(&mut string, "\n").unwrap();
     }
 
-    ::std::fs::OpenOptions::new()
-        .truncate(true)
-        .write(true)
-        .open("bar.txt").unwrap()
-        .write_all(string.as_bytes()).unwrap();
-
-
     // Count all
     scores.sort_unstable();
     scores.reverse();
     scores.truncate(20);
-    println!("{:?}", scores);
+    format!("{:?}", scores)
 }
 
-fn handle_number(
-    number: u64,
-    stack: &mut Vec<(u64, u64)>,
-    previous_score: u64,
-) -> u64 {
+fn handle_number(number: u64, stack: &mut Vec<(u64, u64)>, previous_score: u64) -> u64 {
     if stack.len() == 0 {
         stack.push((number, 0));
         0
