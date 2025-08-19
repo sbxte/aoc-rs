@@ -1,0 +1,11 @@
+[package]
+name = "aoc2022d14"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+
+[features]
+viz1 = []
+viz2 = []
+viz = ["viz1", "viz2"]
