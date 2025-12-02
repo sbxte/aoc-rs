@@ -10,11 +10,18 @@ pub fn part1(input: &str) -> u64 {
 
         // Get next even digited number
         let (bottom, half_bottom) = if l_digits & 1 == 1 {
-            (10u64.pow(l_digits as u32) + 10u64.pow(l_digits as u32 >> 1), 10u64.pow(l_digits as u32 >> 1))
+            (
+                10u64.pow(l_digits as u32) + 10u64.pow(l_digits as u32 >> 1),
+                10u64.pow(l_digits as u32 >> 1),
+            )
         } else {
             let half_d = (l_digits) >> 1;
-            let high_half = low_s[0..half_d].parse::<u64>().expect("Unable to parse half u64");
-            let low_half = low_s[half_d..l_digits].parse::<u64>().expect("Unable to parse half u64");
+            let high_half = low_s[0..half_d]
+                .parse::<u64>()
+                .expect("Unable to parse half u64");
+            let low_half = low_s[half_d..l_digits]
+                .parse::<u64>()
+                .expect("Unable to parse half u64");
             if low_half > high_half {
                 let next = high_half + 1;
                 (next * (10u64.pow(half_d as u32) + 1), next)
@@ -24,11 +31,18 @@ pub fn part1(input: &str) -> u64 {
             }
         };
         let (top, half_top) = if h_digits & 1 == 1 {
-            (10u64.pow(h_digits as u32 - 1) - 1, 10u64.pow((h_digits as u32 - 1) >> 1) - 1)
+            (
+                10u64.pow(h_digits as u32 - 1) - 1,
+                10u64.pow((h_digits as u32 - 1) >> 1) - 1,
+            )
         } else {
             let half_d = (h_digits) >> 1;
-            let high_half = high_s[0..half_d].parse::<u64>().expect("Unable to parse half u64");
-            let low_half = high_s[half_d..h_digits].parse::<u64>().expect("Unable to parse half u64");
+            let high_half = high_s[0..half_d]
+                .parse::<u64>()
+                .expect("Unable to parse half u64");
+            let low_half = high_s[half_d..h_digits]
+                .parse::<u64>()
+                .expect("Unable to parse half u64");
             if low_half >= high_half {
                 let half = low_half.min(high_half);
                 (half * (10u64.pow(half_d as u32) + 1), half)

@@ -6,7 +6,7 @@ pub fn part2(input: &str) -> u64 {
         let (low_s, high_s) = range.split_once('-').expect("Unable to split range");
         let (low_s, high_s) = (low_s.trim(), high_s.trim());
 
-        let l_digits = low_s.len();
+        let _l_digits = low_s.len();
         let h_digits = high_s.len();
 
         let (low, high) = (
@@ -14,15 +14,23 @@ pub fn part2(input: &str) -> u64 {
             high_s.parse::<u64>().expect("Unable to parse u64"),
         );
 
-        let (top, half_top) = if h_digits & 1 == 1 {
-            (10u64.pow((h_digits as u32 - 1) >> 1) - 1, 10u64.pow((h_digits as u32 - 1) >> 1) - 1)
+        let (_top, half_top) = if h_digits & 1 == 1 {
+            (
+                10u64.pow((h_digits as u32 - 1) >> 1) - 1,
+                10u64.pow((h_digits as u32 - 1) >> 1) - 1,
+            )
         } else {
             let half_d = (h_digits) >> 1;
-            let high_half = high_s[0..half_d].parse::<u64>().expect("Unable to parse half u64");
-            let low_half = high_s[half_d..h_digits].parse::<u64>().expect("Unable to parse half u64");
+            let high_half = high_s[0..half_d]
+                .parse::<u64>()
+                .expect("Unable to parse half u64");
+            let low_half = high_s[half_d..h_digits]
+                .parse::<u64>()
+                .expect("Unable to parse half u64");
             let half = low_half.max(high_half);
             (half * (10u64.pow(half_d as u32) + 1), half)
         };
+
         checked_id.clear();
         for x in 1..=half_top {
             let mut actual = 0;
