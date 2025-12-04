@@ -137,7 +137,7 @@ where
             path_found = true;
             break;
         }
-        for pos in grid.get_neighbours_pos(opened.0.pos) {
+        for pos in grid.get_neighbours_adj_pos(opened.0.pos) {
             if let Some(c) = grid.get_cell(pos)
                 && c.can_pass()
             {

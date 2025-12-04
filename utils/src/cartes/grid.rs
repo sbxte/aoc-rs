@@ -35,11 +35,19 @@ pub trait Grid: Eq {
 
     /// Returns the direct neighbours of a cell.
     /// Should NOT include diagonal neighbours.
-    fn get_neighbours(&self, pos: Self::Pos) -> impl Iterator<Item = &Self::Cell>;
+    fn get_neighbours_adj(&self, pos: Self::Pos) -> impl Iterator<Item = &Self::Cell>;
 
     /// Returns the direct neighbours of a cell.
     /// Should NOT include diagonal neighbours.
-    fn get_neighbours_pos(&self, pos: Self::Pos) -> impl Iterator<Item = Self::Pos>;
+    fn get_neighbours_adj_pos(&self, pos: Self::Pos) -> impl Iterator<Item = Self::Pos>;
+
+    /// Returns the direct neighbours of a cell.
+    /// MUST include diagonal neighbours.
+    fn get_neighbours_full(&self, pos: Self::Pos) -> impl Iterator<Item = &Self::Cell>;
+
+    /// Returns the direct neighbours of a cell.
+    /// MUST include diagonal neighbours.
+    fn get_neighbours_full_pos(&self, pos: Self::Pos) -> impl Iterator<Item = Self::Pos>;
 
     /// Maps cells with a function. Retains the same [Pos][Grid::Pos] type.
     fn map<F, T>(self, f: F) -> impl Grid<Pos = Self::Pos, Cell = T>

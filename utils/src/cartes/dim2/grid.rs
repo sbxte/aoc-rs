@@ -60,7 +60,7 @@ where
         &mut self.data[pos.to_idx(self.cols)]
     }
 
-    fn get_neighbours(&self, pos: Self::Pos) -> impl Iterator<Item = &Self::Cell> {
+    fn get_neighbours_adj(&self, pos: Self::Pos) -> impl Iterator<Item = &Self::Cell> {
         [
             self.get_cell(pos + From::from((1, 0))),
             self.get_cell(pos + From::from((-1, 0))),
@@ -71,7 +71,7 @@ where
         .flatten()
     }
 
-    fn get_neighbours_pos(&self, pos: Self::Pos) -> impl Iterator<Item = Self::Pos> {
+    fn get_neighbours_adj_pos(&self, pos: Self::Pos) -> impl Iterator<Item = Self::Pos> {
         [
             pos + From::from((1, 0)),
             pos + From::from((-1, 0)),
@@ -79,6 +79,37 @@ where
             pos + From::from((0, -1)),
         ]
         .into_iter()
+        .filter(|pos| self.contains_pos(*pos))
+    }
+
+    fn get_neighbours_full(&self, pos: Self::Pos) -> impl Iterator<Item = &Self::Cell> {
+        [
+            self.get_cell(pos + From::from((1, 0))),
+            self.get_cell(pos + From::from((-1, 0))),
+            self.get_cell(pos + From::from((0, 1))),
+            self.get_cell(pos + From::from((0, -1))),
+            self.get_cell(pos + From::from((1, 1))),
+            self.get_cell(pos + From::from((-1, 1))),
+            self.get_cell(pos + From::from((1, -1))),
+            self.get_cell(pos + From::from((-1, -1))),
+        ]
+        .into_iter()
+        .flatten()
+    }
+
+    fn get_neighbours_full_pos(&self, pos: Self::Pos) -> impl Iterator<Item = Self::Pos> {
+        [
+            pos + From::from((1, 0)),
+            pos + From::from((-1, 0)),
+            pos + From::from((0, 1)),
+            pos + From::from((0, -1)),
+            pos + From::from((1, 1)),
+            pos + From::from((-1, 1)),
+            pos + From::from((1, -1)),
+            pos + From::from((-1, -1)),
+        ]
+        .into_iter()
+        .filter(|pos| self.contains_pos(*pos))
     }
 
     fn map<F, T>(self, f: F) -> impl Grid<Pos = Self::Pos, Cell = T>
