@@ -1,0 +1,14 @@
+[package]
+name = "aoc2025d05"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+name = "aoc2025d05lib"
+path = "src/lib.rs"
+
+[[bin]]
+name = "aoc2025d05bin"
+path = "src/main.rs"
+
+[dependencies]
