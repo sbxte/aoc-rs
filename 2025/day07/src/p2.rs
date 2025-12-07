@@ -1,32 +1,29 @@
-use std::mem::swap;
-
 pub fn part2(input: &str) -> u64 {
     let first_line = input.lines().next().expect("Unable to get first line").trim();
+
     let columns = first_line.len();
-    let mut tachyon_slice_1 = vec![0; columns];
-    for (i, b) in first_line.as_bytes().iter().enumerate() {
-        if *b == b'S' {
-            tachyon_slice_1[i] = 1;
-        }
-    }
-    let mut tachyon_slice_2 = vec![0; columns];
+    let mut beams = vec![0; columns];
+    let start_idx = first_line.find('S').expect("Unable to find starting beam position");
+    beams[start_idx] = 1;
+
     for line in input.lines().skip(1) {
         for (i, c) in line.as_bytes().iter().enumerate() {
-            if tachyon_slice_1[i] == 0 {
+            // Ignore if there are no beams at this position
+            if beams[i] == 0 {
                 continue;
             }
-            let timelines = tachyon_slice_1[i];
-            tachyon_slice_1[i] = 0;
+            // Interestingly, there are no directly adjacent splitters, 
+            // The next splitter is always at least 2 indices from the current splitter's index
+            // Since new beams appear at i+1 and i-1, no splitter will be interfering with each
+            // other and thus using a single vec is possible
             if *c == b'^' {
-                tachyon_slice_2[i - 1] += timelines;
-                tachyon_slice_2[i + 1] += timelines;
-            } else {
-                tachyon_slice_2[i] += timelines;
-            }
+                beams[i - 1] += beams[i];
+                beams[i + 1] += beams[i];
+                beams[i] = 0;
+            } 
         }
-        swap(&mut tachyon_slice_1, &mut tachyon_slice_2);
     }
-    tachyon_slice_1.iter().fold(0, |acc, x| acc + *x)
+    beams.iter().fold(0, |acc, x| acc + *x)
 }
 
 #[cfg(test)]
