@@ -1,8 +1,8 @@
 use std::ops::{Add, AddAssign, Div, Mul, Neg, Rem, Sub, SubAssign};
 
-use crate::num::{AbsDiff, RemEuclid, Zero};
+use crate::num::{AbsDiff, RemEuclid, Sqrt, Zero};
 
-#[derive(Debug, PartialEq, Eq, Clone, Copy, Default)]
+#[derive(Debug, PartialEq, Eq, Clone, Copy, Default, Hash)]
 pub struct Vec2<N>(pub N, pub N);
 
 impl<N> Vec2<N>
@@ -77,6 +77,23 @@ where
 {
     pub fn manhattan_dist(self, other: Self) -> S {
         self.0.abs_diff(other.0) + self.1.abs_diff(other.1)
+    }
+}
+impl<N> Vec2<N>
+where
+    N: Copy + Sub<Output = N> + Mul<Output = N> + Add<Output = N>,
+{
+    pub fn euclidian_dist_sq(self, other: Self) -> N {
+        let delta = self - other;
+        delta.0 * delta.0 + delta.1 * delta.1
+    }
+}
+impl<N> Vec2<N>
+where
+    N: Copy + Sub<Output = N> + Mul<Output = N> + Add<Output = N> + Sqrt,
+{
+    pub fn euclidian_dist(self, other: Self) -> N {
+        self.euclidian_dist_sq(other).sqrt()
     }
 }
 
