@@ -1,4 +1,4 @@
-use std::ops::{Deref, DerefMut, Div, Mul, Sub};
+use std::ops::{Add, Deref, DerefMut, Div, Mul, Sub};
 
 use crate::num::{One, Zero};
 
@@ -32,6 +32,35 @@ impl<const N: usize, const M: usize, T: Copy> Matrix<N, M, T> {
     }
 }
 
+impl<const A: usize, const B: usize, const C: usize,T> Mul<Matrix<B, C, T>> for Matrix<A, B, T>
+where
+    T: Copy + Zero + Add<Output = T> + Mul<Output = T>,
+{
+    type Output = Matrix<A, C, T>;
+
+    fn mul(self, rhs: Matrix<B, C, T>) -> Self::Output {
+        let mut v = Vec::with_capacity(A * C);
+        for r in 0..A {
+            for c in 0..B {
+                let mut sum = T::zero();
+                for i in 0..B {
+                    sum = sum + *self.get(r, i) * *rhs.get(i, c);
+                }
+                v.push(sum);
+            }
+        }
+        Matrix::<A, C, T> {
+            inner_vec: v,
+        }
+    }
+}
+
+impl<const N: usize, const M: usize, T: Copy> Matrix<N, M, T> {
+    pub fn map<F: Fn(T) -> T>(&mut self, f: F) {
+        self.inner_vec.iter_mut().for_each(|x| *x = f(*x));
+    }
+}
+
 impl<const N: usize, const M: usize, T> Matrix<N, M, T> {
     /// 0 <= row < N, 0 <= col < M
     pub fn get(&self, row: usize, col: usize) -> &T {
@@ -51,13 +80,15 @@ impl<const N: usize, const M: usize, T> Matrix<N, M, T> {
 impl<const N: usize, T: Copy> From<SquareMatrix<N, T>> for Matrix<N, N, T> {
     fn from(value: SquareMatrix<N, T>) -> Self {
         Self {
-            inner_vec: value.0.inner_vec,
+            inner_vec: value.inner_matrix.inner_vec,
         }
     }
 }
 
 #[derive(Debug, PartialEq, Eq, Clone, Default)]
-pub struct SquareMatrix<const N: usize, T>(Matrix<N, N, T>);
+pub struct SquareMatrix<const N: usize, T> {
+    inner_matrix: Matrix<N, N, T>,
+}
 
 impl<const N: usize, T> SquareMatrix<N, T>
 where
@@ -95,9 +126,9 @@ impl<const N: usize, T: Copy> SquareMatrix<N, T> {
         for r in 0..N {
             for c in r..N {
                 // Swap the two
-                let temp = *self.0.get(r, c);
-                *self.0.get_mut(r, c) = *self.0.get(c, r);
-                *self.0.get_mut(c, r) = temp;
+                let temp = *self.inner_matrix.get(r, c);
+                *self.inner_matrix.get_mut(r, c) = *self.inner_matrix.get(c, r);
+                *self.inner_matrix.get_mut(c, r) = temp;
             }
         }
     }
@@ -181,30 +212,63 @@ where
 
 impl<const N: usize, T> From<Matrix<N, N, T>> for SquareMatrix<N, T> {
     fn from(value: Matrix<N, N, T>) -> Self {
-        Self(value)
+        Self {
+            inner_matrix: value,
+        }
     }
 }
 
 impl<const N: usize, T> AsRef<Matrix<N, N, T>> for SquareMatrix<N, T> {
     fn as_ref(&self) -> &Matrix<N, N, T> {
-        &self.0
+        &self.inner_matrix
     }
 }
 impl<const N: usize, T> AsMut<Matrix<N, N, T>> for SquareMatrix<N, T> {
     fn as_mut(&mut self) -> &mut Matrix<N, N, T> {
-        &mut self.0
+        &mut self.inner_matrix
     }
 }
 impl<const N: usize, T> Deref for SquareMatrix<N, T> {
     type Target = Matrix<N, N, T>;
 
     fn deref(&self) -> &Self::Target {
-        &self.0
+        &self.inner_matrix
     }
 }
 impl<const N: usize, T> DerefMut for SquareMatrix<N, T> {
     fn deref_mut(&mut self) -> &mut Self::Target {
-        &mut self.0
+        &mut self.inner_matrix
+    }
+}
+
+impl<const N: usize, const M: usize, T> Mul<Matrix<M, N, T>> for SquareMatrix<M, T>
+where
+    T: Copy + Zero + Add<Output = T> + Mul<Output = T>,
+{
+    type Output = Matrix<M, N, T>;
+
+    fn mul(self, rhs: Matrix<M, N, T>) -> Self::Output {
+        self.inner_matrix * rhs
+    }
+}
+impl<const N: usize, const M: usize, T> Mul<SquareMatrix<N, T>> for Matrix<M, N, T>
+where
+    T: Copy + Zero + Add<Output = T> + Mul<Output = T>,
+{
+    type Output = Matrix<M, N, T>;
+
+    fn mul(self, rhs: SquareMatrix<N, T>) -> Self::Output {
+        self * rhs.inner_matrix
+    }
+}
+impl<const N: usize, T> Mul<SquareMatrix<N, T>> for SquareMatrix<N, T>
+where
+    T: Copy + Zero + Add<Output = T> + Mul<Output = T>,
+{
+    type Output = Self;
+
+    fn mul(self, rhs: SquareMatrix<N, T>) -> Self::Output {
+        SquareMatrix::from(self.inner_matrix * rhs.inner_matrix)
     }
 }
 
@@ -216,18 +280,18 @@ mod test {
     fn sqmat_transpose() {
         let mut matrix = SquareMatrix::from(Matrix::<2, 2, _>::from_slice(&[1, 0, 0, 1], 0));
         matrix.transpose();
-        assert_eq!(matrix.0.inner_vec, [1, 0, 0, 1]);
+        assert_eq!(matrix.inner_vec, [1, 0, 0, 1]);
 
         let mut matrix = SquareMatrix::from(Matrix::<2, 2, _>::from_slice(&[1, 2, 3, 4], 0));
         matrix.transpose();
-        assert_eq!(matrix.0.inner_vec, [1, 3, 2, 4]);
+        assert_eq!(matrix.inner_vec, [1, 3, 2, 4]);
 
         let mut matrix = SquareMatrix::from(Matrix::<3, 3, _>::from_slice(
             &[1, 2, 3, 4, 5, 6, 7, 8, 9],
             0,
         ));
         matrix.transpose();
-        assert_eq!(matrix.0.inner_vec, [1, 4, 7, 2, 5, 8, 3, 6, 9]);
+        assert_eq!(matrix.inner_vec, [1, 4, 7, 2, 5, 8, 3, 6, 9]);
     }
 
     #[test]
@@ -241,5 +305,18 @@ mod test {
         let inversion = matrix.get_inverted();
         assert!(inversion.is_some());
         assert_eq!(inversion.unwrap().inner_vec, [1., 0., 0., 1.]);
+    }
+
+    #[test]
+    fn mat_mul() {
+        let m1: SquareMatrix<2, _> = SquareMatrix::from(Matrix::from_slice(&[1, 0, 0, 1], 0));
+        let m2: SquareMatrix<2, _> = SquareMatrix::from(Matrix::from_slice(&[1, 0, 0, 1], 0));
+        let m3 = m1 * m2;
+        assert_eq!(m3.inner_vec, [1, 0, 0, 1]);
+
+        let m1: SquareMatrix<2, _> = SquareMatrix::from(Matrix::from_slice(&[1, 2, 3, 4], 0));
+        let m2: SquareMatrix<2, _> = SquareMatrix::from(Matrix::from_slice(&[5, 6, 7, 8], 0));
+        let m3 = m1 * m2;
+        assert_eq!(m3.inner_vec, [19, 22, 43, 50]);
     }
 }
