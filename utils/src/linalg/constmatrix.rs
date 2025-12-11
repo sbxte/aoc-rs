@@ -142,6 +142,7 @@ where
         + Mul<Output = T>
         + Div<Output = T>
         + Sub<Output = T>
+        + Add<Output = T>
         + One
         + Zero
         + core::fmt::Debug,
@@ -151,6 +152,29 @@ where
         // Use gaussian elimination
         let mut augment = Self::identity();
         let mut copy = self.clone();
+
+        // Try make diagonals non-zero
+        for i in 0..N {
+            if copy.get(i, i) != &T::zero() {
+                continue;
+            }
+            let non_zero_idx = (0..N).find(|r| copy.get(*r, i) != &T::zero());
+            if non_zero_idx.is_none() {
+                // Colum is completely zero-ed, 
+                // matrix is non-invertible
+                return None; 
+            }
+            let non_zero_idx = non_zero_idx.unwrap();
+            let multiplier = T::one() / *copy.get(non_zero_idx, i);
+            for c in 0..N {
+                *copy.get_mut(i, c) = *copy.get(i, c) + multiplier * *copy.get(non_zero_idx, c);
+                *augment.get_mut(i, c) = *augment.get(i, c) + multiplier * *augment.get(non_zero_idx, c);
+            }
+        }
+        if (0..N).find(|i| copy.get(*i, *i) == &T::zero()).is_some() {
+            // A cell in the diagonal is still zero anyways
+            return None;
+        }
 
         // Reduced row echelon
         for row in 0..N {
@@ -305,6 +329,11 @@ mod test {
         let inversion = matrix.get_inverted();
         assert!(inversion.is_some());
         assert_eq!(inversion.unwrap().inner_vec, [1., 0., 0., 1.]);
+
+        let matrix = SquareMatrix::from(Matrix::<2, 2, _>::from_slice(&[0., 1., 1., 0.], 0.));
+        let inversion = matrix.get_inverted();
+        assert!(inversion.is_some());
+        assert_eq!(inversion.unwrap().inner_vec, [0., 1., 1., 0.]);
     }
 
     #[test]
