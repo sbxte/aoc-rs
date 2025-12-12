@@ -1,0 +1,3625 @@
+   Compiling aoc2025d11 v0.1.0 (/home/sbyte/Workspace/aoc-rs/2025/day11)
+    Finished `release` profile [optimized] target(s) in 0.23s
+     Running `/home/sbyte/Workspace/aoc-rs/target/release/aoc2025d11`
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "wfq",
+    prev: "out",
+    depth: 6,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 6,
+    bpaths: 1,
+    inputs: [
+        "gbx",
+        "hjj",
+    ],
+    outputs: [
+        "out",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "hck",
+    prev: "out",
+    depth: 6,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 6,
+    bpaths: 1,
+    inputs: [
+        "osp",
+        "cws",
+        "hux",
+    ],
+    outputs: [
+        "out",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "gxn",
+    prev: "out",
+    depth: 6,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 6,
+    bpaths: 1,
+    inputs: [
+        "vll",
+        "vfd",
+    ],
+    outputs: [
+        "out",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "xwf",
+    prev: "out",
+    depth: 6,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 6,
+    bpaths: 1,
+    inputs: [
+        "cws",
+        "osp",
+        "hux",
+        "sqy",
+    ],
+    outputs: [
+        "out",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "teg",
+    prev: "out",
+    depth: 6,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 6,
+    bpaths: 1,
+    inputs: [
+        "nav",
+        "vnx",
+    ],
+    outputs: [
+        "out",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "rpm",
+    prev: "out",
+    depth: 6,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 6,
+    bpaths: 1,
+    inputs: [
+        "rtj",
+        "qat",
+        "tno",
+    ],
+    outputs: [
+        "out",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "vhi",
+    prev: "out",
+    depth: 6,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 6,
+    bpaths: 1,
+    inputs: [
+        "gbx",
+    ],
+    outputs: [
+        "out",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "cug",
+    prev: "out",
+    depth: 6,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 6,
+    bpaths: 1,
+    inputs: [
+        "qat",
+        "rtj",
+        "mjw",
+    ],
+    outputs: [
+        "out",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "eww",
+    prev: "out",
+    depth: 6,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 6,
+    bpaths: 1,
+    inputs: [
+        "hux",
+    ],
+    outputs: [
+        "out",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "zmg",
+    prev: "out",
+    depth: 6,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 6,
+    bpaths: 1,
+    inputs: [
+        "hjk",
+        "vis",
+        "vfd",
+    ],
+    outputs: [
+        "out",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "pft",
+    prev: "out",
+    depth: 6,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 6,
+    bpaths: 1,
+    inputs: [
+        "hjj",
+        "fnb",
+    ],
+    outputs: [
+        "out",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "rmb",
+    prev: "out",
+    depth: 6,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 6,
+    bpaths: 1,
+    inputs: [
+        "hux",
+        "cws",
+    ],
+    outputs: [
+        "out",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "yxg",
+    prev: "out",
+    depth: 6,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 6,
+    bpaths: 1,
+    inputs: [
+        "rtj",
+        "tno",
+    ],
+    outputs: [
+        "out",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "xih",
+    prev: "out",
+    depth: 6,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 6,
+    bpaths: 1,
+    inputs: [
+        "vnx",
+        "crj",
+    ],
+    outputs: [
+        "out",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "cxa",
+    prev: "out",
+    depth: 6,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 6,
+    bpaths: 1,
+    inputs: [
+        "hux",
+        "osp",
+        "cws",
+    ],
+    outputs: [
+        "out",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "ioc",
+    prev: "out",
+    depth: 6,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 6,
+    bpaths: 1,
+    inputs: [
+        "tno",
+        "qat",
+        "rtj",
+    ],
+    outputs: [
+        "out",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "ais",
+    prev: "out",
+    depth: 6,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 6,
+    bpaths: 1,
+    inputs: [
+        "fnb",
+    ],
+    outputs: [
+        "out",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "gig",
+    prev: "out",
+    depth: 6,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 6,
+    bpaths: 1,
+    inputs: [
+        "hjk",
+        "vll",
+        "vfd",
+        "svi",
+    ],
+    outputs: [
+        "out",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "vee",
+    prev: "out",
+    depth: 6,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 6,
+    bpaths: 1,
+    inputs: [
+        "vnx",
+        "nav",
+    ],
+    outputs: [
+        "out",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "zus",
+    prev: "out",
+    depth: 6,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 6,
+    bpaths: 1,
+    inputs: [
+        "qat",
+        "ibp",
+        "tno",
+    ],
+    outputs: [
+        "out",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "hoq",
+    prev: "out",
+    depth: 6,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 6,
+    bpaths: 1,
+    inputs: [
+        "vis",
+        "hjk",
+        "vfd",
+    ],
+    outputs: [
+        "out",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "sxp",
+    prev: "out",
+    depth: 6,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 6,
+    bpaths: 1,
+    inputs: [
+        "vll",
+    ],
+    outputs: [
+        "out",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "hjj",
+    prev: "wfq",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 1,
+    inputs: [
+        "qmi",
+        "mgh",
+    ],
+    outputs: [
+        "pft",
+        "wfq",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "vfd",
+    prev: "gxn",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 1,
+    inputs: [
+        "dlc",
+        "inw",
+    ],
+    outputs: [
+        "gig",
+        "zmg",
+        "gxn",
+        "hoq",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "qat",
+    prev: "rpm",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 1,
+    inputs: [
+        "cif",
+        "ekl",
+        "zcz",
+    ],
+    outputs: [
+        "ioc",
+        "rpm",
+        "zus",
+        "cug",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "gbx",
+    prev: "vhi",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 1,
+    inputs: [
+        "lmm",
+        "rpy",
+    ],
+    outputs: [
+        "vhi",
+        "wfq",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "vfd",
+    prev: "hoq",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 2,
+    inputs: [
+        "dlc",
+        "inw",
+    ],
+    outputs: [
+        "gig",
+        "zmg",
+        "gxn",
+        "hoq",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "vll",
+    prev: "sxp",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 1,
+    inputs: [
+        "ckl",
+        "inw",
+    ],
+    outputs: [
+        "gig",
+        "sxp",
+        "gxn",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "rtj",
+    prev: "rpm",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 1,
+    inputs: [
+        "cif",
+        "zcz",
+    ],
+    outputs: [
+        "rpm",
+        "ioc",
+        "yxg",
+        "cug",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "hux",
+    prev: "hck",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 1,
+    inputs: [
+        "mwh",
+        "nqc",
+    ],
+    outputs: [
+        "hck",
+        "xwf",
+        "rmb",
+        "cxa",
+        "eww",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "nav",
+    prev: "teg",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 1,
+    inputs: [
+        "ofk",
+        "oti",
+        "mcl",
+    ],
+    outputs: [
+        "vee",
+        "teg",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "hux",
+    prev: "xwf",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 2,
+    inputs: [
+        "mwh",
+        "nqc",
+    ],
+    outputs: [
+        "hck",
+        "xwf",
+        "rmb",
+        "cxa",
+        "eww",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "osp",
+    prev: "xwf",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 1,
+    inputs: [
+        "mwh",
+        "nqc",
+    ],
+    outputs: [
+        "cxa",
+        "xwf",
+        "hck",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "sqy",
+    prev: "xwf",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 1,
+    inputs: [
+        "yyl",
+    ],
+    outputs: [
+        "xwf",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "tno",
+    prev: "rpm",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 1,
+    inputs: [
+        "zcz",
+        "boe",
+        "ekl",
+        "cif",
+    ],
+    outputs: [
+        "rpm",
+        "ioc",
+        "yxg",
+        "zus",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "cws",
+    prev: "xwf",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 1,
+    inputs: [
+        "piy",
+        "nqc",
+    ],
+    outputs: [
+        "rmb",
+        "cxa",
+        "hck",
+        "xwf",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "vll",
+    prev: "gxn",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 2,
+    inputs: [
+        "ckl",
+        "inw",
+    ],
+    outputs: [
+        "gig",
+        "sxp",
+        "gxn",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "vnx",
+    prev: "teg",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 1,
+    inputs: [
+        "oti",
+        "mcl",
+    ],
+    outputs: [
+        "teg",
+        "xih",
+        "vee",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "hjk",
+    prev: "hoq",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 1,
+    inputs: [
+        "ckl",
+        "dlc",
+    ],
+    outputs: [
+        "gig",
+        "zmg",
+        "hoq",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "vis",
+    prev: "hoq",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 1,
+    inputs: [
+        "ckl",
+    ],
+    outputs: [
+        "zmg",
+        "hoq",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "cws",
+    prev: "hck",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 2,
+    inputs: [
+        "piy",
+        "nqc",
+    ],
+    outputs: [
+        "rmb",
+        "cxa",
+        "hck",
+        "xwf",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "ibp",
+    prev: "zus",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 1,
+    inputs: [
+        "zcz",
+        "ekl",
+    ],
+    outputs: [
+        "zus",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "qat",
+    prev: "zus",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 2,
+    inputs: [
+        "cif",
+        "ekl",
+        "zcz",
+    ],
+    outputs: [
+        "ioc",
+        "rpm",
+        "zus",
+        "cug",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "osp",
+    prev: "hck",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 2,
+    inputs: [
+        "mwh",
+        "nqc",
+    ],
+    outputs: [
+        "cxa",
+        "xwf",
+        "hck",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "mjw",
+    prev: "cug",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 1,
+    inputs: [
+        "zcz",
+    ],
+    outputs: [
+        "cug",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "cws",
+    prev: "rmb",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 3,
+    inputs: [
+        "piy",
+        "nqc",
+    ],
+    outputs: [
+        "rmb",
+        "cxa",
+        "hck",
+        "xwf",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "vnx",
+    prev: "vee",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 2,
+    inputs: [
+        "oti",
+        "mcl",
+    ],
+    outputs: [
+        "teg",
+        "xih",
+        "vee",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "tno",
+    prev: "zus",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 2,
+    inputs: [
+        "zcz",
+        "boe",
+        "ekl",
+        "cif",
+    ],
+    outputs: [
+        "rpm",
+        "ioc",
+        "yxg",
+        "zus",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "vfd",
+    prev: "gig",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 3,
+    inputs: [
+        "dlc",
+        "inw",
+    ],
+    outputs: [
+        "gig",
+        "zmg",
+        "gxn",
+        "hoq",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "gbx",
+    prev: "wfq",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 2,
+    inputs: [
+        "lmm",
+        "rpy",
+    ],
+    outputs: [
+        "vhi",
+        "wfq",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "vll",
+    prev: "gig",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 3,
+    inputs: [
+        "ckl",
+        "inw",
+    ],
+    outputs: [
+        "gig",
+        "sxp",
+        "gxn",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "hjk",
+    prev: "gig",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 2,
+    inputs: [
+        "ckl",
+        "dlc",
+    ],
+    outputs: [
+        "gig",
+        "zmg",
+        "hoq",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "hux",
+    prev: "eww",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 3,
+    inputs: [
+        "mwh",
+        "nqc",
+    ],
+    outputs: [
+        "hck",
+        "xwf",
+        "rmb",
+        "cxa",
+        "eww",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "fnb",
+    prev: "pft",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 1,
+    inputs: [
+        "rpy",
+        "qmi",
+    ],
+    outputs: [
+        "pft",
+        "ais",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "qat",
+    prev: "ioc",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 3,
+    inputs: [
+        "cif",
+        "ekl",
+        "zcz",
+    ],
+    outputs: [
+        "ioc",
+        "rpm",
+        "zus",
+        "cug",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "tno",
+    prev: "ioc",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 3,
+    inputs: [
+        "zcz",
+        "boe",
+        "ekl",
+        "cif",
+    ],
+    outputs: [
+        "rpm",
+        "ioc",
+        "yxg",
+        "zus",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "vfd",
+    prev: "zmg",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 4,
+    inputs: [
+        "dlc",
+        "inw",
+    ],
+    outputs: [
+        "gig",
+        "zmg",
+        "gxn",
+        "hoq",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "osp",
+    prev: "cxa",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 3,
+    inputs: [
+        "mwh",
+        "nqc",
+    ],
+    outputs: [
+        "cxa",
+        "xwf",
+        "hck",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "hux",
+    prev: "cxa",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 4,
+    inputs: [
+        "mwh",
+        "nqc",
+    ],
+    outputs: [
+        "hck",
+        "xwf",
+        "rmb",
+        "cxa",
+        "eww",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "rtj",
+    prev: "yxg",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 2,
+    inputs: [
+        "cif",
+        "zcz",
+    ],
+    outputs: [
+        "rpm",
+        "ioc",
+        "yxg",
+        "cug",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "vnx",
+    prev: "xih",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 3,
+    inputs: [
+        "oti",
+        "mcl",
+    ],
+    outputs: [
+        "teg",
+        "xih",
+        "vee",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "cws",
+    prev: "cxa",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 4,
+    inputs: [
+        "piy",
+        "nqc",
+    ],
+    outputs: [
+        "rmb",
+        "cxa",
+        "hck",
+        "xwf",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "nav",
+    prev: "vee",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 2,
+    inputs: [
+        "ofk",
+        "oti",
+        "mcl",
+    ],
+    outputs: [
+        "vee",
+        "teg",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "tno",
+    prev: "yxg",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 4,
+    inputs: [
+        "zcz",
+        "boe",
+        "ekl",
+        "cif",
+    ],
+    outputs: [
+        "rpm",
+        "ioc",
+        "yxg",
+        "zus",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "hux",
+    prev: "rmb",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 5,
+    inputs: [
+        "mwh",
+        "nqc",
+    ],
+    outputs: [
+        "hck",
+        "xwf",
+        "rmb",
+        "cxa",
+        "eww",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "crj",
+    prev: "xih",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 1,
+    inputs: [
+        "oti",
+        "mcl",
+    ],
+    outputs: [
+        "xih",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "hjj",
+    prev: "pft",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 2,
+    inputs: [
+        "qmi",
+        "mgh",
+    ],
+    outputs: [
+        "pft",
+        "wfq",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "vis",
+    prev: "zmg",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 2,
+    inputs: [
+        "ckl",
+    ],
+    outputs: [
+        "zmg",
+        "hoq",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "rtj",
+    prev: "ioc",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 3,
+    inputs: [
+        "cif",
+        "zcz",
+    ],
+    outputs: [
+        "rpm",
+        "ioc",
+        "yxg",
+        "cug",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "svi",
+    prev: "gig",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 1,
+    inputs: [
+        "ckl",
+        "inw",
+    ],
+    outputs: [
+        "gig",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "hjk",
+    prev: "zmg",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 3,
+    inputs: [
+        "ckl",
+        "dlc",
+    ],
+    outputs: [
+        "gig",
+        "zmg",
+        "hoq",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "rtj",
+    prev: "cug",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 4,
+    inputs: [
+        "cif",
+        "zcz",
+    ],
+    outputs: [
+        "rpm",
+        "ioc",
+        "yxg",
+        "cug",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "fnb",
+    prev: "ais",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 2,
+    inputs: [
+        "rpy",
+        "qmi",
+    ],
+    outputs: [
+        "pft",
+        "ais",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "qat",
+    prev: "cug",
+    depth: 5,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 5,
+    bpaths: 4,
+    inputs: [
+        "cif",
+        "ekl",
+        "zcz",
+    ],
+    outputs: [
+        "ioc",
+        "rpm",
+        "zus",
+        "cug",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "mgh",
+    prev: "hjj",
+    depth: 4,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 4,
+    bpaths: 2,
+    inputs: [
+        "elv",
+        "rjl",
+    ],
+    outputs: [
+        "hjj",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "zcz",
+    prev: "qat",
+    depth: 4,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 4,
+    bpaths: 4,
+    inputs: [
+        "lkn",
+        "gbs",
+    ],
+    outputs: [
+        "rtj",
+        "qat",
+        "mjw",
+        "ibp",
+        "tno",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "zcz",
+    prev: "rtj",
+    depth: 4,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 4,
+    bpaths: 8,
+    inputs: [
+        "lkn",
+        "gbs",
+    ],
+    outputs: [
+        "rtj",
+        "qat",
+        "mjw",
+        "ibp",
+        "tno",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "ekl",
+    prev: "tno",
+    depth: 4,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 4,
+    bpaths: 4,
+    inputs: [
+        "cbr",
+    ],
+    outputs: [
+        "qat",
+        "ibp",
+        "tno",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "ofk",
+    prev: "nav",
+    depth: 4,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 4,
+    bpaths: 2,
+    inputs: [
+        "apr",
+        "lgj",
+        "ffm",
+    ],
+    outputs: [
+        "nav",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "qmi",
+    prev: "fnb",
+    depth: 4,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 4,
+    bpaths: 2,
+    inputs: [
+        "dff",
+        "rjl",
+    ],
+    outputs: [
+        "fnb",
+        "hjj",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "ckl",
+    prev: "vll",
+    depth: 4,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 4,
+    bpaths: 3,
+    inputs: [
+        "rhf",
+    ],
+    outputs: [
+        "svi",
+        "vll",
+        "vis",
+        "hjk",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "ckl",
+    prev: "svi",
+    depth: 4,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 4,
+    bpaths: 4,
+    inputs: [
+        "rhf",
+    ],
+    outputs: [
+        "svi",
+        "vll",
+        "vis",
+        "hjk",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "mcl",
+    prev: "nav",
+    depth: 4,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 4,
+    bpaths: 2,
+    inputs: [
+        "ffm",
+        "dqr",
+    ],
+    outputs: [
+        "vnx",
+        "crj",
+        "nav",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "mcl",
+    prev: "vnx",
+    depth: 4,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 4,
+    bpaths: 5,
+    inputs: [
+        "ffm",
+        "dqr",
+    ],
+    outputs: [
+        "vnx",
+        "crj",
+        "nav",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "yyl",
+    prev: "sqy",
+    depth: 4,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 4,
+    bpaths: 1,
+    inputs: [
+        "pna",
+        "ems",
+    ],
+    outputs: [
+        "sqy",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "inw",
+    prev: "svi",
+    depth: 4,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 4,
+    bpaths: 1,
+    inputs: [
+        "rhf",
+        "ipt",
+        "kez",
+    ],
+    outputs: [
+        "svi",
+        "vll",
+        "vfd",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "zcz",
+    prev: "ibp",
+    depth: 4,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 4,
+    bpaths: 9,
+    inputs: [
+        "lkn",
+        "gbs",
+    ],
+    outputs: [
+        "rtj",
+        "qat",
+        "mjw",
+        "ibp",
+        "tno",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "ckl",
+    prev: "hjk",
+    depth: 4,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 4,
+    bpaths: 7,
+    inputs: [
+        "rhf",
+    ],
+    outputs: [
+        "svi",
+        "vll",
+        "vis",
+        "hjk",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "inw",
+    prev: "vfd",
+    depth: 4,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 4,
+    bpaths: 5,
+    inputs: [
+        "rhf",
+        "ipt",
+        "kez",
+    ],
+    outputs: [
+        "svi",
+        "vll",
+        "vfd",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "boe",
+    prev: "tno",
+    depth: 4,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 4,
+    bpaths: 4,
+    inputs: [
+        "lkn",
+        "gbs",
+    ],
+    outputs: [
+        "tno",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "rpy",
+    prev: "gbx",
+    depth: 4,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 4,
+    bpaths: 2,
+    inputs: [
+        "rjl",
+        "dff",
+        "ccd",
+        "bvq",
+    ],
+    outputs: [
+        "fnb",
+        "gbx",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "inw",
+    prev: "vll",
+    depth: 4,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 4,
+    bpaths: 8,
+    inputs: [
+        "rhf",
+        "ipt",
+        "kez",
+    ],
+    outputs: [
+        "svi",
+        "vll",
+        "vfd",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "lmm",
+    prev: "gbx",
+    depth: 4,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 4,
+    bpaths: 2,
+    inputs: [
+        "ccd",
+        "bvq",
+    ],
+    outputs: [
+        "gbx",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "ekl",
+    prev: "qat",
+    depth: 4,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 4,
+    bpaths: 8,
+    inputs: [
+        "cbr",
+    ],
+    outputs: [
+        "qat",
+        "ibp",
+        "tno",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "nqc",
+    prev: "hux",
+    depth: 4,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 4,
+    bpaths: 5,
+    inputs: [
+        "ccg",
+    ],
+    outputs: [
+        "hux",
+        "cws",
+        "osp",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "oti",
+    prev: "nav",
+    depth: 4,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 4,
+    bpaths: 2,
+    inputs: [
+        "dqr",
+        "ffm",
+    ],
+    outputs: [
+        "vnx",
+        "crj",
+        "nav",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "dlc",
+    prev: "vfd",
+    depth: 4,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 4,
+    bpaths: 4,
+    inputs: [
+        "ufd",
+    ],
+    outputs: [
+        "hjk",
+        "vfd",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "nqc",
+    prev: "osp",
+    depth: 4,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 4,
+    bpaths: 8,
+    inputs: [
+        "ccg",
+    ],
+    outputs: [
+        "hux",
+        "cws",
+        "osp",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "cif",
+    prev: "tno",
+    depth: 4,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 4,
+    bpaths: 4,
+    inputs: [
+        "gbs",
+        "cbr",
+    ],
+    outputs: [
+        "tno",
+        "rtj",
+        "qat",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "nqc",
+    prev: "cws",
+    depth: 4,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 4,
+    bpaths: 12,
+    inputs: [
+        "ccg",
+    ],
+    outputs: [
+        "hux",
+        "cws",
+        "osp",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "rpy",
+    prev: "fnb",
+    depth: 4,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 4,
+    bpaths: 4,
+    inputs: [
+        "rjl",
+        "dff",
+        "ccd",
+        "bvq",
+    ],
+    outputs: [
+        "fnb",
+        "gbx",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "zcz",
+    prev: "mjw",
+    depth: 4,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 4,
+    bpaths: 10,
+    inputs: [
+        "lkn",
+        "gbs",
+    ],
+    outputs: [
+        "rtj",
+        "qat",
+        "mjw",
+        "ibp",
+        "tno",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "mwh",
+    prev: "hux",
+    depth: 4,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 4,
+    bpaths: 5,
+    inputs: [
+        "pna",
+        "ems",
+    ],
+    outputs: [
+        "osp",
+        "hux",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "cif",
+    prev: "rtj",
+    depth: 4,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 4,
+    bpaths: 8,
+    inputs: [
+        "gbs",
+        "cbr",
+    ],
+    outputs: [
+        "tno",
+        "rtj",
+        "qat",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "piy",
+    prev: "cws",
+    depth: 4,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 4,
+    bpaths: 4,
+    inputs: [
+        "pna",
+        "ccg",
+        "ems",
+    ],
+    outputs: [
+        "cws",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "dlc",
+    prev: "hjk",
+    depth: 4,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 4,
+    bpaths: 7,
+    inputs: [
+        "ufd",
+    ],
+    outputs: [
+        "hjk",
+        "vfd",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "mcl",
+    prev: "crj",
+    depth: 4,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 4,
+    bpaths: 6,
+    inputs: [
+        "ffm",
+        "dqr",
+    ],
+    outputs: [
+        "vnx",
+        "crj",
+        "nav",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "oti",
+    prev: "crj",
+    depth: 4,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 4,
+    bpaths: 3,
+    inputs: [
+        "dqr",
+        "ffm",
+    ],
+    outputs: [
+        "vnx",
+        "crj",
+        "nav",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "ekl",
+    prev: "ibp",
+    depth: 4,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 4,
+    bpaths: 9,
+    inputs: [
+        "cbr",
+    ],
+    outputs: [
+        "qat",
+        "ibp",
+        "tno",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "oti",
+    prev: "vnx",
+    depth: 4,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 4,
+    bpaths: 6,
+    inputs: [
+        "dqr",
+        "ffm",
+    ],
+    outputs: [
+        "vnx",
+        "crj",
+        "nav",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "zcz",
+    prev: "tno",
+    depth: 4,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 4,
+    bpaths: 14,
+    inputs: [
+        "lkn",
+        "gbs",
+    ],
+    outputs: [
+        "rtj",
+        "qat",
+        "mjw",
+        "ibp",
+        "tno",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "mwh",
+    prev: "osp",
+    depth: 4,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 4,
+    bpaths: 8,
+    inputs: [
+        "pna",
+        "ems",
+    ],
+    outputs: [
+        "osp",
+        "hux",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "cif",
+    prev: "qat",
+    depth: 4,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 4,
+    bpaths: 12,
+    inputs: [
+        "gbs",
+        "cbr",
+    ],
+    outputs: [
+        "tno",
+        "rtj",
+        "qat",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "qmi",
+    prev: "hjj",
+    depth: 4,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 4,
+    bpaths: 4,
+    inputs: [
+        "dff",
+        "rjl",
+    ],
+    outputs: [
+        "fnb",
+        "hjj",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "ckl",
+    prev: "vis",
+    depth: 4,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 4,
+    bpaths: 9,
+    inputs: [
+        "rhf",
+    ],
+    outputs: [
+        "svi",
+        "vll",
+        "vis",
+        "hjk",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "pna",
+    prev: "yyl",
+    depth: 3,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 3,
+    bpaths: 1,
+    inputs: [
+        "hon",
+        "aln",
+    ],
+    outputs: [
+        "mwh",
+        "yyl",
+        "piy",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "rhf",
+    prev: "inw",
+    depth: 3,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 3,
+    bpaths: 8,
+    inputs: [
+        "qwq",
+        "xqu",
+    ],
+    outputs: [
+        "ckl",
+        "inw",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "ipt",
+    prev: "inw",
+    depth: 3,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 3,
+    bpaths: 8,
+    inputs: [
+        "ibz",
+        "xqu",
+    ],
+    outputs: [
+        "inw",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "kez",
+    prev: "inw",
+    depth: 3,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 3,
+    bpaths: 8,
+    inputs: [
+        "lbr",
+        "hbe",
+        "ibz",
+    ],
+    outputs: [
+        "inw",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "ems",
+    prev: "yyl",
+    depth: 3,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 3,
+    bpaths: 1,
+    inputs: [
+        "hon",
+        "aln",
+    ],
+    outputs: [
+        "mwh",
+        "yyl",
+        "piy",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "hon",
+    prev: "pna",
+    depth: 2,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 2,
+    bpaths: 1,
+    inputs: [
+        "woi",
+        "owq",
+        "pbh",
+    ],
+    outputs: [
+        "pna",
+        "ccg",
+        "ems",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "hon",
+    prev: "ems",
+    depth: 2,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 2,
+    bpaths: 2,
+    inputs: [
+        "woi",
+        "owq",
+        "pbh",
+    ],
+    outputs: [
+        "pna",
+        "ccg",
+        "ems",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "aln",
+    prev: "ems",
+    depth: 2,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 2,
+    bpaths: 1,
+    inputs: [
+        "pbh",
+        "woi",
+    ],
+    outputs: [
+        "pna",
+        "ems",
+        "ccg",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "aln",
+    prev: "pna",
+    depth: 2,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 2,
+    bpaths: 2,
+    inputs: [
+        "pbh",
+        "woi",
+    ],
+    outputs: [
+        "pna",
+        "ems",
+        "ccg",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "pbh",
+    prev: "hon",
+    depth: 1,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 1,
+    bpaths: 2,
+    inputs: [
+        "you",
+    ],
+    outputs: [
+        "hon",
+        "aln",
+        "rwh",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "woi",
+    prev: "aln",
+    depth: 1,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 1,
+    bpaths: 2,
+    inputs: [
+        "you",
+    ],
+    outputs: [
+        "hon",
+        "rwh",
+        "aln",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "pbh",
+    prev: "aln",
+    depth: 1,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 1,
+    bpaths: 4,
+    inputs: [
+        "you",
+    ],
+    outputs: [
+        "hon",
+        "aln",
+        "rwh",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "woi",
+    prev: "hon",
+    depth: 1,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 1,
+    bpaths: 4,
+    inputs: [
+        "you",
+    ],
+    outputs: [
+        "hon",
+        "rwh",
+        "aln",
+    ],
+}
+[2025/day11/src/p1.rs:121:9] &state = BfsState {
+    server: "owq",
+    prev: "hon",
+    depth: 1,
+}
+[2025/day11/src/p1.rs:121:9] &servers[state.server] = BfsData {
+    min_fdepth: 1,
+    bpaths: 2,
+    inputs: [
+        "you",
+    ],
+    outputs: [
+        "rwh",
+        "hon",
+    ],
+}
+[2025/day11/src/p1.rs:123:5] &servers = {
+    "xqu": BfsData {
+        min_fdepth: 2,
+        bpaths: 0,
+        inputs: [
+            "shd",
+        ],
+        outputs: [
+            "rhf",
+            "ipt",
+        ],
+    },
+    "cif": BfsData {
+        min_fdepth: 4,
+        bpaths: 12,
+        inputs: [
+            "gbs",
+            "cbr",
+        ],
+        outputs: [
+            "tno",
+            "rtj",
+            "qat",
+        ],
+    },
+    "mcl": BfsData {
+        min_fdepth: 4,
+        bpaths: 6,
+        inputs: [
+            "ffm",
+            "dqr",
+        ],
+        outputs: [
+            "vnx",
+            "crj",
+            "nav",
+        ],
+    },
+    "aln": BfsData {
+        min_fdepth: 2,
+        bpaths: 2,
+        inputs: [
+            "pbh",
+            "woi",
+        ],
+        outputs: [
+            "pna",
+            "ems",
+            "ccg",
+        ],
+    },
+    "dff": BfsData {
+        min_fdepth: 3,
+        bpaths: 0,
+        inputs: [
+            "zbl",
+            "gkz",
+            "brl",
+        ],
+        outputs: [
+            "qmi",
+            "rpy",
+        ],
+    },
+    "ekl": BfsData {
+        min_fdepth: 4,
+        bpaths: 9,
+        inputs: [
+            "cbr",
+        ],
+        outputs: [
+            "qat",
+            "ibp",
+            "tno",
+        ],
+    },
+    "pna": BfsData {
+        min_fdepth: 3,
+        bpaths: 1,
+        inputs: [
+            "hon",
+            "aln",
+        ],
+        outputs: [
+            "mwh",
+            "yyl",
+            "piy",
+        ],
+    },
+    "rpm": BfsData {
+        min_fdepth: 6,
+        bpaths: 1,
+        inputs: [
+            "rtj",
+            "qat",
+            "tno",
+        ],
+        outputs: [
+            "out",
+        ],
+    },
+    "sxp": BfsData {
+        min_fdepth: 6,
+        bpaths: 1,
+        inputs: [
+            "vll",
+        ],
+        outputs: [
+            "out",
+        ],
+    },
+    "lhz": BfsData {
+        min_fdepth: 1,
+        bpaths: 0,
+        inputs: [
+            "you",
+        ],
+        outputs: [
+            "tuu",
+        ],
+    },
+    "lmm": BfsData {
+        min_fdepth: 4,
+        bpaths: 2,
+        inputs: [
+            "ccd",
+            "bvq",
+        ],
+        outputs: [
+            "gbx",
+        ],
+    },
+    "hux": BfsData {
+        min_fdepth: 5,
+        bpaths: 5,
+        inputs: [
+            "mwh",
+            "nqc",
+        ],
+        outputs: [
+            "hck",
+            "xwf",
+            "rmb",
+            "cxa",
+            "eww",
+        ],
+    },
+    "ccd": BfsData {
+        min_fdepth: 3,
+        bpaths: 0,
+        inputs: [
+            "dlo",
+            "zbl",
+        ],
+        outputs: [
+            "rpy",
+            "lmm",
+        ],
+    },
+    "mjw": BfsData {
+        min_fdepth: 5,
+        bpaths: 1,
+        inputs: [
+            "zcz",
+        ],
+        outputs: [
+            "cug",
+        ],
+    },
+    "rmb": BfsData {
+        min_fdepth: 6,
+        bpaths: 1,
+        inputs: [
+            "hux",
+            "cws",
+        ],
+        outputs: [
+            "out",
+        ],
+    },
+    "vee": BfsData {
+        min_fdepth: 6,
+        bpaths: 1,
+        inputs: [
+            "vnx",
+            "nav",
+        ],
+        outputs: [
+            "out",
+        ],
+    },
+    "ffm": BfsData {
+        min_fdepth: 3,
+        bpaths: 0,
+        inputs: [
+            "mfm",
+            "pul",
+        ],
+        outputs: [
+            "mcl",
+            "ofk",
+            "oti",
+        ],
+    },
+    "kez": BfsData {
+        min_fdepth: 3,
+        bpaths: 8,
+        inputs: [
+            "lbr",
+            "hbe",
+            "ibz",
+        ],
+        outputs: [
+            "inw",
+        ],
+    },
+    "woi": BfsData {
+        min_fdepth: 1,
+        bpaths: 4,
+        inputs: [
+            "you",
+        ],
+        outputs: [
+            "hon",
+            "rwh",
+            "aln",
+        ],
+    },
+    "cug": BfsData {
+        min_fdepth: 6,
+        bpaths: 1,
+        inputs: [
+            "qat",
+            "rtj",
+            "mjw",
+        ],
+        outputs: [
+            "out",
+        ],
+    },
+    "efl": BfsData {
+        min_fdepth: 1,
+        bpaths: 0,
+        inputs: [
+            "you",
+        ],
+        outputs: [
+            "brl",
+            "dlo",
+        ],
+    },
+    "kef": BfsData {
+        min_fdepth: 2,
+        bpaths: 0,
+        inputs: [
+            "jik",
+            "pej",
+        ],
+        outputs: [
+            "apr",
+        ],
+    },
+    "cbr": BfsData {
+        min_fdepth: 3,
+        bpaths: 0,
+        inputs: [
+            "tuu",
+        ],
+        outputs: [
+            "cif",
+            "ekl",
+        ],
+    },
+    "gcu": BfsData {
+        min_fdepth: 1,
+        bpaths: 0,
+        inputs: [
+            "you",
+        ],
+        outputs: [
+            "hbe",
+        ],
+    },
+    "pbh": BfsData {
+        min_fdepth: 1,
+        bpaths: 4,
+        inputs: [
+            "you",
+        ],
+        outputs: [
+            "hon",
+            "aln",
+            "rwh",
+        ],
+    },
+    "gbs": BfsData {
+        min_fdepth: 3,
+        bpaths: 0,
+        inputs: [
+            "tuu",
+        ],
+        outputs: [
+            "boe",
+            "zcz",
+            "cif",
+        ],
+    },
+    "gig": BfsData {
+        min_fdepth: 6,
+        bpaths: 1,
+        inputs: [
+            "hjk",
+            "vll",
+            "vfd",
+            "svi",
+        ],
+        outputs: [
+            "out",
+        ],
+    },
+    "pft": BfsData {
+        min_fdepth: 6,
+        bpaths: 1,
+        inputs: [
+            "hjj",
+            "fnb",
+        ],
+        outputs: [
+            "out",
+        ],
+    },
+    "ufd": BfsData {
+        min_fdepth: 3,
+        bpaths: 0,
+        inputs: [
+            "ibz",
+            "qwq",
+        ],
+        outputs: [
+            "dlc",
+        ],
+    },
+    "xih": BfsData {
+        min_fdepth: 6,
+        bpaths: 1,
+        inputs: [
+            "vnx",
+            "crj",
+        ],
+        outputs: [
+            "out",
+        ],
+    },
+    "ccg": BfsData {
+        min_fdepth: 3,
+        bpaths: 0,
+        inputs: [
+            "rwh",
+            "hon",
+            "aln",
+        ],
+        outputs: [
+            "nqc",
+            "piy",
+        ],
+    },
+    "apr": BfsData {
+        min_fdepth: 3,
+        bpaths: 0,
+        inputs: [
+            "kef",
+            "mfm",
+        ],
+        outputs: [
+            "ofk",
+        ],
+    },
+    "vhi": BfsData {
+        min_fdepth: 6,
+        bpaths: 1,
+        inputs: [
+            "gbx",
+        ],
+        outputs: [
+            "out",
+        ],
+    },
+    "you": BfsData {
+        min_fdepth: 0,
+        bpaths: 0,
+        inputs: [
+            "you",
+        ],
+        outputs: [
+            "izp",
+            "rqj",
+            "pej",
+            "shd",
+            "owq",
+            "uvx",
+            "jik",
+            "efl",
+            "lhz",
+            "woi",
+            "gcu",
+            "pbh",
+        ],
+    },
+    "yyl": BfsData {
+        min_fdepth: 4,
+        bpaths: 1,
+        inputs: [
+            "pna",
+            "ems",
+        ],
+        outputs: [
+            "sqy",
+        ],
+    },
+    "ais": BfsData {
+        min_fdepth: 6,
+        bpaths: 1,
+        inputs: [
+            "fnb",
+        ],
+        outputs: [
+            "out",
+        ],
+    },
+    "nqc": BfsData {
+        min_fdepth: 4,
+        bpaths: 12,
+        inputs: [
+            "ccg",
+        ],
+        outputs: [
+            "hux",
+            "cws",
+            "osp",
+        ],
+    },
+    "hoq": BfsData {
+        min_fdepth: 6,
+        bpaths: 1,
+        inputs: [
+            "vis",
+            "hjk",
+            "vfd",
+        ],
+        outputs: [
+            "out",
+        ],
+    },
+    "fnb": BfsData {
+        min_fdepth: 5,
+        bpaths: 2,
+        inputs: [
+            "rpy",
+            "qmi",
+        ],
+        outputs: [
+            "pft",
+            "ais",
+        ],
+    },
+    "wfq": BfsData {
+        min_fdepth: 6,
+        bpaths: 1,
+        inputs: [
+            "gbx",
+            "hjj",
+        ],
+        outputs: [
+            "out",
+        ],
+    },
+    "zcz": BfsData {
+        min_fdepth: 4,
+        bpaths: 14,
+        inputs: [
+            "lkn",
+            "gbs",
+        ],
+        outputs: [
+            "rtj",
+            "qat",
+            "mjw",
+            "ibp",
+            "tno",
+        ],
+    },
+    "qmi": BfsData {
+        min_fdepth: 4,
+        bpaths: 4,
+        inputs: [
+            "dff",
+            "rjl",
+        ],
+        outputs: [
+            "fnb",
+            "hjj",
+        ],
+    },
+    "rpy": BfsData {
+        min_fdepth: 4,
+        bpaths: 4,
+        inputs: [
+            "rjl",
+            "dff",
+            "ccd",
+            "bvq",
+        ],
+        outputs: [
+            "fnb",
+            "gbx",
+        ],
+    },
+    "vll": BfsData {
+        min_fdepth: 5,
+        bpaths: 3,
+        inputs: [
+            "ckl",
+            "inw",
+        ],
+        outputs: [
+            "gig",
+            "sxp",
+            "gxn",
+        ],
+    },
+    "ems": BfsData {
+        min_fdepth: 3,
+        bpaths: 1,
+        inputs: [
+            "hon",
+            "aln",
+        ],
+        outputs: [
+            "mwh",
+            "yyl",
+            "piy",
+        ],
+    },
+    "vis": BfsData {
+        min_fdepth: 5,
+        bpaths: 2,
+        inputs: [
+            "ckl",
+        ],
+        outputs: [
+            "zmg",
+            "hoq",
+        ],
+    },
+    "hbe": BfsData {
+        min_fdepth: 2,
+        bpaths: 0,
+        inputs: [
+            "shd",
+            "gcu",
+        ],
+        outputs: [
+            "kez",
+        ],
+    },
+    "lgj": BfsData {
+        min_fdepth: 3,
+        bpaths: 0,
+        inputs: [
+            "pul",
+        ],
+        outputs: [
+            "ofk",
+        ],
+    },
+    "dlc": BfsData {
+        min_fdepth: 4,
+        bpaths: 7,
+        inputs: [
+            "ufd",
+        ],
+        outputs: [
+            "hjk",
+            "vfd",
+        ],
+    },
+    "hon": BfsData {
+        min_fdepth: 2,
+        bpaths: 2,
+        inputs: [
+            "woi",
+            "owq",
+            "pbh",
+        ],
+        outputs: [
+            "pna",
+            "ccg",
+            "ems",
+        ],
+    },
+    "ipt": BfsData {
+        min_fdepth: 3,
+        bpaths: 8,
+        inputs: [
+            "ibz",
+            "xqu",
+        ],
+        outputs: [
+            "inw",
+        ],
+    },
+    "xwf": BfsData {
+        min_fdepth: 6,
+        bpaths: 1,
+        inputs: [
+            "cws",
+            "osp",
+            "hux",
+            "sqy",
+        ],
+        outputs: [
+            "out",
+        ],
+    },
+    "boe": BfsData {
+        min_fdepth: 4,
+        bpaths: 4,
+        inputs: [
+            "lkn",
+            "gbs",
+        ],
+        outputs: [
+            "tno",
+        ],
+    },
+    "osp": BfsData {
+        min_fdepth: 5,
+        bpaths: 3,
+        inputs: [
+            "mwh",
+            "nqc",
+        ],
+        outputs: [
+            "cxa",
+            "xwf",
+            "hck",
+        ],
+    },
+    "sqy": BfsData {
+        min_fdepth: 5,
+        bpaths: 1,
+        inputs: [
+            "yyl",
+        ],
+        outputs: [
+            "xwf",
+        ],
+    },
+    "nav": BfsData {
+        min_fdepth: 5,
+        bpaths: 2,
+        inputs: [
+            "ofk",
+            "oti",
+            "mcl",
+        ],
+        outputs: [
+            "vee",
+            "teg",
+        ],
+    },
+    "lkn": BfsData {
+        min_fdepth: 3,
+        bpaths: 0,
+        inputs: [
+            "tuu",
+        ],
+        outputs: [
+            "zcz",
+            "boe",
+        ],
+    },
+    "brl": BfsData {
+        min_fdepth: 2,
+        bpaths: 0,
+        inputs: [
+            "efl",
+        ],
+        outputs: [
+            "rjl",
+            "dff",
+            "elv",
+        ],
+    },
+    "ibz": BfsData {
+        min_fdepth: 2,
+        bpaths: 0,
+        inputs: [
+            "rqj",
+        ],
+        outputs: [
+            "kez",
+            "ipt",
+            "ufd",
+        ],
+    },
+    "pul": BfsData {
+        min_fdepth: 2,
+        bpaths: 0,
+        inputs: [
+            "pej",
+            "jik",
+        ],
+        outputs: [
+            "ffm",
+            "dqr",
+            "lgj",
+        ],
+    },
+    "dlo": BfsData {
+        min_fdepth: 2,
+        bpaths: 0,
+        inputs: [
+            "izp",
+            "efl",
+        ],
+        outputs: [
+            "ccd",
+        ],
+    },
+    "rhf": BfsData {
+        min_fdepth: 3,
+        bpaths: 8,
+        inputs: [
+            "qwq",
+            "xqu",
+        ],
+        outputs: [
+            "ckl",
+            "inw",
+        ],
+    },
+    "inw": BfsData {
+        min_fdepth: 4,
+        bpaths: 8,
+        inputs: [
+            "rhf",
+            "ipt",
+            "kez",
+        ],
+        outputs: [
+            "svi",
+            "vll",
+            "vfd",
+        ],
+    },
+    "out": BfsData {
+        min_fdepth: 7,
+        bpaths: 1,
+        inputs: [
+            "wfq",
+            "zmg",
+            "hck",
+            "ioc",
+            "pft",
+            "vhi",
+            "gxn",
+            "zus",
+            "ais",
+            "yxg",
+            "rmb",
+            "eww",
+            "cug",
+            "rpm",
+            "xwf",
+            "sxp",
+            "hoq",
+            "vee",
+            "gig",
+            "cxa",
+            "xih",
+            "teg",
+        ],
+        outputs: [],
+    },
+    "hck": BfsData {
+        min_fdepth: 6,
+        bpaths: 1,
+        inputs: [
+            "osp",
+            "cws",
+            "hux",
+        ],
+        outputs: [
+            "out",
+        ],
+    },
+    "zbl": BfsData {
+        min_fdepth: 2,
+        bpaths: 0,
+        inputs: [
+            "izp",
+        ],
+        outputs: [
+            "ccd",
+            "dff",
+            "rjl",
+            "bvq",
+        ],
+    },
+    "elv": BfsData {
+        min_fdepth: 3,
+        bpaths: 0,
+        inputs: [
+            "brl",
+            "gkz",
+        ],
+        outputs: [
+            "mgh",
+        ],
+    },
+    "mwh": BfsData {
+        min_fdepth: 4,
+        bpaths: 8,
+        inputs: [
+            "pna",
+            "ems",
+        ],
+        outputs: [
+            "osp",
+            "hux",
+        ],
+    },
+    "izp": BfsData {
+        min_fdepth: 1,
+        bpaths: 0,
+        inputs: [
+            "you",
+        ],
+        outputs: [
+            "gkz",
+            "zbl",
+            "dlo",
+        ],
+    },
+    "teg": BfsData {
+        min_fdepth: 6,
+        bpaths: 1,
+        inputs: [
+            "nav",
+            "vnx",
+        ],
+        outputs: [
+            "out",
+        ],
+    },
+    "rtj": BfsData {
+        min_fdepth: 5,
+        bpaths: 4,
+        inputs: [
+            "cif",
+            "zcz",
+        ],
+        outputs: [
+            "rpm",
+            "ioc",
+            "yxg",
+            "cug",
+        ],
+    },
+    "hjk": BfsData {
+        min_fdepth: 5,
+        bpaths: 3,
+        inputs: [
+            "ckl",
+            "dlc",
+        ],
+        outputs: [
+            "gig",
+            "zmg",
+            "hoq",
+        ],
+    },
+    "pej": BfsData {
+        min_fdepth: 1,
+        bpaths: 0,
+        inputs: [
+            "you",
+        ],
+        outputs: [
+            "kef",
+            "mfm",
+            "pul",
+        ],
+    },
+    "tno": BfsData {
+        min_fdepth: 5,
+        bpaths: 4,
+        inputs: [
+            "zcz",
+            "boe",
+            "ekl",
+            "cif",
+        ],
+        outputs: [
+            "rpm",
+            "ioc",
+            "yxg",
+            "zus",
+        ],
+    },
+    "ioc": BfsData {
+        min_fdepth: 6,
+        bpaths: 1,
+        inputs: [
+            "tno",
+            "qat",
+            "rtj",
+        ],
+        outputs: [
+            "out",
+        ],
+    },
+    "owq": BfsData {
+        min_fdepth: 1,
+        bpaths: 2,
+        inputs: [
+            "you",
+        ],
+        outputs: [
+            "rwh",
+            "hon",
+        ],
+    },
+    "yxg": BfsData {
+        min_fdepth: 6,
+        bpaths: 1,
+        inputs: [
+            "rtj",
+            "tno",
+        ],
+        outputs: [
+            "out",
+        ],
+    },
+    "tuu": BfsData {
+        min_fdepth: 2,
+        bpaths: 0,
+        inputs: [
+            "lhz",
+            "uvx",
+        ],
+        outputs: [
+            "gbs",
+            "cbr",
+            "lkn",
+        ],
+    },
+    "vnx": BfsData {
+        min_fdepth: 5,
+        bpaths: 3,
+        inputs: [
+            "oti",
+            "mcl",
+        ],
+        outputs: [
+            "teg",
+            "xih",
+            "vee",
+        ],
+    },
+    "oti": BfsData {
+        min_fdepth: 4,
+        bpaths: 6,
+        inputs: [
+            "dqr",
+            "ffm",
+        ],
+        outputs: [
+            "vnx",
+            "crj",
+            "nav",
+        ],
+    },
+    "rqj": BfsData {
+        min_fdepth: 1,
+        bpaths: 0,
+        inputs: [
+            "you",
+        ],
+        outputs: [
+            "ibz",
+        ],
+    },
+    "cxa": BfsData {
+        min_fdepth: 6,
+        bpaths: 1,
+        inputs: [
+            "hux",
+            "osp",
+            "cws",
+        ],
+        outputs: [
+            "out",
+        ],
+    },
+    "uvx": BfsData {
+        min_fdepth: 1,
+        bpaths: 0,
+        inputs: [
+            "you",
+        ],
+        outputs: [
+            "tuu",
+        ],
+    },
+    "ofk": BfsData {
+        min_fdepth: 4,
+        bpaths: 2,
+        inputs: [
+            "apr",
+            "lgj",
+            "ffm",
+        ],
+        outputs: [
+            "nav",
+        ],
+    },
+    "qwq": BfsData {
+        min_fdepth: 2,
+        bpaths: 0,
+        inputs: [
+            "shd",
+        ],
+        outputs: [
+            "ufd",
+            "rhf",
+        ],
+    },
+    "cws": BfsData {
+        min_fdepth: 5,
+        bpaths: 4,
+        inputs: [
+            "piy",
+            "nqc",
+        ],
+        outputs: [
+            "rmb",
+            "cxa",
+            "hck",
+            "xwf",
+        ],
+    },
+    "eww": BfsData {
+        min_fdepth: 6,
+        bpaths: 1,
+        inputs: [
+            "hux",
+        ],
+        outputs: [
+            "out",
+        ],
+    },
+    "crj": BfsData {
+        min_fdepth: 5,
+        bpaths: 1,
+        inputs: [
+            "oti",
+            "mcl",
+        ],
+        outputs: [
+            "xih",
+        ],
+    },
+    "shd": BfsData {
+        min_fdepth: 1,
+        bpaths: 0,
+        inputs: [
+            "you",
+        ],
+        outputs: [
+            "xqu",
+            "qwq",
+            "lbr",
+            "hbe",
+        ],
+    },
+    "mgh": BfsData {
+        min_fdepth: 4,
+        bpaths: 2,
+        inputs: [
+            "elv",
+            "rjl",
+        ],
+        outputs: [
+            "hjj",
+        ],
+    },
+    "qat": BfsData {
+        min_fdepth: 5,
+        bpaths: 4,
+        inputs: [
+            "cif",
+            "ekl",
+            "zcz",
+        ],
+        outputs: [
+            "ioc",
+            "rpm",
+            "zus",
+            "cug",
+        ],
+    },
+    "piy": BfsData {
+        min_fdepth: 4,
+        bpaths: 4,
+        inputs: [
+            "pna",
+            "ccg",
+            "ems",
+        ],
+        outputs: [
+            "cws",
+        ],
+    },
+    "ckl": BfsData {
+        min_fdepth: 4,
+        bpaths: 9,
+        inputs: [
+            "rhf",
+        ],
+        outputs: [
+            "svi",
+            "vll",
+            "vis",
+            "hjk",
+        ],
+    },
+    "jik": BfsData {
+        min_fdepth: 1,
+        bpaths: 0,
+        inputs: [
+            "you",
+        ],
+        outputs: [
+            "pul",
+            "mfm",
+            "kef",
+        ],
+    },
+    "dqr": BfsData {
+        min_fdepth: 3,
+        bpaths: 0,
+        inputs: [
+            "mfm",
+            "pul",
+        ],
+        outputs: [
+            "mcl",
+            "oti",
+        ],
+    },
+    "gbx": BfsData {
+        min_fdepth: 5,
+        bpaths: 2,
+        inputs: [
+            "lmm",
+            "rpy",
+        ],
+        outputs: [
+            "vhi",
+            "wfq",
+        ],
+    },
+    "ibp": BfsData {
+        min_fdepth: 5,
+        bpaths: 1,
+        inputs: [
+            "zcz",
+            "ekl",
+        ],
+        outputs: [
+            "zus",
+        ],
+    },
+    "gxn": BfsData {
+        min_fdepth: 6,
+        bpaths: 1,
+        inputs: [
+            "vll",
+            "vfd",
+        ],
+        outputs: [
+            "out",
+        ],
+    },
+    "zus": BfsData {
+        min_fdepth: 6,
+        bpaths: 1,
+        inputs: [
+            "qat",
+            "ibp",
+            "tno",
+        ],
+        outputs: [
+            "out",
+        ],
+    },
+    "zmg": BfsData {
+        min_fdepth: 6,
+        bpaths: 1,
+        inputs: [
+            "hjk",
+            "vis",
+            "vfd",
+        ],
+        outputs: [
+            "out",
+        ],
+    },
+    "lbr": BfsData {
+        min_fdepth: 2,
+        bpaths: 0,
+        inputs: [
+            "shd",
+        ],
+        outputs: [
+            "kez",
+        ],
+    },
+    "hjj": BfsData {
+        min_fdepth: 5,
+        bpaths: 2,
+        inputs: [
+            "qmi",
+            "mgh",
+        ],
+        outputs: [
+            "pft",
+            "wfq",
+        ],
+    },
+    "rjl": BfsData {
+        min_fdepth: 3,
+        bpaths: 0,
+        inputs: [
+            "zbl",
+            "gkz",
+            "brl",
+        ],
+        outputs: [
+            "mgh",
+            "qmi",
+            "rpy",
+        ],
+    },
+    "vfd": BfsData {
+        min_fdepth: 5,
+        bpaths: 4,
+        inputs: [
+            "dlc",
+            "inw",
+        ],
+        outputs: [
+            "gig",
+            "zmg",
+            "gxn",
+            "hoq",
+        ],
+    },
+    "bvq": BfsData {
+        min_fdepth: 3,
+        bpaths: 0,
+        inputs: [
+            "gkz",
+            "zbl",
+        ],
+        outputs: [
+            "lmm",
+            "rpy",
+        ],
+    },
+    "rwh": BfsData {
+        min_fdepth: 2,
+        bpaths: 0,
+        inputs: [
+            "pbh",
+            "woi",
+            "owq",
+        ],
+        outputs: [
+            "ccg",
+        ],
+    },
+    "svi": BfsData {
+        min_fdepth: 5,
+        bpaths: 1,
+        inputs: [
+            "ckl",
+            "inw",
+        ],
+        outputs: [
+            "gig",
+        ],
+    },
+    "gkz": BfsData {
+        min_fdepth: 2,
+        bpaths: 0,
+        inputs: [
+            "izp",
+        ],
+        outputs: [
+            "elv",
+            "dff",
+            "rjl",
+            "bvq",
+        ],
+    },
+    "mfm": BfsData {
+        min_fdepth: 2,
+        bpaths: 0,
+        inputs: [
+            "pej",
+            "jik",
+        ],
+        outputs: [
+            "ffm",
+            "apr",
+            "dqr",
+        ],
+    },
+}
+Part 1: 0
