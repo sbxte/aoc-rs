@@ -76,7 +76,29 @@ impl<T: Copy> Matrix<T> {
     }
 }
 
+impl<T: Zero + PartialEq> Matrix<T> {
+    /// Returns whether all elements in a column are zero
+    pub fn zeroed_column(&self, col: usize) -> bool {
+        assert!(col < self.cols);
+        (0..self.rows).all(|r| self.get(r, col) == &T::zero())
+    }
+
+    /// Returns whether all elements in a row are zero
+    pub fn zeroed_row(&self, row: usize) -> bool {
+        assert!(row < self.rows);
+        (0..self.cols).all(|c| self.get(row, c) == &T::zero())
+    }
+}
+
 impl<T> Matrix<T> {
+    pub fn rows(&self) -> usize {
+        self.rows
+    }
+
+    pub fn cols(&self) -> usize {
+        self.cols
+    }
+
     /// 0 <= row < N, 0 <= col < M
     pub fn get(&self, row: usize, col: usize) -> &T {
         assert!(row < self.rows);
@@ -218,7 +240,7 @@ where
                 {
                     i
                 } else {
-                    break;
+                    return None;
                 };
                 let multiplier =
                     *copy.get(n_row, first_non_zero_index) / *copy.get(row, first_non_zero_index);
@@ -241,7 +263,7 @@ where
                 {
                     i
                 } else {
-                    break;
+                    return None;
                 };
                 let multiplier =
                     *copy.get(n_row, first_non_zero_index) / *copy.get(row, first_non_zero_index);
@@ -326,6 +348,72 @@ where
     fn mul(self, rhs: SquareMatrix<T>) -> Self::Output {
         assert_eq!(self.size, rhs.size);
         SquareMatrix::from(self.inner_matrix * rhs.inner_matrix)
+    }
+}
+
+
+/// Typically used for row echelon related algorithms
+pub mod row_operations {
+    use super::*;
+    pub fn swap<N: Copy>(matrix: &mut Matrix<N>, from: usize, to: usize) {
+        assert!(from < matrix.rows());
+        assert!(to < matrix.rows());
+
+        if from == to {
+            return;
+        }
+
+        for c in 0..matrix.cols() {
+            let temp = *matrix.get(from, c);
+            *matrix.get_mut(from, c) = *matrix.get(to, c);
+            *matrix.get_mut(to, c) = temp;
+        }
+    }
+    
+    pub fn mul_add<N>(matrix: &mut Matrix<N>, from: usize, to: usize, multiplier: N) 
+    where 
+        N: Copy + Mul<Output = N> + Add<Output = N>,
+    {
+        assert!(from < matrix.rows());
+        assert!(to < matrix.rows());
+
+        for c in 0..matrix.cols() {
+            *matrix.get_mut(to, c) = *matrix.get(to, c) + multiplier * *matrix.get(from, c);
+        }
+    }
+
+    pub fn mul_sub<N>(matrix: &mut Matrix<N>, from: usize, to: usize, multiplier: N) 
+    where 
+        N: Copy + Mul<Output = N> + Sub<Output = N>,
+    {
+        assert!(from < matrix.rows());
+        assert!(to < matrix.rows());
+
+        for c in 0..matrix.cols() {
+            *matrix.get_mut(to, c) = *matrix.get(to, c) - multiplier * *matrix.get(from, c);
+        }
+    }
+
+    pub fn mul<N>(matrix: &mut Matrix<N>, row: usize, multiplier: N)
+    where 
+        N: Copy + Mul<Output = N>,
+    {
+        assert!(row < matrix.rows());
+
+        for c in 0..matrix.cols() {
+            *matrix.get_mut(row, c) = multiplier * *matrix.get(row, c);
+        }
+    }
+
+    pub fn div<N>(matrix: &mut Matrix<N>, row: usize, divisor: N)
+    where 
+        N: Copy + Div<Output = N>,
+    {
+        assert!(row < matrix.rows());
+
+        for c in 0..matrix.cols() {
+            *matrix.get_mut(row, c) = *matrix.get(row, c) / divisor;
+        }
     }
 }
 
