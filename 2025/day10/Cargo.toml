@@ -1,0 +1,8 @@
+[package]
+name = "aoc2025d10"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+aocutils = { path = "../../utils" }
+smallvec = { version = "1.15.1", features = ["const_generics"] }

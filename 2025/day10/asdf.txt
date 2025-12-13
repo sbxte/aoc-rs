@@ -1,0 +1,390 @@
+(0): p: 112 s: 112
+Matrix { inner_vec: [8.0, 10.0, 9.0, 20.0], rows: 4, cols: 1 }
+Gaussian Elimination found a unique solution!
+(1): p: 47 s: 159
+Matrix { inner_vec: [19.0, 2.0, 9.0], rows: 3, cols: 1 }
+Gaussian Elimination found a unique solution!
+(2): p: 30 s: 189
+Matrix { inner_vec: [12.0, 7.0, 137.0, 12.0], rows: 4, cols: 1 }
+Gaussian Elimination found a unique solution!
+(3): p: 168 s: 357
+Matrix { inner_vec: [0.0, 11.0, 19.0, 15.0, 6.0, 15.0, 7.0, 9.0], rows: 8, cols: 1 }
+Gaussian Elimination found a unique solution!
+(4): p: 82 s: 439
+Matrix { inner_vec: [0.0, 16.0, 18.0, 14.0, 18.0, 10.0], rows: 6, cols: 1 }
+Gaussian Elimination found a unique solution!
+(5): p: 76 s: 515
+Matrix { inner_vec: [18.0, 0.0, 0.0, 1.0, 18.0], rows: 5, cols: 1 }
+Gaussian Elimination found a unique solution!
+(6): p: 37 s: 552
+(7): p: 91 s: 643
+(8): p: 61 s: 704
+(9): p: 102 s: 806
+(10): p: 253 s: 1059
+(11): p: 202 s: 1261
+Matrix { inner_vec: [16.0, 6.0, 17.0, 3.0, 1.0, 9.0], rows: 6, cols: 1 }
+Gaussian Elimination found a unique solution!
+(12): p: 52 s: 1313
+Matrix { inner_vec: [8.0, 15.0], rows: 2, cols: 1 }
+Gaussian Elimination found a unique solution!
+(13): p: 23 s: 1336
+Matrix { inner_vec: [5.0, 8.0, 5.0, 13.0], rows: 4, cols: 1 }
+Gaussian Elimination found a unique solution!
+(14): p: 31 s: 1367
+Matrix { inner_vec: [10.0, 6.0, 6.0, 8.0], rows: 4, cols: 1 }
+Gaussian Elimination found a unique solution!
+(15): p: 30 s: 1397
+(16): p: 238 s: 1635
+Matrix { inner_vec: [14.0, 7.0, 1.0, 9.0, 13.0], rows: 5, cols: 1 }
+Gaussian Elimination found a unique solution!
+(17): p: 44 s: 1679
+(18): p: 44 s: 1723
+(19): p: 52 s: 1775
+Matrix { inner_vec: [16.0, 10.0, 10.0, 9.0, 15.0], rows: 5, cols: 1 }
+Gaussian Elimination found a unique solution!
+(20): p: 60 s: 1835
+Matrix { inner_vec: [20.0, 3.0, 9.0, 1.0, 20.0, 12.0], rows: 6, cols: 1 }
+Gaussian Elimination found a unique solution!
+(21): p: 65 s: 1900
+Matrix { inner_vec: [20.0, 9.0, 7.0], rows: 3, cols: 1 }
+Gaussian Elimination found a unique solution!
+(22): p: 36 s: 1936
+(23): p: 256 s: 2192
+(24): p: 70 s: 2262
+Matrix { inner_vec: [16.0, 17.0, 20.0, 1.0], rows: 4, cols: 1 }
+Gaussian Elimination found a unique solution!
+(25): p: 54 s: 2316
+(26): p: 91 s: 2407
+(27): p: 79 s: 2486
+Matrix { inner_vec: [0.0, 15.0], rows: 2, cols: 1 }
+Gaussian Elimination found a unique solution!
+(28): p: 15 s: 2501
+Matrix { inner_vec: [2.0, 19.0, 13.0, 13.0, 5.0], rows: 5, cols: 1 }
+Gaussian Elimination found a unique solution!
+(29): p: 52 s: 2553
+(30): p: 67 s: 2620
+(31): p: 53 s: 2673
+(32): p: 96 s: 2769
+(33): p: 104 s: 2873
+Matrix { inner_vec: [0.0, 12.0, 5.0, 16.0, 2.0, 9.0, 9.0, 6.0], rows: 8, cols: 1 }
+Gaussian Elimination found a unique solution!
+(34): p: 59 s: 2932
+(35): p: 188 s: 3120
+Matrix { inner_vec: [1.0, 16.0, 8.0, 186.0, 18.0], rows: 5, cols: 1 }
+Gaussian Elimination found a unique solution!
+(36): p: 229 s: 3349
+(37): p: 228 s: 3577
+Matrix { inner_vec: [11.0, 6.0, 8.0, 1.0, 15.0, 17.0, 18.0, 19.0], rows: 8, cols: 1 }
+Gaussian Elimination found a unique solution!
+(38): p: 95 s: 3672
+Matrix { inner_vec: [19.0, 5.0, 11.0, 13.0, 9.0], rows: 5, cols: 1 }
+Gaussian Elimination found a unique solution!
+(39): p: 57 s: 3729
+(40): p: 62 s: 3791
+Matrix { inner_vec: [4.0, 6.0, 5.0, 1.0, 13.0, 19.0], rows: 6, cols: 1 }
+Gaussian Elimination found a unique solution!
+(41): p: 48 s: 3839
+Matrix { inner_vec: [11.0, 3.0, 15.0, 2.0, 116.0, 12.0], rows: 6, cols: 1 }
+Gaussian Elimination found a unique solution!
+(42): p: 159 s: 3998
+Matrix { inner_vec: [1.0, 3.0, 13.0, 18.0], rows: 4, cols: 1 }
+Gaussian Elimination found a unique solution!
+(43): p: 35 s: 4033
+Matrix { inner_vec: [6.0, 18.0, 5.0, 2.0, 3.0, 11.0, 6.0, 13.0], rows: 8, cols: 1 }
+Gaussian Elimination found a unique solution!
+(44): p: 64 s: 4097
+(45): p: 206 s: 4303
+(46): p: 91 s: 4394
+Matrix { inner_vec: [7.0, 19.0, 7.0, 6.0, 8.0, 12.0], rows: 6, cols: 1 }
+Gaussian Elimination found a unique solution!
+(47): p: 59 s: 4453
+Matrix { inner_vec: [11.0, 15.0, -0.0, 17.0, 14.0], rows: 5, cols: 1 }
+Gaussian Elimination found a unique solution!
+(48): p: 57 s: 4510
+(49): p: 53 s: 4563
+Matrix { inner_vec: [1.0, 3.0, 1.0, 12.0, 2.0, 12.0, 3.0, 5.0, 11.0, 4.0], rows: 10, cols: 1 }
+Gaussian Elimination found a unique solution!
+(50): p: 54 s: 4617
+(51): p: 53 s: 4670
+Matrix { inner_vec: [18.0, 13.0, 18.0], rows: 3, cols: 1 }
+Gaussian Elimination found a unique solution!
+(52): p: 49 s: 4719
+Matrix { inner_vec: [10.0, 1.0, 10.0, 0.0, 11.0, 9.0], rows: 6, cols: 1 }
+Gaussian Elimination found a unique solution!
+(53): p: 41 s: 4760
+(54): p: 48 s: 4808
+(55): p: 113 s: 4921
+Matrix { inner_vec: [14.0, 9.0, 11.0, 15.0, 17.0, 4.0, 19.0], rows: 7, cols: 1 }
+Gaussian Elimination found a unique solution!
+(56): p: 89 s: 5010
+(57): p: 209 s: 5219
+(58): p: 304 s: 5523
+(59): p: 73 s: 5596
+(60): p: 276 s: 5872
+Matrix { inner_vec: [8.0, 18.0, 5.0, 11.0, 16.0, 9.0, 5.0], rows: 7, cols: 1 }
+Gaussian Elimination found a unique solution!
+(61): p: 72 s: 5944
+(62): p: 51 s: 5995
+(63): p: 50 s: 6045
+(64): p: 112 s: 6157
+Matrix { inner_vec: [4.0, 16.0, 10.0, 18.0, 18.0, 7.0, 17.0], rows: 7, cols: 1 }
+Gaussian Elimination found a unique solution!
+(65): p: 90 s: 6247
+Matrix { inner_vec: [0.0, 15.0, 14.0, 17.0, 5.0, 12.0], rows: 6, cols: 1 }
+Gaussian Elimination found a unique solution!
+(66): p: 63 s: 6310
+Matrix { inner_vec: [4.0, 16.0, 120.0, 10.0, 10.0], rows: 5, cols: 1 }
+Gaussian Elimination found a unique solution!
+(67): p: 160 s: 6470
+(68): p: 64 s: 6534
+Matrix { inner_vec: [15.0, 3.0, 3.0, 3.0, 0.0], rows: 5, cols: 1 }
+Gaussian Elimination found a unique solution!
+(69): p: 24 s: 6558
+Matrix { inner_vec: [4.0, 158.0, 17.0], rows: 3, cols: 1 }
+Gaussian Elimination found a unique solution!
+(70): p: 179 s: 6737
+Matrix { inner_vec: [4.0, 16.0, 18.0, 17.0], rows: 4, cols: 1 }
+Gaussian Elimination found a unique solution!
+(71): p: 55 s: 6792
+(72): p: 221 s: 7013
+(73): p: 95 s: 7108
+(74): p: 113 s: 7221
+(75): p: 85 s: 7306
+Matrix { inner_vec: [18.0, 15.0, 1.0, 20.0, 12.0, 18.0, 14.0, 6.0, 17.0, 5.0], rows: 10, cols: 1 }
+Gaussian Elimination found a unique solution!
+(76): p: 126 s: 7432
+Matrix { inner_vec: [16.0, 13.0, 4.0, 17.0, 16.0, 20.0, 13.0, 7.0, 5.0], rows: 9, cols: 1 }
+Gaussian Elimination found a unique solution!
+(77): p: 111 s: 7543
+(78): p: 51 s: 7594
+(79): p: 106 s: 7700
+Matrix { inner_vec: [9.0, 7.0, 8.0, 14.0, 13.0], rows: 5, cols: 1 }
+Gaussian Elimination found a unique solution!
+(80): p: 51 s: 7751
+Matrix { inner_vec: [8.0, 7.0, 5.0, 6.0, 0.0, 3.0, 12.0], rows: 7, cols: 1 }
+Gaussian Elimination found a unique solution!
+(81): p: 41 s: 7792
+(82): p: 205 s: 7997
+Matrix { inner_vec: [3.0, 4.0, 4.0, 19.0, 16.0, 4.0, 138.0, 1.0], rows: 8, cols: 1 }
+Gaussian Elimination found a unique solution!
+(83): p: 189 s: 8186
+Matrix { inner_vec: [17.0, 9.0, 15.0, 0.0, 8.0], rows: 5, cols: 1 }
+Gaussian Elimination found a unique solution!
+(84): p: 49 s: 8235
+Matrix { inner_vec: [13.0, 6.0, 12.0, 16.0, 3.0], rows: 5, cols: 1 }
+Gaussian Elimination found a unique solution!
+(85): p: 50 s: 8285
+(86): p: 74 s: 8359
+(87): p: 79 s: 8438
+(88): p: 195 s: 8633
+(89): p: 107 s: 8740
+Matrix { inner_vec: [14.0, 10.0], rows: 2, cols: 1 }
+Gaussian Elimination found a unique solution!
+(90): p: 24 s: 8764
+Matrix { inner_vec: [0.0, 13.0, 14.0, 10.0, 17.0, 10.0, 13.0, 14.0, 2.0, 5.0], rows: 10, cols: 1 }
+Gaussian Elimination found a unique solution!
+(91): p: 98 s: 8862
+(92): p: 164 s: 9026
+Matrix { inner_vec: [17.0, 8.0, 6.0, 16.0, 11.0, 175.0, 13.0, 19.0, 20.0], rows: 9, cols: 1 }
+Gaussian Elimination found a unique solution!
+(93): p: 285 s: 9311
+(94): p: 91 s: 9402
+(95): p: 78 s: 9480
+(96): p: 42 s: 9522
+Matrix { inner_vec: [13.0, 19.0, 18.0], rows: 3, cols: 1 }
+Gaussian Elimination found a unique solution!
+(97): p: 50 s: 9572
+Matrix { inner_vec: [13.0, 12.0, 17.0, 12.0, 1.0, 13.0], rows: 6, cols: 1 }
+Gaussian Elimination found a unique solution!
+(98): p: 68 s: 9640
+Matrix { inner_vec: [20.0, 17.0], rows: 2, cols: 1 }
+Gaussian Elimination found a unique solution!
+(99): p: 37 s: 9677
+(100): p: 94 s: 9771
+Matrix { inner_vec: [10.0, 12.0, 4.0, 8.0, 7.0, 12.0, 5.0, 18.0, 13.0, 12.0], rows: 10, cols: 1 }
+Gaussian Elimination found a unique solution!
+(101): p: 101 s: 9872
+Matrix { inner_vec: [196.0, 20.0, 12.0], rows: 3, cols: 1 }
+Gaussian Elimination found a unique solution!
+(102): p: 228 s: 10100
+(103): p: 122 s: 10222
+(104): p: 44 s: 10266
+(105): p: 67 s: 10333
+Matrix { inner_vec: [20.0, 10.0, 13.0, 3.0, 0.0, 11.0, 13.0], rows: 7, cols: 1 }
+Gaussian Elimination found a unique solution!
+(106): p: 70 s: 10403
+Matrix { inner_vec: [14.0, 1.0, 9.0, 14.0], rows: 4, cols: 1 }
+Gaussian Elimination found a unique solution!
+(107): p: 38 s: 10441
+Matrix { inner_vec: [20.0, 17.0, 15.0, 2.0], rows: 4, cols: 1 }
+Gaussian Elimination found a unique solution!
+(108): p: 54 s: 10495
+(109): p: 89 s: 10584
+(110): p: 95 s: 10679
+Matrix { inner_vec: [2.0, 19.0], rows: 2, cols: 1 }
+Gaussian Elimination found a unique solution!
+(111): p: 21 s: 10700
+(112): p: 55 s: 10755
+Matrix { inner_vec: [3.0, 18.0, 3.0, 16.0, 7.0, 20.0, -0.0], rows: 7, cols: 1 }
+Gaussian Elimination found a unique solution!
+(113): p: 67 s: 10822
+Matrix { inner_vec: [11.0, 4.0, 3.0, 1.0, 17.0, 7.0, 18.0, 19.0], rows: 8, cols: 1 }
+Gaussian Elimination found a unique solution!
+(114): p: 80 s: 10902
+Matrix { inner_vec: [16.0, 16.0, 16.0, 7.0, 8.0, 13.0], rows: 6, cols: 1 }
+Gaussian Elimination found a unique solution!
+(115): p: 76 s: 10978
+Matrix { inner_vec: [1.0, 4.0, 19.0, 5.0, 17.0, 11.0, 3.0], rows: 7, cols: 1 }
+Gaussian Elimination found a unique solution!
+(116): p: 60 s: 11038
+(117): p: 65 s: 11103
+Matrix { inner_vec: [0.0, 10.0, 5.0], rows: 3, cols: 1 }
+Gaussian Elimination found a unique solution!
+(118): p: 15 s: 11118
+Matrix { inner_vec: [17.0, 2.0, -0.0, 0.0], rows: 4, cols: 1 }
+Gaussian Elimination found a unique solution!
+(119): p: 19 s: 11137
+Matrix { inner_vec: [0.0, 20.0, 13.0, 18.0, 122.0], rows: 5, cols: 1 }
+Gaussian Elimination found a unique solution!
+(120): p: 173 s: 11310
+Matrix { inner_vec: [11.0, 12.0, 140.0], rows: 3, cols: 1 }
+Gaussian Elimination found a unique solution!
+(121): p: 163 s: 11473
+Matrix { inner_vec: [20.0, 17.0, 13.0, 15.0, 17.0, 14.0], rows: 6, cols: 1 }
+Gaussian Elimination found a unique solution!
+(122): p: 96 s: 11569
+(123): p: 54 s: 11623
+Matrix { inner_vec: [11.0, 4.0, 8.0, 4.0, 17.0, 20.0, 14.0], rows: 7, cols: 1 }
+Gaussian Elimination found a unique solution!
+(124): p: 78 s: 11701
+Matrix { inner_vec: [18.0, 18.0, 4.0, 133.0, 3.0, 12.0, 6.0, 3.0], rows: 8, cols: 1 }
+Gaussian Elimination found a unique solution!
+(125): p: 197 s: 11898
+Matrix { inner_vec: [0.0, 8.0, 14.0, 8.0, 14.0, 12.0, 12.0, 16.0], rows: 8, cols: 1 }
+Gaussian Elimination found a unique solution!
+(126): p: 84 s: 11982
+(127): p: 116 s: 12098
+(128): p: 50 s: 12148
+Matrix { inner_vec: [7.0, 4.0, 7.0], rows: 3, cols: 1 }
+Gaussian Elimination found a unique solution!
+(129): p: 18 s: 12166
+(130): p: 239 s: 12405
+Matrix { inner_vec: [4.0, 3.0, 3.0, 15.0], rows: 4, cols: 1 }
+Gaussian Elimination found a unique solution!
+(131): p: 25 s: 12430
+(132): p: 107 s: 12537
+(133): p: 93 s: 12630
+Matrix { inner_vec: [14.0, 19.0, 18.0], rows: 3, cols: 1 }
+Gaussian Elimination found a unique solution!
+(134): p: 51 s: 12681
+(135): p: 259 s: 12940
+Matrix { inner_vec: [11.0, 8.0, 1.0, 0.0, 9.0, 2.0, 174.0], rows: 7, cols: 1 }
+Gaussian Elimination found a unique solution!
+(136): p: 205 s: 13145
+(137): p: 96 s: 13241
+Matrix { inner_vec: [11.0, 2.0, 9.0, 8.0, 114.0, 20.0, 13.0, 8.0, 17.0], rows: 9, cols: 1 }
+Gaussian Elimination found a unique solution!
+(138): p: 202 s: 13443
+(139): p: 246 s: 13689
+Matrix { inner_vec: [9.0, 15.0], rows: 2, cols: 1 }
+Gaussian Elimination found a unique solution!
+(140): p: 24 s: 13713
+(141): p: 112 s: 13825
+Matrix { inner_vec: [196.0, 3.0, 4.0, 13.0], rows: 4, cols: 1 }
+Gaussian Elimination found a unique solution!
+(142): p: 216 s: 14041
+(143): p: 87 s: 14128
+(144): p: 36 s: 14164
+(145): p: 84 s: 14248
+(146): p: 88 s: 14336
+(147): p: 150 s: 14486
+(148): p: 218 s: 14704
+Matrix { inner_vec: [15.0, 20.0, -0.0, 12.0, 3.0], rows: 5, cols: 1 }
+Gaussian Elimination found a unique solution!
+(149): p: 50 s: 14754
+(150): p: 29 s: 14783
+(151): p: 84 s: 14867
+(152): p: 86 s: 14953
+(153): p: 107 s: 15060
+Matrix { inner_vec: [16.0, 14.0, 12.0, 1.0], rows: 4, cols: 1 }
+Gaussian Elimination found a unique solution!
+(154): p: 43 s: 15103
+(155): p: 90 s: 15193
+Matrix { inner_vec: [17.0, 11.0, 2.0, 13.0, 12.0, 11.0], rows: 6, cols: 1 }
+Gaussian Elimination found a unique solution!
+(156): p: 66 s: 15259
+Matrix { inner_vec: [7.0, 15.0, 1.0, 8.0, 10.0, 10.0, 18.0, 12.0, 9.0], rows: 9, cols: 1 }
+Gaussian Elimination found a unique solution!
+(157): p: 90 s: 15349
+(158): p: 193 s: 15542
+(159): p: 97 s: 15639
+Matrix { inner_vec: [0.0, 13.0, 18.0, 8.0], rows: 4, cols: 1 }
+Gaussian Elimination found a unique solution!
+(160): p: 39 s: 15678
+(161): p: 102 s: 15780
+(162): p: 57 s: 15837
+Matrix { inner_vec: [7.0, 14.0, 7.0, 18.0, 111.0], rows: 5, cols: 1 }
+Gaussian Elimination found a unique solution!
+(163): p: 157 s: 15994
+Matrix { inner_vec: [6.0, 20.0, 19.0, 11.0, 6.0, 19.0, 15.0], rows: 7, cols: 1 }
+Gaussian Elimination found a unique solution!
+(164): p: 96 s: 16090
+(165): p: 231 s: 16321
+Matrix { inner_vec: [12.0, 17.0, 177.0, 11.0], rows: 4, cols: 1 }
+Gaussian Elimination found a unique solution!
+(166): p: 217 s: 16538
+(167): p: 77 s: 16615
+Matrix { inner_vec: [5.0, 9.0, 13.0, 4.0, 6.0, 17.0, 2.0], rows: 7, cols: 1 }
+Gaussian Elimination found a unique solution!
+(168): p: 56 s: 16671
+(169): p: 73 s: 16744
+(170): p: 72 s: 16816
+(171): p: 66 s: 16882
+Matrix { inner_vec: [0.0, 15.0, 16.0, 13.0, 14.0], rows: 5, cols: 1 }
+Gaussian Elimination found a unique solution!
+(172): p: 58 s: 16940
+Matrix { inner_vec: [4.0, 11.0, 1.0, 5.0, 20.0, -0.0, 10.0], rows: 7, cols: 1 }
+Gaussian Elimination found a unique solution!
+(173): p: 51 s: 16991
+Matrix { inner_vec: [9.0, 11.0, 3.0, 11.0, 165.0, 10.0, 6.0, 9.0, -0.0, 9.0], rows: 10, cols: 1 }
+Gaussian Elimination found a unique solution!
+(174): p: 233 s: 17224
+(175): p: 141 s: 17365
+Matrix { inner_vec: [15.0, 2.0, 5.0, 1.0, 20.0, 159.0, 5.0, 4.0], rows: 8, cols: 1 }
+Gaussian Elimination found a unique solution!
+(176): p: 211 s: 17576
+(177): p: 130 s: 17706
+Matrix { inner_vec: [1.0, 4.0, 9.0, 7.0, 12.0, 12.0], rows: 6, cols: 1 }
+Gaussian Elimination found a unique solution!
+(178): p: 45 s: 17751
+Matrix { inner_vec: [17.0, 161.0, 16.0, 9.0, 6.0], rows: 5, cols: 1 }
+Gaussian Elimination found a unique solution!
+(179): p: 209 s: 17960
+(180): p: 101 s: 18061
+(181): p: 238 s: 18299
+Matrix { inner_vec: [15.0, 148.0, 18.0, 19.0, 12.0], rows: 5, cols: 1 }
+Gaussian Elimination found a unique solution!
+(182): p: 212 s: 18511
+(183): p: 46 s: 18557
+Matrix { inner_vec: [20.0, 17.0, 15.0, 175.0], rows: 4, cols: 1 }
+Gaussian Elimination found a unique solution!
+(184): p: 227 s: 18784
+Matrix { inner_vec: [7.0, 4.0, 7.0, 8.0, 2.0, 108.0, 19.0, 14.0], rows: 8, cols: 1 }
+Gaussian Elimination found a unique solution!
+(185): p: 169 s: 18953
+(186): p: 156 s: 19109
+Matrix { inner_vec: [6.0, 9.0, 17.0, 0.0, 10.0], rows: 5, cols: 1 }
+Gaussian Elimination found a unique solution!
+(187): p: 42 s: 19151
+(188): p: 116 s: 19267
+Matrix { inner_vec: [3.0, 10.0, 17.0, 110.0, 14.0, 7.0, 20.0, 11.0], rows: 8, cols: 1 }
+Gaussian Elimination found a unique solution!
+(189): p: 192 s: 19459
+(190): p: 85 s: 19544
+(191): p: 52 s: 19596
+(192): p: 108 s: 19704
+(193): p: 69 s: 19773
+Matrix { inner_vec: [20.0, 8.0, 9.0], rows: 3, cols: 1 }
+Gaussian Elimination found a unique solution!
+(194): p: 37 s: 19810
+Part 2: 19810
