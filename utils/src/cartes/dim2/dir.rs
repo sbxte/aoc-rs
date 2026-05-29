@@ -3,7 +3,7 @@ use std::ops::Neg;
 use crate::cartes::dim2::vec::Vec2;
 use crate::num::{One, Zero};
 
-#[derive(Debug, PartialEq, Eq, Clone, Copy)]
+#[derive(Debug, Hash, PartialEq, Eq, Clone, Copy)]
 pub enum Direction {
     Up,
     Down,
