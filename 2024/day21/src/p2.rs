@@ -3,7 +3,7 @@
 // Robot 3: Directional keypad (-40 degrees)
 // You: Directional keypad (full of damn historians, instant pressing)
 
-use std::collections::BinaryHeap;
+use std::collections::{BinaryHeap, HashMap};
 
 use aocutils::cartes::dim2::dir::Direction;
 use aocutils::cartes::dim2::vec::Vec2;
@@ -40,6 +40,10 @@ fn char2coord_numpad(c: char) -> Coord {
 const NUMPAD_VOID: Coord = const { Coord { 0: 0, 1: 0 } };
 const DIRPAD_VOID: Coord = const { Coord { 0: 0, 1: 1 } };
 
+const LEVELS: usize = 26;
+type COST = u64;
+
+#[derive(Debug, Hash, PartialEq, Eq, Clone, Copy)]
 enum DirpadAction {
     Move(Direction),
     Press,
@@ -51,14 +55,21 @@ struct PathState {
     // 1: dirpad bot
     // 0: dirpad bot
     // -: you (instant movement, each button cost is 1)
-    pos: [Coord; 3],
+    pos: [Coord; LEVELS],
     pushed: bool,
-    cost: u32,
+    g_cost: COST,
+    h_cost: COST,
+}
+
+impl PathState {
+    fn cost(&self) -> COST {
+        self.g_cost + self.h_cost
+    }
 }
 
 impl Ord for PathState {
     fn cmp(&self, other: &Self) -> std::cmp::Ordering {
-        self.cost.cmp(&other.cost).reverse()
+        self.cost().cmp(&other.cost()).reverse()
     }
 }
 
@@ -68,32 +79,47 @@ impl PartialOrd for PathState {
     }
 }
 
+#[derive(Hash, PartialEq, Eq)]
+struct DpState {
+    pos: Coord,
+    depth: usize,
+    action: DirpadAction,
+}
+type DpMemo = HashMap<DpState, COST>;
+
 // Move to and then press
-fn path_numpad(from: Coord, to: Coord) -> u32 {
+fn path_numpad(from: Coord, to: Coord) -> COST {
     let mut open = BinaryHeap::new();
 
     // State returns cost. BHeap is MaxHeap.
     // Reverse to minimize cost
     let a_coord = action2coord_dirpad(DirpadAction::Press);
-    open.push(PathState {
-        pos: [a_coord, a_coord, from],
+    let mut first_state = PathState {
+        pos: [a_coord; LEVELS],
         pushed: false,
-        cost: 0,
-    });
+        g_cost: 0,
+        h_cost: from.manhattan_dist(to) as COST,
+    };
+    first_state.pos[LEVELS - 1] = from;
+    open.push(first_state);
+
+    let mut dp_memo: DpMemo = HashMap::new();
 
     while let Some(mut state) = open.pop() {
-        if state.pos[2] == to && state.pushed {
-            return state.cost;
-        } else if state.pos[2] == to {
+        if state.pos[LEVELS - 1] == to && state.pushed {
+            return state.g_cost;
+        } else if state.pos[LEVELS - 1] == to {
             // At target, now press
-            let (newpos, subcost) = path_dirpad(DirpadAction::Press, state.pos, 1);
+            let (newpos, subcost) =
+                path_dirpad(DirpadAction::Press, state.pos, LEVELS - 2, &mut dp_memo);
             state.pos = newpos;
-            state.cost += subcost;
+            state.g_cost += subcost;
+
             state.pushed = true;
             open.push(state);
         } else {
             // Move towards target
-            let p = state.pos[2];
+            let p = state.pos[LEVELS - 1];
             let prev_dist = p.manhattan_dist(to);
             let dirs = Direction::iter_all().filter(|d| {
                 let next = p + d.step();
@@ -102,10 +128,17 @@ fn path_numpad(from: Coord, to: Coord) -> u32 {
             for dir in dirs {
                 let mut next_state = state;
 
-                let (newpos, subcost) = path_dirpad(DirpadAction::Move(dir), next_state.pos, 1);
+                let (newpos, subcost) = path_dirpad(
+                    DirpadAction::Move(dir),
+                    next_state.pos,
+                    LEVELS - 2,
+                    &mut dp_memo,
+                );
+
                 next_state.pos = newpos;
-                next_state.cost += subcost;
-                next_state.pos[2] += dir.step();
+                next_state.g_cost += subcost;
+                next_state.pos[LEVELS - 1] += dir.step();
+
                 open.push(next_state);
             }
         }
@@ -114,30 +147,55 @@ fn path_numpad(from: Coord, to: Coord) -> u32 {
     unreachable!("No path found at numpad layer!");
 }
 
-fn path_dirpad(action: DirpadAction, initial_state: [Coord; 3], depth: usize) -> ([Coord; 3], u32) {
+fn path_dirpad(
+    action: DirpadAction,
+    initial_state: [Coord; LEVELS],
+    depth: usize,
+    dp_memo: &mut DpMemo,
+) -> ([Coord; LEVELS], COST) {
     // Move and then press
     let to = action2coord_dirpad(action);
     let mut open = BinaryHeap::new();
     open.push(PathState {
         pos: initial_state,
-        cost: 0,
+        g_cost: 0,
+        h_cost: initial_state[depth].manhattan_dist(to) as COST,
         pushed: false,
     });
 
     while let Some(mut state) = open.pop() {
         if state.pos[depth] == to && state.pushed {
-            return (state.pos, state.cost);
+            return (state.pos, state.g_cost);
         } else if state.pos[depth] == to {
             if depth == 0 {
-                return (state.pos, state.cost + 1);
+                return (state.pos, state.g_cost + 1);
+            } else if let Some(cost) = dp_memo.get(&DpState {
+                pos: state.pos[depth - 1],
+                depth,
+                action: DirpadAction::Press,
+            }) {
+                state.pos[depth - 1] = action2coord_dirpad(DirpadAction::Press);
+                state.g_cost += *cost;
             } else {
                 // At target, now press
-                let (newpos, subcost) = path_dirpad(DirpadAction::Press, state.pos, depth - 1);
+                let (newpos, subcost) =
+                    path_dirpad(DirpadAction::Press, state.pos, depth - 1, dp_memo);
+
+                dp_memo.insert(
+                    DpState {
+                        pos: state.pos[depth - 1],
+                        depth,
+                        action: DirpadAction::Press,
+                    },
+                    subcost,
+                );
+
                 state.pos = newpos;
-                state.cost += subcost;
-                state.pushed = true;
-                open.push(state);
+                state.g_cost += subcost;
             }
+
+            state.pushed = true;
+            open.push(state);
         } else {
             // Move towards target
             let p = state.pos[depth];
@@ -150,14 +208,32 @@ fn path_dirpad(action: DirpadAction, initial_state: [Coord; 3], depth: usize) ->
                 let mut next_state = state;
                 if depth == 0 {
                     // its just you, you move instantly
-                    next_state.cost += 1;
+                    next_state.g_cost += 1;
+                } else if let Some(cost) = dp_memo.get(&DpState {
+                    pos: state.pos[depth - 1],
+                    depth,
+                    action: DirpadAction::Move(dir),
+                }) {
+                    next_state.pos[depth - 1] = action2coord_dirpad(DirpadAction::Move(dir));
+                    next_state.g_cost += *cost;
                 } else {
                     let (newpos, subcost) =
-                        path_dirpad(DirpadAction::Move(dir), next_state.pos, depth - 1);
+                        path_dirpad(DirpadAction::Move(dir), next_state.pos, depth - 1, dp_memo);
+
+                    dp_memo.insert(
+                        DpState {
+                            pos: next_state.pos[depth - 1],
+                            depth,
+                            action: DirpadAction::Move(dir),
+                        },
+                        subcost,
+                    );
+
                     next_state.pos = newpos;
-                    next_state.cost += subcost;
+                    next_state.g_cost += subcost;
                 }
                 next_state.pos[depth] += dir.step();
+
                 open.push(next_state);
             }
         }
@@ -166,7 +242,7 @@ fn path_dirpad(action: DirpadAction, initial_state: [Coord; 3], depth: usize) ->
     unreachable!("No path found at dirpad layer {}!", depth);
 }
 
-pub fn part1(input: &str) -> u32 {
+pub fn part2(input: &str) -> COST {
     let mut total = 0;
     for line in input.lines() {
         let mut prev = char2coord_numpad('A');
@@ -177,31 +253,9 @@ pub fn part1(input: &str) -> u32 {
             cost += deltacost;
             prev = to;
         }
-        let num = line[..line.len() - 1].parse::<u32>().unwrap();
+        let num = line[..line.len() - 1].parse::<COST>().unwrap();
         let delta = num * cost;
         total += delta;
     }
     return total;
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn sample() {
-        let sample = "029A
-980A
-179A
-456A
-379A";
-
-        assert_eq!(part1(sample), 126384);
-    }
-
-    #[test]
-    fn dbg() {
-        let sample = "029A";
-        assert_eq!(part1(sample), 68 * 29);
-    }
 }
